@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{05537D78-D52D-485A-9157-BB39E37E9A3B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GeneticCode</RootNamespace>
+    <AssemblyName>GeneticCode</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>True</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>True</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\BodyParts\Cylinder.cs" />
+    <Compile Include="Extensions\BodyParts\Sphere.cs" />
+    <Compile Include="Extensions\BodyParts\Square.cs" />
+    <Compile Include="Extensions\BodyPart.cs" />
+    <Compile Include="Extension.cs" />
+    <Compile Include="Extensions\Members\Tubular.cs" />
+    <Compile Include="Extensions\Members\Plate.cs" />
+    <Compile Include="Simulation.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="GeneticData.cs" />
+    <Compile Include="GeneticDataTemplates\DefaultSEVA.cs" />
+    <Compile Include="Genotype.cs" />
+    <Compile Include="Extensions\Member.cs" />
+    <Compile Include="Interfaces\IMutable.cs" />
+    <Compile Include="Interfaces\IMutation.cs" />
+    <Compile Include="Mutations\GeneticModifier.cs" />
+    <Compile Include="Mutations\Mutation.cs" />
+    <Compile Include="Mutations\Modifier.cs" />
+    <Compile Include="Mutations\Modifiers\Addition.cs" />
+    <Compile Include="Mutations\Modifiers\Blur.cs" />
+    <Compile Include="Mutations\Modifiers\Multiplication.cs" />
+    <Compile Include="Mutations\StructuralModifier.cs" />
+    <Compile Include="Mutations\StructuralModifiers\RemoveExtension.cs" />
+    <Compile Include="Organism.cs" />
+    <Compile Include="Organisms\Test.cs" />
+    <Compile Include="Recombination\EasyReco.cs" />
+    <Compile Include="Recombination\RecombinationHandler.cs" />
+    <Compile Include="Set.cs" />
+    <Compile Include="Tools\Probability.cs" />
+    <Compile Include="UnityStuff.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
