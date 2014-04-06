@@ -7,7 +7,7 @@ namespace GeneticCode
 {
     abstract class BodyPart : Extension
     {
-        public BodyPart() : base() { }
+        protected BodyPart() : base() { }
         public BodyPart(String tag) : base(tag) { }
         public BodyPart(GeneticData data) : base(data) { }
     }

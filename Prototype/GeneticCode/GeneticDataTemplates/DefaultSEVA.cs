@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GeneticCode.Wrappers;
 
 namespace GeneticCode.GeneticDataTemplates
 {
@@ -15,9 +16,9 @@ namespace GeneticCode.GeneticDataTemplates
 
         private void initialize() {
             // Base template for Extensions.
-            base.set("position", new Vector3());
-            base.set("rotation", new Vector3());
-            base.set("scale", new Vector3(1, 1, 1));
+            base.set("position", new WVector3());
+            base.set("rotation", new WVector3());
+            base.set("scale", new WVector3(1, 1, 1));
         }
     }
 }

@@ -7,13 +7,13 @@ namespace GeneticCode.Extensions.BodyParts
 {
     class Sphere : BodyPart
     {
-        public Sphere() : base() { }
+        protected Sphere() : base() { }
         public Sphere(String tag) : base(tag) { }
-        public Sphere(GeneticData data) : base(data: data) { }
+        public Sphere(GeneticData data) : base(data) { }
 
-        protected override Extension copyNode()
+        protected override Extension localCloneImpl()
         {
-            return new Sphere(data: null);
+            return new Sphere();
         }
     }
 }

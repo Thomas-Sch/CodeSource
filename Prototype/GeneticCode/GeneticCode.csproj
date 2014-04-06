@@ -39,12 +39,13 @@
     <Compile Include="Extensions\BodyParts\Sphere.cs" />
     <Compile Include="Extensions\BodyParts\Square.cs" />
     <Compile Include="Extensions\BodyPart.cs" />
-    <Compile Include="Extension.cs" />
+    <Compile Include="Extensions\Extension.cs" />
     <Compile Include="Extensions\Members\Tubular.cs" />
     <Compile Include="Extensions\Members\Plate.cs" />
+    <Compile Include="Interfaces\IDeepClonable.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="GeneticData.cs" />
+    <Compile Include="GeneticDataTemplates\GeneticData.cs" />
     <Compile Include="GeneticDataTemplates\DefaultSEVA.cs" />
     <Compile Include="Genotype.cs" />
     <Compile Include="Extensions\Member.cs" />
@@ -58,14 +59,19 @@
     <Compile Include="Mutations\Modifiers\Multiplication.cs" />
     <Compile Include="Mutations\StructuralModifier.cs" />
     <Compile Include="Mutations\StructuralModifiers\RemoveExtension.cs" />
-    <Compile Include="Organism.cs" />
+    <Compile Include="Organisms\Organism.cs" />
     <Compile Include="Organisms\Test.cs" />
-    <Compile Include="Recombination\EasyReco.cs" />
+    <Compile Include="Recombination\SimpleReco.cs" />
     <Compile Include="Recombination\RecombinationHandler.cs" />
-    <Compile Include="Set.cs" />
+    <Compile Include="Tools\Set.cs" />
     <Compile Include="Tools\Probability.cs" />
-    <Compile Include="UnityStuff.cs" />
+    <Compile Include="UnityStuff\Vector3.cs" />
+    <Compile Include="Wrappers\WInt.cs" />
+    <Compile Include="Wrappers\WString.cs" />
+    <Compile Include="Wrappers\WVector3.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

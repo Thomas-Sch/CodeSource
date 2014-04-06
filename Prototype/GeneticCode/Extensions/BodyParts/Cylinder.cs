@@ -7,12 +7,12 @@ namespace GeneticCode.BodyParts
 {
     class Cylinder : BodyPart
     {
-        public Cylinder() : base() { }
+        protected Cylinder() : base() { }
         public Cylinder(String tag) : base(tag) { }
-        public Cylinder(GeneticData data) : base(data: data) { }
-        protected override Extension copyNode()
+        public Cylinder(GeneticData data) : base(data) { }
+        protected override Extension localCloneImpl()
         {
-            return new Cylinder(data: null); 
+            return new Cylinder(); 
         }
     }
 }

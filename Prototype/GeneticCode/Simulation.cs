@@ -9,6 +9,7 @@ using GeneticCode.Recombination;
 using GeneticCode.GeneticDataTemplates;
 using System.Threading;
 using System.Collections.Concurrent;
+using GeneticCode.Interfaces;
 
 namespace GeneticCode
 {
@@ -24,55 +25,61 @@ namespace GeneticCode
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            initialPopulation(organisms);
+            //initialPopulation(organisms);
 
-            while (organisms.Count > 1)
-            {
-                // Take two random organisms
-                Organism[] parents = getTwoParents(organisms);
+            //while (organisms.Count > 1)
+            //{
+            //    // Take two random organisms
+            //    Organism[] parents = getTwoParents(organisms);
 
-                // Mate them
-                Organism[] children = EasyReco.getInstance().recombine(parents[0], parents[1]);
+            //    // Mate them
+            //    Organism[] children = SimpleReco.getInstance().recombine(parents[0], parents[1]);
 
-                // Profit
-                for (var i = 0; i < children.Length; ++i)
-                {
-                    children[i].Died += OrganismDeath;
-                    organisms.Add(children[i]);
-                    children[i].start();
-                }
-                Console.WriteLine(organisms.Count);
-            }
+            //    // Profit
+            //    for (var i = 0; i < children.Length; ++i)
+            //    {
+            //        children[i].Died += OrganismDeath;
+            //        organisms.Add(children[i]);
+            //        children[i].start();
+            //    }
+            //    Console.WriteLine(organisms.Count);
+            //}
 
-            foreach (Organism o in organisms.ToArray()) {
-                o.thread.Join();
-                Console.WriteLine(o.ToString());
-            }
+            //foreach (Organism o in organisms.ToArray())
+            //{
+            //    o.thread.Join();
+            //    Console.WriteLine(o.ToString());
+            //}
 
-            Console.WriteLine("FIN - Deaths:" + death + " - Organisms left:" + organisms.Count);
+            //Console.WriteLine("FIN - Deaths:" + death + " - Organisms left:" + organisms.Count);
+            Console.WriteLine("Creating new organisms...");
+            Mutation blur = new Mutation();
+            blur.addGeneticModifier(new Blur(new Set(new[] { "rotation", "position" }), Set.ALL, 0.1));
+            Organism a = new Test(blur);
+            Organism b = new Test(blur);
 
-            //Console.WriteLine ("Creating new organisms...");
-            //Organism a = new Test(blur);
-            //Organism b = new Test(blur);
+            Console.WriteLine(a);
+            Console.WriteLine(b);
 
-            //Console.WriteLine(a);
-            //Console.WriteLine(b);
+            Console.WriteLine("Their child:");
+            RecombinationHandler recombination = SimpleReco.getInstance();
+            Organism child = recombination.recombine(a, b)[0];
+            Console.WriteLine(child);
 
-            //Console.WriteLine("Their child:");
-            //RecombinationHandler recombination = EasyReco.getInstance();
-            //Organism child = recombination.recombine(a, b)[0];
-            //Console.WriteLine(child);
+            Console.WriteLine("Wild mutations appeared !");
+            Mutation m = new Mutation();
+            m.addGeneticModifier(new Addition(new Set(new[] { "scale" }, Set.Mode.Blacklist), new Set(new[] { "bob" }), 50.50));
+            m.addGeneticModifier(new Addition(new Set(new[] { "position", "scale" }), new Set(new[] { "bob" }), -50.50));
+            m.addGeneticModifier(new Addition(Set.ALL, new Set(new[] { "Plate" }), 100));
+            a.mutate(m);
 
-            //Console.WriteLine("Wild mutations appeared !");
-            //Mutation m = new Mutation();
-            //m.addGeneticModifier(new Addition(new Set(new[] { "scale" }, Set.Mode.Blacklist), new Set(new [] {"bob"}), 50.50));
-            //m.addGeneticModifier(new Addition(new Set(new[] { "position", "scale" }), new Set(new[] { "bob" }), -50.50));
-            //m.addGeneticModifier(new Addition(Set.ALL, new Set(new[] { "Plate" }), 100));
-            //a.mutate(m);
+            Mutation m2 = new Mutation();
+            m2.addStructuralModifier(new RemoveExtension(new Set(new[] { "Plate a" })));
+            b.mutate(m2);
 
-            //Mutation m2 = new Mutation();
-            //m2.addStructuralModifier(new RemoveExtension(new Set(new [] {"Plate a"})));
-            //b.mutate(m2);
+            Console.WriteLine(a);
+            Console.WriteLine(b);
+            Console.WriteLine(child);
         }
 
         // This will be called whenever the list changes.
@@ -108,8 +115,8 @@ namespace GeneticCode
 
         private static void initialPopulation(List<Organism> organisms)
         {
-            const int initialPopulationNumber = 20;
-
+            const int initialPopulationNumber = 2;
+            
             // Specifies the initial blur mutation to apply.
             Mutation blur = new Mutation();
             blur.addGeneticModifier(new Blur(new Set(new[] { "rotation", "position" }), Set.ALL, 0.1));

@@ -7,7 +7,7 @@ namespace GeneticCode
 {
     abstract class Member : Extension
     {
-        public Member() : base() { }
+        protected Member() : base() { }
         public Member(String tag) : base(tag) { }
         public Member(GeneticData data) : base(data) { }
     }

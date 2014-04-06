@@ -7,13 +7,13 @@ namespace GeneticCode.Extensions.Members
 {
     class Tubular : Member
     {
-        public Tubular() : base() { }
+        protected Tubular() : base() { }
         public Tubular(String tag) : base(tag) { }
         public Tubular(GeneticData data) : base(data) { }
 
-        protected override Extension copyNode()
+        protected override Extension localCloneImpl()
         {
-            return new Tubular(data:null);
+            return new Tubular();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace GeneticCode.Recombination
     /// <summary>
     /// This recombination operator uses a structure recombination. It does not modifies the genes but only the structure.
     /// </summary>
-    class EasyReco : RecombinationHandler
+    class SimpleReco : RecombinationHandler
     {
         private const int nbrChild = 1;
 
@@ -20,7 +20,7 @@ namespace GeneticCode.Recombination
         {
             if (instance == null)
             {
-                instance = new EasyReco();
+                instance = new SimpleReco();
             }
             return instance;
         }
@@ -33,35 +33,35 @@ namespace GeneticCode.Recombination
 
             for (var i = 0; i < nbrChild; ++i)
             {
-                Organism o = a.createEmptyOrganism();
+                Organism o = a.createEmpty();
                 Extension e;
 
                 // 50% chance to inherit the base extension from one of the parents.
                 if (_50p.test())
-                    e = a.genotype.rootElement;
+                    e = a.genotype.getRootElement();
                 else
-                    e = b.genotype.rootElement;
+                    e = b.genotype.getRootElement();
 
-                o.genotype.rootElement = (BodyPart) e.copyExtension();
+                o.genotype.setRootElement(e.localClone());
 
                 // The structure recombination is done only for the first level.
-                var nExtensions = Math.Min(a.genotype.rootElement.getNumberOfChildExtensions(), b.genotype.rootElement.getNumberOfChildExtensions());
+                var nExtensions = Math.Min(a.genotype.getRootElement().getNumberOfChildExtensions(), b.genotype.getRootElement().getNumberOfChildExtensions());
 
-                IEnumerator<Extension> t1 = (IEnumerator<Extension>) a.genotype.rootElement.getChildsEnumerator();
-                IEnumerator<Extension> t2 = (IEnumerator <Extension>) b.genotype.rootElement.getChildsEnumerator();
+                IEnumerator<Extension> t1 = (IEnumerator <Extension>) a.genotype.getRootElement().getChildsEnumerator();
+                IEnumerator<Extension> t2 = (IEnumerator <Extension>) b.genotype.getRootElement().getChildsEnumerator();
 
                 while (t1.MoveNext() && t2.MoveNext()){
                     if (_50p.test())
-                        o.genotype.rootElement.addExtension(t1.Current.copyAll());
+                        o.genotype.getRootElement().addExtension((Extension)t1.Current.deepClone());
                     else
-                        o.genotype.rootElement.addExtension(t2.Current.copyAll());
+                        o.genotype.getRootElement().addExtension((Extension)t2.Current.deepClone());
                 } 
                 
                 // Rare mutation that extends plate size.
                 if (_1p.test())
                 {
                     Mutation m = new Mutation();
-                    m.addGeneticModifier(new Multiplication(new Set(new[] { "scale" }), new Set(new[] { "Plate" }), 1.5));
+                    //m.addGeneticModifier(new Multiplication(new Set(new[] { "scale" }), new Set(new[] { "Plate" }), 1.5));
                     o.mutate(m);
                 }
 

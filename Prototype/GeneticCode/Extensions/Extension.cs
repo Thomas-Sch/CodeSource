@@ -11,7 +11,7 @@ namespace GeneticCode
     /// Represents the structure in the genotype. Each part of the organism is called "Extension" and contains data
     /// about his structure in a tree shape and the data relative to each extension.
     /// </summary>
-    abstract class Extension : IMutable
+    abstract class Extension : IMutable, IDeepClonable
     {
         /// <summary>
         /// Parent of the extension (it's a tree shaped structure).
@@ -21,7 +21,7 @@ namespace GeneticCode
         /// <summary>
         /// Sons of the extension (that's here that the structure is stored).
         /// </summary>
-        private IList<Extension> extensions;
+        private IList<Extension> extensions = new List<Extension>();
 
         /// <summary>
         /// Datas relative to this extension. Contains genes. These
@@ -38,9 +38,9 @@ namespace GeneticCode
         }
 
         /// <summary>
-        /// Default constructor. Instanciate a nameless extension.
+        /// Used for copy. Does nothing.
         /// </summary>
-        public Extension() : this("") {}
+        protected Extension() { }
 
         /// <summary>
         /// Instanciate a named extension.
@@ -48,26 +48,16 @@ namespace GeneticCode
         /// <param name="tag">name of the extension or 'tag'</param>
         public Extension(string tag)
         {
-            extensions = new List<Extension>();
             geneticData = new GeneticData(tag);
         }
 
         /// <summary>
-        /// Instanciate an extension with a specified genetic data.
+        /// Affects data to the genetic data of the extension.
         /// </summary>
-        /// <param name="tag">the genetic data</param>
-        public Extension(GeneticData gd)
+        /// <param name="data"></param>
+        public Extension(GeneticData data)
         {
-            extensions = new List<Extension>();
-
-            if (gd != null)
-            {
-                geneticData = (GeneticData)gd.Clone();
-            }
-            else
-            {
-                geneticData = new GeneticData();
-            }
+            geneticData = data;
         }
 
         /// <summary>
@@ -112,7 +102,7 @@ namespace GeneticCode
         /// </summary>
         /// <param name="tag">Name of the gene</param>
         /// <param name="data">Data associated</param>
-        public void setGeneticData(string tag, Vector3 data)
+        public void setGeneticData(string tag, IDeepClonable data)
         {
             geneticData.set(tag, data);
         }
@@ -150,29 +140,13 @@ namespace GeneticCode
         }
 
         /// <summary>
-        /// Copies the extension and all the subtree from this extension (children, gran-children and so on).
+        /// Clone the extension without the children.
         /// </summary>
-        /// <returns>The copy of the tree from this node as a root</returns>
-        public Extension copyAll()
+        /// <returns>The copy</returns>
+        public Extension localClone()
         {
-            Extension result = copyExtension();
-
-            foreach (Extension e in extensions)
-            {
-                result.addExtension(e.copyAll());
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Copy an extension without his children.
-        /// </summary>
-        /// <returns>The copied extension</returns>
-        public Extension copyExtension()
-        {
-            Extension result = copyNode();
-            result.geneticData = (GeneticData)geneticData.Clone();
+            Extension result = localCloneImpl();
+            result.geneticData = (GeneticData) geneticData.deepClone();
             return result;
         }
 
@@ -180,7 +154,22 @@ namespace GeneticCode
         /// Return an empty node of the current type.
         /// </summary>
         /// <returns>An empty subclass of Extention</returns>
-        protected abstract Extension copyNode();
+        protected abstract Extension localCloneImpl();
+
+
+        /// <summary>
+        /// Clone the extension with the children.
+        /// </summary>
+        /// <returns>The copy</returns>
+        public Object deepClone()
+        {
+            Extension result = localClone();
+            foreach (Extension e in extensions)
+            {
+                result.addExtension((Extension)e.deepClone());
+            }
+            return result;
+        }
 
         /// <summary>
         /// Returns the enumerator of the child list.

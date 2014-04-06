@@ -7,13 +7,13 @@ namespace GeneticCode.Extensions.Members
 {
     class Plate : Member
     {
-        public Plate() : base() { }
+        protected Plate() : base() { }
         public Plate(String tag) : base(tag) { }
         public Plate(GeneticData data) : base(data) { }
 
-        protected override Extension copyNode()
+        protected override Extension localCloneImpl()
         {
-            return new Plate(data:null);
+            return new Plate();
         }
     }
 }

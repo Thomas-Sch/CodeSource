@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using GeneticCode.Interfaces;
 
 namespace GeneticCode.Mutations
 {
     abstract class GeneticModifier : Modifier
     {
-        protected double value { get; private set; }
         protected Set targetedGenes { get; private set; }
+        protected Type computeType;
 
-        public GeneticModifier(Set genes, Set extensions, double value)
+        public GeneticModifier(Set genes, Set extensions, Type computeType)
             : base(extensions)
         {
             this.targetedGenes = genes;
-            this.value = value;
+            this.computeType = computeType;
         }
 
         /// <summary>
@@ -23,23 +25,24 @@ namespace GeneticCode.Mutations
         /// <param name="data"></param>
         public void execute(GeneticData data)
         {
-            IList<KeyValuePair<String, Vector3>> updates = new List<KeyValuePair<String, Vector3>>();
+            IList<KeyValuePair<String, IDeepClonable>> updates = new List<KeyValuePair<String, IDeepClonable>>();
 
-            foreach (KeyValuePair<String, Vector3> entry in data)
+            foreach (KeyValuePair<String, IDeepClonable> entry in data)
             {
-                if (targetedGenes.contains(entry.Key))
+                // Vérification
+                if (targetedGenes.contains(entry.Key) && entry.Value.GetType() == computeType)
                 {
-                    updates.Add(new KeyValuePair<String, Vector3>(entry.Key, compute(entry.Value)));
+                    updates.Add(new KeyValuePair<String, IDeepClonable>(entry.Key, (IDeepClonable)compute(entry.Value)));
                 }
             }
 
             // Applying the updates.
-            foreach (KeyValuePair<string, Vector3> entry in updates)
+            foreach (KeyValuePair<String, IDeepClonable> entry in updates)
             {
                 data.set(entry.Key, entry.Value);
             }
         }
 
-        abstract protected Vector3 compute(Vector3 data);
+        abstract protected Object compute(Object data);
     }
 }

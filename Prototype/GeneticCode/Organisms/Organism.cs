@@ -8,6 +8,7 @@ using GeneticCode.Interfaces;
 namespace GeneticCode
 {
     public delegate void DiedEventhandler(object sender, EventArgs e);
+
     /// <summary>
     /// Entry class to interact with the organism.
     /// </summary>
@@ -18,8 +19,6 @@ namespace GeneticCode
         /// </summary>
         private static int counter;
         public int myCounter { get; private set; }
-        private int lifeExpectancy = 10;
-        public int age { get; private set; }
 
         public Boolean canReproduce {get; set;}
 
@@ -34,12 +33,12 @@ namespace GeneticCode
             counter = 0;
         }
 
+        /// <summary>
+        /// Create an empty organism with empty genotype.
+        /// </summary>
         protected Organism()
         {
             myCounter = ++counter;
-
-            canReproduce = false;
-            age = 0;
             thread = new Thread(new ThreadStart(this.loop));
         }
 
@@ -52,7 +51,11 @@ namespace GeneticCode
             genotype.mutate(m);
         }
 
-        public abstract Organism createEmptyOrganism();
+        /// <summary>
+        /// Create an empty organism with no geneticData and no extensions.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Organism createEmpty();
 
         override public string ToString()
         {
@@ -71,25 +74,7 @@ namespace GeneticCode
         /// <summary>
         /// Thread method to be called.
         /// </summary>
-        private void loop()
-        {
-            Console.WriteLine("A new organisme is born ("+myCounter + ")");
-
-            while (age < lifeExpectancy)
-            {   
-                if (age > 2)
-                    canReproduce = true;
-
-                if (age > lifeExpectancy - 2)
-                    canReproduce = false;
-
-                Console.WriteLine(myCounter + " - Moving");
-                
-                age++;
-            }
-            Console.WriteLine(myCounter + " - I'm dying.");
-            OnDeath(EventArgs.Empty);
-        }
+        protected abstract void loop();
 
         // Invoke the Changed event; called whenever list changes
         protected virtual void OnDeath(EventArgs e)

@@ -7,13 +7,13 @@ namespace GeneticCode.BodyParts
 {
     class Square : BodyPart
     {
-        public Square() : base() { }
+        protected Square() : base() { }
         public Square(String tag) : base(tag) { }
         public Square(GeneticData data) : base(data) { }
 
-        protected override Extension copyNode()
+        protected override Extension localCloneImpl()
         {
-            return new Square(data:null);
+            return new Square();
         }
     }
 }
