@@ -25,34 +25,34 @@ namespace GeneticCode.Recombination
             return instance;
         }
 
-        public override Organism[] Recombine(Organism a, Organism b)
+        public override Genotype[] Recombine(Genotype a, Genotype b)
         {
-            IList<Organism> offsprings = new List<Organism>();
+            IList<Genotype> offsprings = new List<Genotype>();
             var _50p = new Probability(0.5);
             var _1p = new Probability(0.01);
 
             for (var i = 0; i < nbrChild; ++i)
             {
-                Organism o = a.CreateEmpty();
+				Genotype g = new Genotype();
                 Extension e;
 
                 // 50% chance to inherit the base extension from one of the parents.
                 if (_50p.Test())
-                    e = a.Genotype.RootElement;
+                    e = a.RootElement;
                 else
-                    e = b.Genotype.RootElement;
+                    e = b.RootElement;
 
-                o.Genotype.RootElement = e.LocalClone();
+                g.RootElement = e.LocalClone();
 
                 // The structure recombination is done only for the first level.
-                IEnumerator<Extension> t1 = (IEnumerator <Extension>) a.Genotype.RootElement.GetEnumerator();
-                IEnumerator<Extension> t2 = (IEnumerator <Extension>) b.Genotype.RootElement.GetEnumerator();
+                IEnumerator<Extension> t1 = (IEnumerator <Extension>) a.RootElement.GetEnumerator();
+                IEnumerator<Extension> t2 = (IEnumerator <Extension>) b.RootElement.GetEnumerator();
 
                 while (t1.MoveNext() && t2.MoveNext()){
                     if (_50p.Test())
-                        o.Genotype.RootElement.AddExtension((Extension)t1.Current.DeepClone());
+                        g.RootElement.AddExtension((Extension)t1.Current.DeepClone());
                     else
-                        o.Genotype.RootElement.AddExtension((Extension)t2.Current.DeepClone());
+                        g.RootElement.AddExtension((Extension)t2.Current.DeepClone());
                 } 
                 
                 // Rare mutation that extends plate size.
@@ -60,13 +60,13 @@ namespace GeneticCode.Recombination
                 {
                     Mutation m = new Mutation();
                     //m.addGeneticModifier(new Multiplication(new Set(new[] { "scale" }), new Set(new[] { "Plate" }), 1.5));
-                    o.Mutate(m);
+                    g.Mutate(m);
                 }
 
-                offsprings.Add(o);
+                offsprings.Add(g);
             }
 
-            return offsprings.ToArray<Organism>();
+            return offsprings.ToArray<Genotype>();
         }
     }
 }

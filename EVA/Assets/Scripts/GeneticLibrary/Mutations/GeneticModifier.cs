@@ -7,7 +7,7 @@ using GeneticCode.Interfaces;
 
 namespace GeneticCode.Mutations
 {
-    abstract class GeneticModifier : Modifier
+    public abstract class GeneticModifier : Modifier
     {
         protected Set TargetedGenes { get; private set; }
         protected Type computeType;
@@ -30,7 +30,7 @@ namespace GeneticCode.Mutations
             foreach (KeyValuePair<String, IDeepClonable> entry in data)
             {
                 // Vérification
-                if (TargetedGenes.Contains(entry.Key) && entry.Value.GetType() == computeType)
+                if (TargetedGenes.Contains(entry.Key) && computeType == entry.Value.GetType())
                 {
                     updates.Add(new KeyValuePair<String, IDeepClonable>(entry.Key, (IDeepClonable)Compute(entry.Value)));
                 }

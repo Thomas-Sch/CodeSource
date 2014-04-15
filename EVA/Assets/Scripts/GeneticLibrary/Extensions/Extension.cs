@@ -35,6 +35,7 @@ namespace GeneticCode
         public String Tag
         {
             get { return GeneticData.tag; }
+			set { GeneticData.tag = value;}
         }
 
         /// <summary>

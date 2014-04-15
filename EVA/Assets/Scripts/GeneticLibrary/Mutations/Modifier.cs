@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GeneticCode.Mutations
 {
-    class Modifier
+    public class Modifier
     {
         protected Set TargetedExtensions { get; private set; }
 

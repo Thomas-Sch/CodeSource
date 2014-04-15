@@ -21,6 +21,6 @@ namespace GeneticCode.Recombination
         /// <param name="a">Parent a</param>
         /// <param name="b">Parent b</param>
         /// <returns>The offsprings</returns>
-        abstract public Organism[] Recombine(Organism a, Organism b);
+        abstract public Genotype[] Recombine(Genotype a, Genotype b);
     }
 }

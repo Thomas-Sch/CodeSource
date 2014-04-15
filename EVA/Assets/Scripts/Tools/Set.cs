@@ -9,7 +9,7 @@ namespace GeneticCode
     /// Represent a set of element.
     /// This class gives several handy basic sets.
     /// </summary>
-    class Set
+    public class Set
     {
         /// <summary>
         /// Whitelist : nothing is taken by default.

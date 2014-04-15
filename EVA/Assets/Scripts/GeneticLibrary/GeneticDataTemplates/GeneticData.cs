@@ -11,7 +11,7 @@ namespace GeneticCode
     public class GeneticData : IEnumerable, IDeepClonable
     {
         // Tag of the geneticData.
-        public String tag { get; private set; }
+        public String tag { get; set; }
 
         private Dictionary<String, IDeepClonable> data = new Dictionary<String, IDeepClonable>();
 

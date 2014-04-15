@@ -5,27 +5,38 @@ using GeneticCode.Tools;
 
 public class Moving : MonoBehaviour {
 
-	public float strength = 0.5F;
-	public float smooth = 0.5F;
+	private A organism;
+
+	private float Speed;
+	public float Smooth = 0.5F;
 	private Quaternion newRotation;
 
 	// Use this for initialization
 	void Start () {
 		newRotation = transform.rotation;
+		organism = gameObject.GetComponent<A>(); // A modifier !
+
+		Speed = organism.phenotypeData.Speed;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Vector3 newPos = new Vector3(strength * transform.forward.x, 0, strength * transform.forward.z);
-		transform.Translate(newPos, Space.World);
+		if(organism.State == A.ActionState.Movement) {
 
-		if(Probability.Test(0.01)) {
-			newRotation = UnityEngine.Random.rotation;
-			Vector3 v = newRotation.eulerAngles;
-			v.x = 0;
-			v.z = 0;
-			newRotation.eulerAngles = v;
+			// On déplace la forme seulement si elle n'est pas en l'air.
+			if(transform.position.y < 1.0F){
+				Vector3 newPos = new Vector3(Speed * transform.forward.x, 0, Speed * transform.forward.z);
+				transform.Translate(newPos, Space.World);
+			}
+
+			if(Probability.Test(0.01)) {
+				newRotation = UnityEngine.Random.rotation;
+				Vector3 v = newRotation.eulerAngles;
+				v.x = 0;
+				v.z = 0;
+				newRotation.eulerAngles = v;
+			}
+			transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * Smooth);
 		}
-		transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * smooth);
 	}
 }

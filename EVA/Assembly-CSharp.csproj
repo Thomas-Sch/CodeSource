@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\A.cs" />
+     <Compile Include="Assets\Scripts\A.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\BodyPart.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\BodyParts\Cylinder.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\BodyParts\Sphere.cs" />
@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Addition.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Blur.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Multiplication.cs" />
+     <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifiers\SingleBlur.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Mutation.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\StructuralModifier.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\StructuralModifiers\RemoveExtension.cs" />
@@ -73,12 +74,14 @@
      <Compile Include="Assets\Scripts\GeneticLibrary\Organisms\Test.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Recombination\RecombinationHandler.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Recombination\SimpleReco.cs" />
+     <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WFloat.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WInt.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WString.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WVector3.cs" />
+     <Compile Include="Assets\Scripts\Global.cs" />
      <Compile Include="Assets\Scripts\Logic\Moving.cs" />
      <Compile Include="Assets\Scripts\Logic\Reposition.cs" />
-     <Compile Include="Assets\Scripts\Simulation.cs" />
+     <Compile Include="Assets\Scripts\PhenotypeData.cs" />
      <Compile Include="Assets\Scripts\Tools\ExtendedFlycam.cs" />
      <Compile Include="Assets\Scripts\Tools\Probability.cs" />
      <Compile Include="Assets\Scripts\Tools\Set.cs" />
