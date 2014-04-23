@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
-using GeneticCode;
-using GeneticCode.Organisms;
-using GeneticCode.Wrappers;
-using GeneticCode.BodyParts;
-using GeneticCode.Mutations.Modifiers;
-using GeneticCode.Mutations;
-using GeneticCode.Recombination;
+using GeneticLibrary;
+using GeneticLibrary.Organisms;
+using GeneticLibrary.Wrappers;
+using GeneticLibrary.BodyParts;
+using GeneticLibrary.Mutations.Modifiers;
+using GeneticLibrary.Mutations;
+using GeneticLibrary.Recombination;
+using GeneticLibrary.Tools;
 
 public class A : MonoBehaviour {
 	public A prefab;
@@ -70,10 +71,11 @@ public class A : MonoBehaviour {
 					Reproduce(other.gameObject);
 					Genotype[] childrenGenotype = SimpleReco.getInstance().Recombine(g,other.g);
 					foreach(Genotype child in childrenGenotype) {
-						Vector3 position = transform.position;
-						position.y = 10;
+						Vector3 position = new Vector3(transform.forward.x * -0.5f, transform.position.y, transform.forward.z * -0.5f);
 
-						GameObject ChildInstance = Instantiate(prefab, position, transform.localRotation) as GameObject;
+						GameObject childInstance = Instantiate(prefab, position, transform.localRotation) as GameObject;
+						while(childInstance == null)
+							Debug.Log("No child instance");
 					}
 				}
 			}

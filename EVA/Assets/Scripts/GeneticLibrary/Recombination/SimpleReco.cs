@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.Mutations;
-using GeneticCode.Mutations.Modifiers;
-using GeneticCode.Organisms;
-using GeneticCode.Tools;
+using GeneticLibrary.Mutations;
+using GeneticLibrary.Mutations.Modifiers;
+using GeneticLibrary.Organisms;
+using GeneticLibrary.Tools;
 
-namespace GeneticCode.Recombination
+namespace GeneticLibrary.Recombination
 {
     /// <summary>
     /// This recombination operator uses a structure recombination. It does not modifies the genes but only the structure.

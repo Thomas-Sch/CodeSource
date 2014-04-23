@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using GeneticCode.Interfaces;
+using GeneticLibrary.Interfaces;
+using GeneticLibrary.Tools;
 
-namespace GeneticCode.Mutations
+namespace GeneticLibrary.Mutations
 {
     public abstract class GeneticModifier : Modifier
     {

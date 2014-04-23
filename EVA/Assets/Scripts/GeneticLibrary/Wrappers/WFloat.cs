@@ -8,8 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
-using GeneticCode.Interfaces;
-namespace GeneticCode
+using GeneticLibrary.Interfaces;
+namespace GeneticLibrary
 {
 	public class WFloat : IDeepClonable
 	{

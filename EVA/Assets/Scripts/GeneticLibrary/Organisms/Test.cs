@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.BodyParts;
-using GeneticCode.Extensions.BodyParts;
-using GeneticCode.Extensions.Members;
-using GeneticCode.GeneticDataTemplates;
-using GeneticCode.Interfaces;
-using GeneticCode.Wrappers;
+using GeneticLibrary.BodyParts;
+using GeneticLibrary.Extensions.BodyParts;
+using GeneticLibrary.Extensions.Members;
+using GeneticLibrary.GeneticDataTemplates;
+using GeneticLibrary.Interfaces;
+using GeneticLibrary.Wrappers;
 
-namespace GeneticCode.Organisms
+namespace GeneticLibrary.Organisms
 {
     class Test : Organism
     {

@@ -1,14 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\A.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tools\Probability.cs">
     <Files>
-      <File FileName="Assets\Scripts\A.cs" Line="77" Column="7" />
-      <File FileName="Assets\Scripts\GeneticLibrary\Extensions\Extension.cs" Line="96" Column="39" />
-      <File FileName="Assets\Scripts\Logic\Moving.cs" Line="28" Column="95" />
-      <File FileName="Assets\Scripts\Global.cs" Line="5" Column="22" />
-      <File FileName="Assets\Scripts\GeneticLibrary\Recombination\SimpleReco.cs" Line="47" Column="41" />
-      <File FileName="Assets\Scripts\GeneticLibrary\Recombination\RecombinationHandler.cs" Line="24" Column="33" />
-      <File FileName="Assets\Scripts\GeneticLibrary\Genotype.cs" Line="7" Column="38" />
+      <File FileName="Assets\Scripts\GeneticLibrary\Genotype.cs" Line="5" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\A.cs" Line="10" Column="28" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Extensions\Extension.cs" Line="6" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\GeneticDataTemplates\DefaultSEVA.cs" Line="5" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\GeneticDataTemplates\GeneticData.cs" Line="7" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Interfaces\IMutable.cs" Line="5" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\GeneticModifier.cs" Line="7" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Addition.cs" Line="7" Column="28" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Blur.cs" Line="6" Column="28" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Multiplication.cs" Line="6" Column="28" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\Modifiers\SingleBlur.cs" Line="12" Column="28" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\Mutation.cs" Line="5" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Organisms\Organism.cs" Line="6" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Organisms\Test.cs" Line="6" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Recombination\SimpleReco.cs" Line="8" Column="21" />
+      <File FileName="Assets\Scripts\Tools\Set.cs" Line="6" Column="31" />
+      <File FileName="Assets\Scripts\Tools\Probability.cs" Line="6" Column="25" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\Logic\Moving.cs" Line="4" Column="21" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\Modifier.cs" Line="6" Column="1" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\StructuralModifier.cs" Line="5" Column="28" />
+      <File FileName="c:\Users\Thomas\Google Drive\PDB\CodeSource\EVA\Assets\Scripts\GeneticLibrary\Mutations\StructuralModifiers\RemoveExtension.cs" Line="5" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

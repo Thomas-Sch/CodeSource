@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.BodyParts;
-using GeneticCode.Extensions.BodyParts;
-using GeneticCode.Extensions.Members;
-using GeneticCode.Interfaces;
+using GeneticLibrary.BodyParts;
+using GeneticLibrary.Extensions.BodyParts;
+using GeneticLibrary.Extensions.Members;
+using GeneticLibrary.Interfaces;
 
-namespace GeneticCode
+namespace GeneticLibrary
 {
     public class Genotype
     {

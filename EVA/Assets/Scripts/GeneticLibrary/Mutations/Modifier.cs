@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GeneticLibrary.Tools;
 
-namespace GeneticCode.Mutations
+namespace GeneticLibrary.Mutations
 {
     public class Modifier
     {

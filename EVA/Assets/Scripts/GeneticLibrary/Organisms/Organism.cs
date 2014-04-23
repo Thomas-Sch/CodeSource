@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using GeneticCode.Interfaces;
+using GeneticLibrary.Interfaces;
 using UnityEngine;
 
-namespace GeneticCode
+namespace GeneticLibrary
 {
     /// <summary>
     /// Entry class to interact with the organism.

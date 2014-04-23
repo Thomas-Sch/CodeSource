@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GeneticCode.Extensions.BodyParts
+namespace GeneticLibrary.Extensions.BodyParts
 {
     class Sphere : BodyPart
     {

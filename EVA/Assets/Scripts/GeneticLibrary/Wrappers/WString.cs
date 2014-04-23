@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.Interfaces;
+using GeneticLibrary.Interfaces;
 
-namespace GeneticCode.Wrappers
+namespace GeneticLibrary.Wrappers
 {
     class WString : IDeepClonable
     {

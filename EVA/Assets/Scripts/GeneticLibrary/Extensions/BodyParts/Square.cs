@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GeneticCode.BodyParts
+namespace GeneticLibrary.BodyParts
 {
     class Square : BodyPart
     {

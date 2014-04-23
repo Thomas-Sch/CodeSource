@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.Interfaces;
+using GeneticLibrary.Interfaces;
 
-namespace GeneticCode
+namespace GeneticLibrary
 {
     /// <summary>
     /// Represents the structure in the genotype. Each part of the organism is called "Extension" and contains data

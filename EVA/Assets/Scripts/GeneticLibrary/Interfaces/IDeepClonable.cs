@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GeneticCode.Interfaces
+namespace GeneticLibrary.Interfaces
 {
     public interface IDeepClonable
     {

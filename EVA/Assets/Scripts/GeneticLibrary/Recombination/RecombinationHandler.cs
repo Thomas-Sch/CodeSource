@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GeneticCode.Recombination
+namespace GeneticLibrary.Recombination
 {
     /// <summary>
     /// This class implement the singleton model. Each subclass have his own singleton.

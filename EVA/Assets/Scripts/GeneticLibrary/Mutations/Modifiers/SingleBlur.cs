@@ -8,11 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
-using GeneticCode.Mutations.Modifiers;
-using GeneticCode.Wrappers;
+using GeneticLibrary.Mutations.Modifiers;
+using GeneticLibrary.Tools;
+using GeneticLibrary.Wrappers;
 
 
-namespace GeneticCode
+namespace GeneticLibrary
 {
 	public class SingleBlur : Blur
 	{

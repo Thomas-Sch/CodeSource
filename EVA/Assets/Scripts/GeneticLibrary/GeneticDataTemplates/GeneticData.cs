@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.Interfaces;
-using GeneticCode.Mutations;
+using GeneticLibrary.Interfaces;
+using GeneticLibrary.Mutations;
 
-namespace GeneticCode
+namespace GeneticLibrary
 {
     public class GeneticData : IEnumerable, IDeepClonable
     {

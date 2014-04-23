@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.Wrappers;
+using GeneticLibrary.Wrappers;
 
-namespace GeneticCode.GeneticDataTemplates
+namespace GeneticLibrary.GeneticDataTemplates
 {
     /// <summary>
     /// Set default genes for a new Organism.

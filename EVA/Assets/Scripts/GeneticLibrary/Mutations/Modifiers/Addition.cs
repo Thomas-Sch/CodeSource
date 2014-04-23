@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.Wrappers;
+using GeneticLibrary.Wrappers;
 using UnityEngine;
+using GeneticLibrary.Tools;
 
-namespace GeneticCode.Mutations.Modifiers
+namespace GeneticLibrary.Mutations.Modifiers
 {
     class Addition : GeneticModifier
     {

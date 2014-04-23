@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticCode.Interfaces;
+using GeneticLibrary.Interfaces;
 using UnityEngine;
 
-namespace GeneticCode.Wrappers
+namespace GeneticLibrary.Wrappers
 {
     class WVector3 : IDeepClonable
     {
