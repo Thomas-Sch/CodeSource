@@ -1,5 +1,10 @@
+#################
+## Project specific
+#################
+
 *.dll
 *.csproj
+*.unity
 
 #################
 ## Eclipse
