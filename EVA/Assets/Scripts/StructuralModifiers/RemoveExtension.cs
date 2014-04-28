@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticLibrary.Tools;
+using GeneticLibrary.Collections;
 
 namespace GeneticLibrary.Mutations.StructuralOperations
 {

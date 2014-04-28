@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GeneticLibrary.Tools
+namespace Utils
 {
-    class Probability
+    public class Probability
     {
         private Double probability;
         private static Random generator;

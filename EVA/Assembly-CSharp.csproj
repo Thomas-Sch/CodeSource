@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\A.cs" />
+     <Compile Include="Assets\Scripts\GeneticLibrary\Collection\Set.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\BodyPart.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\BodyParts\Cylinder.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\BodyParts\Sphere.cs" />
@@ -55,36 +56,32 @@
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\Member.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\Members\Plate.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Extensions\Members\Tubular.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\GeneticDataTemplates\DefaultSEVA.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\GeneticDataTemplates\GeneticData.cs" />
+     <Compile Include="Assets\Scripts\GeneticLibrary\GeneticData.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Genotype.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Interfaces\IDeepClonable.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Interfaces\IMutable.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Interfaces\IMutation.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\GeneticModifier.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifier.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Addition.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Blur.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifiers\Multiplication.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifiers\SingleBlur.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Mutation.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\StructuralModifier.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\StructuralModifiers\RemoveExtension.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Organisms\Organism.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Organisms\Test.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Recombination\RecombinationHandler.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Recombination\SimpleReco.cs" />
+     <Compile Include="Assets\Scripts\GeneticLibrary\RecombinationHandler.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WFloat.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WInt.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WString.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WVector3.cs" />
      <Compile Include="Assets\Scripts\Global.cs" />
      <Compile Include="Assets\Scripts\Logic\Moving.cs" />
      <Compile Include="Assets\Scripts\Logic\Reposition.cs" />
+     <Compile Include="Assets\Scripts\Modifiers\Addition.cs" />
+     <Compile Include="Assets\Scripts\Modifiers\Blur.cs" />
+     <Compile Include="Assets\Scripts\Modifiers\Multiplication.cs" />
+     <Compile Include="Assets\Scripts\Modifiers\SingleBlur.cs" />
      <Compile Include="Assets\Scripts\PhenotypeData.cs" />
-     <Compile Include="Assets\Scripts\Tools\ExtendedFlycam.cs" />
-     <Compile Include="Assets\Scripts\Tools\Probability.cs" />
-     <Compile Include="Assets\Scripts\Tools\Set.cs" />
+     <Compile Include="Assets\Scripts\SimpleReco.cs" />
+     <Compile Include="Assets\Scripts\StructuralModifiers\RemoveExtension.cs" />
+     <Compile Include="Assets\Scripts\Utils\ExtendedFlycam.cs" />
+     <Compile Include="Assets\Scripts\Utils\Probability.cs" />
+     <Compile Include="Assets\Scripts\WVector3.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

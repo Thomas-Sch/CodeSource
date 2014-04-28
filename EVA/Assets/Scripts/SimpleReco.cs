@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using GeneticLibrary.Mutations;
 using GeneticLibrary.Mutations.Modifiers;
-using GeneticLibrary.Organisms;
-using GeneticLibrary.Tools;
+using Utils;
 
 namespace GeneticLibrary.Recombination
 {

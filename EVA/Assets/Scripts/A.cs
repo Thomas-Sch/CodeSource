@@ -1,13 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using GeneticLibrary;
-using GeneticLibrary.Organisms;
 using GeneticLibrary.Wrappers;
 using GeneticLibrary.BodyParts;
 using GeneticLibrary.Mutations.Modifiers;
 using GeneticLibrary.Mutations;
 using GeneticLibrary.Recombination;
-using GeneticLibrary.Tools;
+using GeneticLibrary.Collections;
 
 public class A : MonoBehaviour {
 	public A prefab;

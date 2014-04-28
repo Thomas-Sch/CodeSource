@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 using System;
 using GeneticLibrary.Mutations.Modifiers;
-using GeneticLibrary.Tools;
+using GeneticLibrary.Collections;
 using GeneticLibrary.Wrappers;
 
 

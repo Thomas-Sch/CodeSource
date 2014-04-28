@@ -1,9 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/// <summary>
+/// This file is part of the GenotypeLibrary wich aims to
+/// represent a genotype and gives the tools to modify it.
+/// 
+/// Author : Thomas Schweizer
+/// Date   : March 2014
+/// </summary>
 
-namespace GeneticLibrary.Tools
+using System;
+using System.Collections.Generic;
+
+namespace GeneticLibrary.Collections
 {
     /// <summary>
     /// Represent a set of element.
@@ -27,7 +33,7 @@ namespace GeneticLibrary.Tools
         /// </summary>
         readonly public static Set NONE = new Set(Mode.Whitelist);
 
-        HashSet<string> elements;
+        private HashSet<string> elements;
 
         public Mode mode { private get; set; }
 

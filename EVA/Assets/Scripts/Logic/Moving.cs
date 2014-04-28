@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
-using GeneticLibrary.Tools;
+using Utils;
 
 public class Moving : MonoBehaviour {
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using GeneticLibrary.Wrappers;
 using UnityEngine;
-using GeneticLibrary.Tools;
+using GeneticLibrary.Collections;
 
 namespace GeneticLibrary.Mutations.Modifiers
 {
