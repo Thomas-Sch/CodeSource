@@ -3,23 +3,30 @@ using System.Collections;
 using GeneticLibrary;
 using Wrappers;
 using GeneticLibrary.BodyParts;
+using States;
+using System;
 
 public class Organism : MonoBehaviour {
 
 	protected static string Path = "Prefabs/";
 
-	public BasicActionState BasicState {get; set;}
-	public float Smooth = 0.5F;
-	public PhenotypeData phenotypeData; // Need renommage maybe. Confusion entre le phenotype des extensions et des données.
-	public Genotype Genotype {get; set;}
-	public enum BasicActionState {Birth, Movement, Reproduction, Death}
+	private static int NumberOfOrganisms = 0;
 
-	// Use this for initialization<
-	public void Start () {
-	
-	}
+	public int Name {get; private set;}
+
+
+	public State State {get; set;}
+	public PhenotypeData phenotypeData {get; set;} // Need renommage maybe. Confusion entre le phenotype des extensions et des données.
+	public Genotype Genotype {get; set;}
+	public int Age {get; set;}
+
+	// StateChangingVariables //
+
+	// Duration of this state based on the age of the organism.
+	private static float Duration = 0f;
 
 	public void Awake() {
+
 		Genotype = new Genotype();
 		Genotype.RootElement = new Square(new GeneticData());
 
@@ -28,16 +35,55 @@ public class Organism : MonoBehaviour {
 		DeductGenotype(transform, Genotype.RootElement);
 		ExtendGenotype(Genotype.RootElement);
 
-		BasicState = BasicActionState.Birth;
+		Name = ++NumberOfOrganisms;
 	}
-	
+
+	public void Start() {
+		State = new Birth(this, BirthToPreAdult);
+	}
+
 	// Update is called once per frame
 	public void Update () {
-		Debug.Log("No behaviour has been set.");
+		try {
+			State.Update();
+		} catch (Exception e) {
+			Debug.LogException(e);
+		}
 	}
 
-	#region Genetic modifications
+	// Fixed Update is called once by physic engine
+	public void FixedUpdate() {
+		try {
+			State.FixedUpdate();
+		} catch (Exception e) {
+			Debug.LogException(e);
+		}
 
+	}
+
+	public void Kill() {
+		Destroy(gameObject);
+	}
+
+	#region State changing
+
+	protected void BirthToPreAdult() {
+		State = new PreAdult(this, PreAdultToAdult);
+	}
+
+	protected void PreAdultToAdult() {
+		if((float)Age/phenotypeData.LifeExpectancy > Duration)
+			State = new Adult(this, AdultToDeath);
+	}
+
+	protected void AdultToDeath() {
+		if(Age > phenotypeData.LifeExpectancy)
+			State = new Death(this, null);
+	}
+
+	#endregion
+
+	#region Genetic modifications
 	/// <summary>
 	/// Deducts the genotype.
 	/// </summary>
@@ -87,9 +133,7 @@ public class Organism : MonoBehaviour {
 	}
 	#endregion
 
-	#region Death of the organism
-	public void Kill() {
-		Destroy(gameObject);
+	override public string ToString() {
+		return GetType() + Name.ToString();
 	}
-	#endregion
 }

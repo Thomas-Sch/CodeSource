@@ -78,6 +78,13 @@
      <Compile Include="Assets\Scripts\Organisms\B.cs" />
      <Compile Include="Assets\Scripts\Organisms\C.cs" />
      <Compile Include="Assets\Scripts\Organisms\Organism.cs" />
+     <Compile Include="Assets\Scripts\Organisms\States\Generic\Adult.cs" />
+     <Compile Include="Assets\Scripts\Organisms\States\Generic\Birth.cs" />
+     <Compile Include="Assets\Scripts\Organisms\States\Generic\Death.cs" />
+     <Compile Include="Assets\Scripts\Organisms\States\Generic\Dummy.cs" />
+     <Compile Include="Assets\Scripts\Organisms\States\Generic\Movement.cs" />
+     <Compile Include="Assets\Scripts\Organisms\States\Generic\PreAdult.cs" />
+     <Compile Include="Assets\Scripts\Organisms\States\Generic\Reproduction.cs" />
      <Compile Include="Assets\Scripts\Organisms\States\State.cs" />
      <Compile Include="Assets\Scripts\PhenotypeData.cs" />
      <Compile Include="Assets\Scripts\Simulation\Reposition.cs" />

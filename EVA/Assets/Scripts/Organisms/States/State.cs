@@ -1,15 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class State : MonoBehaviour {
+namespace States {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public abstract class State {
+
+		public Organism Organism {get; set;}
+		public delegate void DUpdateState();
+
+		protected DUpdateState UpdateState;
+
+		public State(Organism organism, DUpdateState checkAndUpdateState) {
+			Organism = organism;
+			UpdateState = checkAndUpdateState;
+		}
+
+		/// <summary>
+		/// Action to do when Unity's Update function is triggered.
+		/// </summary>
+		public void Update() {
+			Action();
+			if(UpdateState != null) {
+				UpdateState();
+			}
+		}
+
+		/// <summary>
+		/// Action to do when Unity's FixedUpdate function is triggered.
+		/// </summary>
+		public void FixedUpdate() {
+			FixedAction();
+		}
+
+		public abstract void Action();
+
+		public abstract void FixedAction();
 	}
 }
