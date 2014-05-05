@@ -5,6 +5,9 @@
 *.dll
 *.csproj
 *.unity
+*.sln
+*.unity
+*.userprefs
 
 #################
 ## Eclipse
