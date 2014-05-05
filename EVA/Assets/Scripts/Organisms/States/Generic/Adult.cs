@@ -1,58 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GeneticLibrary.Recombination;
+using GeneticLibrary;
 
 namespace States {
 	public class Adult : State {
-		private static float SeeingDistance = 10F;
-		State inner;
+		private static float OrganismSight = Simulation.OrganismSight;
+		public State inner;
+
+		public int NoNewChild {get; set;}
 
 		public Adult(Organism organism, DUpdateState updateState) : base(organism, updateState) {
 			Debug.Log(Organism + " is adult");
+			inner = new Movement(Organism, MovementToReproduction);
+			NoNewChild = 0;
+		}
+
+		#region State changing methods
+
+		/// <summary>
+		/// Called directly inside the state.
+		/// </summary>
+		public void ReproductionToMovement() {
 			inner = new Movement(Organism, MovementToReproduction);
 		}
 
 		public void MovementToReproduction() {
 			RaycastHit hit;
 			var rayDirection = Organism.gameObject.transform.forward;
-			Debug.DrawRay(Organism.gameObject.transform.position, rayDirection * SeeingDistance);
-			Physics.Raycast(Organism.gameObject.transform.position, rayDirection, out hit, SeeingDistance);
+			Debug.DrawRay(Organism.gameObject.transform.position, rayDirection * OrganismSight);
+			Physics.Raycast(Organism.gameObject.transform.position, rayDirection, out hit, OrganismSight);
 			
-			if(hit.collider != null && hit.collider.CompareTag("Organism")) {
+			if(hit.collider != null && hit.collider.CompareTag(Simulation.OrganismTag)) {
 
 				// Récupération de l'instance de script.s
 				Organism other = hit.collider.gameObject.GetComponent<Organism>();
 
 				// TODO : Try to don't use IsInstanceOfType()...
-				if(other != null && GetType().IsInstanceOfType(other.State)) {
-					((Adult) Organism.State).inner = new Reproduction(Organism, null);
-					((Adult) other.GetComponent<Organism>().State).inner = new Reproduction(other.GetComponent<Organism>(), null);
-					//					other.Reproduce(gameObject);
-					//					Reproduce(other.gameObject);
-					//
-					//					Genotype[] childrenGenotype = SimpleReco.getInstance().Recombine(Genotype,other.Genotype);
-					//					foreach(Genotype child in childrenGenotype) {
-					//						Vector3 position = new Vector3(transform.forward.x * -0.5f, transform.position.y, transform.forward.z * -0.5f);
-					//
-					//						GameObject childInstance = Instantiate(Prefab, position, transform.localRotation) as GameObject;
-					//						childInstance.SetActive(false);
-					//						A phenotype = childInstance.GetComponent<A>();
-                    //						if(phenotype == null) {
-                    //							Debug.LogError("No script is attached");
-                    //						} else {
-                    //							phenotype.Genotype = child;
-                    //							phenotype.ModifyPhenotype(phenotype.Genotype);
-					//						}
-					//						childInstance.SetActive(true);
-					//					}
+				if(NoNewChild <= 0 && other != null && GetType().IsInstanceOfType(other.State)) {
+					Adult a = (Adult) Organism.State;
+					Adult b = (Adult) other.GetComponent<Organism>().State;
+
+					a.inner = new Reproduction(Organism, other, null, true);
+					b.inner = new Reproduction(other, Organism, null, false);
 				}
 			}
 		}
+		#endregion
 
 		#region implemented abstract members of State
 		public override void Action ()
 		{
 			inner.Update();
 			Organism.Age++;
+			if(NoNewChild > 0) {
+				NoNewChild--;
+			}
 		}
 
 		public override void FixedAction ()

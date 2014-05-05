@@ -5,8 +5,9 @@ namespace States {
 		private State inner;
 
 		public PreAdult(Organism organism, DUpdateState updateState) : base(organism, updateState) {
-			inner = new Movement(Organism, UpdateState);
+			inner = new Movement(Organism, null);
 			Debug.Log(Organism + " is pre adult");
+			Organism.collider.enabled = true;
 		}
 
 		#region implemented abstract members of State

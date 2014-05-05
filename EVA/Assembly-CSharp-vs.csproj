@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\Organisms\States\State.cs" />
      <Compile Include="Assets\Scripts\PhenotypeData.cs" />
      <Compile Include="Assets\Scripts\Simulation\Reposition.cs" />
+     <Compile Include="Assets\Scripts\Simulation\Simulation.cs" />
      <Compile Include="Assets\Scripts\Simulation\Tools\ExtendedFlycam.cs" />
      <Compile Include="Assets\Scripts\Tools\Probability.cs" />
      <Compile Include="Assets\Scripts\Wrappers\WVector3.cs" />

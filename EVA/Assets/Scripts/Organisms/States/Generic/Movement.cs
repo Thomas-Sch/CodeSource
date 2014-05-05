@@ -6,7 +6,9 @@ using Tools;
 namespace States {
 	public class Movement : State {
 
-		private static float TurnRate = 0.5f;
+		private static float TurnRate = Simulation.MovementTurnRate;
+
+		private static Probability Turn = new Probability(0.01);
 		private Quaternion newRotation;
 
 		public Movement(Organism organism, DUpdateState updateState) : base(organism, updateState) { }
@@ -20,7 +22,7 @@ namespace States {
 				Organism.transform.Translate(newPos, Space.World);
 			}
 			
-			if(Probability.Test(0.01)) {
+			if(Turn.Test()) {
 				newRotation = UnityEngine.Random.rotation;
 				Vector3 v = newRotation.eulerAngles;
 				v.x = 0;
@@ -33,8 +35,8 @@ namespace States {
 
 		public override void FixedAction ()
 		{
-			// Nothing
-		}
+			// Nothing to do here.
+		} 
 		#endregion
 	}
 }

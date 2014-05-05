@@ -6,7 +6,7 @@ using GeneticLibrary.BodyParts;
 using States;
 using System;
 
-public class Organism : MonoBehaviour {
+public abstract class Organism : MonoBehaviour {
 
 	protected static string Path = "Prefabs/";
 
@@ -23,7 +23,7 @@ public class Organism : MonoBehaviour {
 	// StateChangingVariables //
 
 	// Duration of this state based on the age of the organism.
-	private static float Duration = 0f;
+	private static float PreAdultDuration = Simulation.PreAdultDuration;
 
 	public void Awake() {
 
@@ -61,6 +61,8 @@ public class Organism : MonoBehaviour {
 
 	}
 
+	public abstract GameObject Prefab();
+
 	public void Kill() {
 		Destroy(gameObject);
 	}
@@ -72,7 +74,7 @@ public class Organism : MonoBehaviour {
 	}
 
 	protected void PreAdultToAdult() {
-		if((float)Age/phenotypeData.LifeExpectancy > Duration)
+		if((float)Age/phenotypeData.LifeExpectancy > PreAdultDuration)
 			State = new Adult(this, AdultToDeath);
 	}
 

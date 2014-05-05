@@ -5,9 +5,16 @@ namespace States {
 
 	public abstract class State {
 
+		/// <summary>
+		/// Gets or sets the organism.
+		/// </summary>
+		/// <value>The organism.</value>
 		public Organism Organism {get; set;}
+
+		// Define the method signature for updating.
 		public delegate void DUpdateState();
 
+		// Automaticaly called at the end of an update.
 		protected DUpdateState UpdateState;
 
 		public State(Organism organism, DUpdateState checkAndUpdateState) {
@@ -32,8 +39,14 @@ namespace States {
 			FixedAction();
 		}
 
+		/// <summary>
+		/// Action to do during the update.
+		/// </summary>
 		public abstract void Action();
 
+		/// <summary>
+		/// Action to do during the fixed update.
+		/// </summary>
 		public abstract void FixedAction();
 	}
 }

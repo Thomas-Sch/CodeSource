@@ -11,7 +11,7 @@ using Tools;
 using States;
 
 public class A : Organism {
-	private static GameObject Prefab = Resources.Load<GameObject>(Path + "Template A");
+	private static GameObject prefab = Resources.Load<GameObject>(Path + "Template A");
 
 	public new void Awake() {
 		base.Awake();
@@ -24,4 +24,13 @@ public class A : Organism {
 		
 		ModifyPhenotype(Genotype);
 	}	
+
+	#region implemented abstract members of Organism
+
+	public override GameObject Prefab ()
+	{
+		return prefab;
+	}
+
+	#endregion
 }
