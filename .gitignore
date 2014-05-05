@@ -8,6 +8,9 @@
 *.sln
 *.unity
 *.userprefs
+*.dwlt
+*.dll
+*.mdb
 
 #################
 ## Eclipse
