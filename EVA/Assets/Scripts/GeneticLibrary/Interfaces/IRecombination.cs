@@ -11,19 +11,14 @@ namespace GeneticLibrary.Recombination
    	/// <summary>
     /// This class implement the singleton model. Each subclass have his own singleton.
     /// </summary>
-    abstract class RecombinationHandler
+    interface IRecombination
     {
-        /// <summary>
-        /// The instance of each class.
-        /// </summary>
-        protected static RecombinationHandler instance;
-
         /// <summary>
         /// Create offsprings from parent a and b.
         /// </summary>
         /// <param name="a">Parent a</param>
         /// <param name="b">Parent b</param>
         /// <returns>The offsprings</returns>
-        abstract public Genotype[] Recombine(Genotype a, Genotype b);
+        RecombinationOutput Recombine(Genotype a, Genotype b);
     }
 }

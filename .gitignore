@@ -11,6 +11,7 @@
 *.dwlt
 *.dll
 *.mdb
+*.asset
 
 #################
 ## Eclipse

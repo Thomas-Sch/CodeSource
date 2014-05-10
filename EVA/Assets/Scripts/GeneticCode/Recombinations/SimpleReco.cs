@@ -11,20 +11,20 @@ namespace GeneticLibrary.Recombination
     /// <summary>
     /// This recombination operator uses a structure recombination. It does not modifies the genes but only the structure.
     /// </summary>
-    class SimpleReco : RecombinationHandler
+    class SimpleReco : IRecombination
     {
-        private const int nbrChild = 1;
+		private static SimpleReco Singleton;
 
-        public static RecombinationHandler getInstance()
-        {
-            if (instance == null)
-            {
-                instance = new SimpleReco();
-            }
-            return instance;
-        }
+		private const int nbrChild = 1;
 
-        public override Genotype[] Recombine(Genotype a, Genotype b)
+		public static IRecombination getInstance() {
+			if(Singleton == null) {
+				Singleton = new SimpleReco();
+			}
+			return Singleton;
+		}
+
+        public RecombinationOutput Recombine(Genotype a, Genotype b)
         {
             IList<Genotype> offsprings = new List<Genotype>();
             var _50p = new Probability(0.5);
@@ -65,7 +65,7 @@ namespace GeneticLibrary.Recombination
                 offsprings.Add(g);
             }
 
-            return offsprings.ToArray<Genotype>();
+            return new RecombinationOutput(offsprings);
         }
     }
 }

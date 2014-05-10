@@ -10,7 +10,7 @@ public class Simulation
 {
 	// Simulation
 	public static readonly string OrganismTag = "Organism";
-	public static readonly int InitialPopulation = 10;
+	public static readonly int InitialPopulation = 20;
 
 	// Organisms
 	public static readonly int BirhtDuration = 100; // [Nombre d'updates]
@@ -18,7 +18,7 @@ public class Simulation
 	public static readonly float OrganismSight = 10F; // [Longueur]
 
 	// Death settings
-	public static readonly float TimeBeforeRemove = 4; // [s]
+	public static readonly float TimeBeforeRemove = 0; // [s]
 	public static readonly float DeathSmooth = 0.01f; // [0.0 - 1.0]
 
 	// Movement settings

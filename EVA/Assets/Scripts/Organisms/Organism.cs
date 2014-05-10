@@ -8,7 +8,7 @@ using System;
 
 public abstract class Organism : MonoBehaviour {
 
-	protected static string Path = "Prefabs/";
+	public static string Path = "Prefabs/";
 
 	private static int NumberOfOrganisms = 0;
 

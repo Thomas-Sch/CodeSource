@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Initialisation.cs" />
      <Compile Include="Assets\Scripts\GeneticCode\Mutations\GeneticModifiers\Addition.cs" />
      <Compile Include="Assets\Scripts\GeneticCode\Mutations\GeneticModifiers\Blur.cs" />
      <Compile Include="Assets\Scripts\GeneticCode\Mutations\GeneticModifiers\Multiplication.cs" />
@@ -66,11 +67,12 @@
      <Compile Include="Assets\Scripts\GeneticLibrary\Interfaces\IDeepClonable.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Interfaces\IMutable.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Interfaces\IMutation.cs" />
+     <Compile Include="Assets\Scripts\GeneticLibrary\Interfaces\IRecombination.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\GeneticModifier.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Modifier.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\Mutation.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Mutations\StructuralModifier.cs" />
-     <Compile Include="Assets\Scripts\GeneticLibrary\RecombinationHandler.cs" />
+     <Compile Include="Assets\Scripts\GeneticLibrary\RecombinationOutput.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WFloat.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WInt.cs" />
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WString.cs" />

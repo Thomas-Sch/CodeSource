@@ -28,12 +28,12 @@ namespace Utils {
 		public float slowMoveFactor = 0.25f;
 		public float fastMoveFactor = 3;
 		
-		private float rotationX = -90f;
-		private float rotationY = 0f;
+		private float rotationX = 0;
+		private float rotationY = -90;
 		
 		void Start ()
 		{
-			Screen.lockCursor = true;
+			Screen.lockCursor = false;
 		}
 		
 		void Update ()

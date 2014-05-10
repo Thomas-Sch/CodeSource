@@ -9,7 +9,6 @@ namespace States {
 			Debug.Log(Organism + " is pre adult");
 			Organism.collider.enabled = true;
 		}
-
 		#region implemented abstract members of State
 		public override void Action ()
 		{

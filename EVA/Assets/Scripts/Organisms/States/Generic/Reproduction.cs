@@ -28,13 +28,9 @@ namespace States
 		// Determine who has to create childs.
 		private bool IsMother;
 
-		new private DUpdateState UpdateState;
-
 		public Reproduction(Organism organism, Organism other, DUpdateState updateState, bool isMother) : base(organism, null) {
 			Other = other;
 			IsMother = isMother;
-
-			UpdateState = updateState;
 			Organism.collider.enabled = false;
 			Organism.rigidbody.collider.enabled = false;
 			InnerState = InnerStates.Approach;
@@ -53,7 +49,7 @@ namespace States
 		{
 			switch(InnerState) {
 			case InnerStates.Approach:
-				if(Vector3.Distance(Organism.transform.position, Other.transform.position) > ApproachDistance)
+				if(Other != null && Vector3.Distance(Organism.transform.position, Other.transform.position) > ApproachDistance)
 				{
 					Organism.transform.localRotation = Quaternion.Slerp(Organism.transform.localRotation, Quaternion.LookRotation(Other.transform.position - Organism.transform.position), 0.02F);
 					Organism.transform.position = Vector3.Lerp(Organism.transform.position, Other.transform.position, Time.deltaTime * ApproachRate);
@@ -99,8 +95,8 @@ namespace States
 		/// </summary>
 		/// <param name="position">Position.</param>
 		private void SpawnChildren(Vector3 position) {
-			Genotype[] childrenGenotype = SimpleReco.getInstance().Recombine(Organism.Genotype,Other.Genotype);
-			foreach(Genotype childGenotype in childrenGenotype) {
+			RecombinationOutput childrenGenotypes = SimpleReco.getInstance().Recombine(Organism.Genotype,Other.Genotype);
+			foreach(Genotype childGenotype in childrenGenotypes) {
 				GameObject childInstance = Organism.Instantiate(Organism.Prefab(), position, Organism.transform.localRotation) as GameObject;
 				Organism child = childInstance.GetComponent<Organism>();
 				if(child == null) {
