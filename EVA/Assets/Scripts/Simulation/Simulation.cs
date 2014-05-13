@@ -14,7 +14,7 @@ public class Simulation
 
 	// Organisms
 	public static readonly int BirhtDuration = 100; // [Nombre d'updates]
-	public static readonly float PreAdultDuration = 0.0f; // [%]
+	public static readonly float PreAdultDuration = 0.2f; // [%]
 	public static readonly float OrganismSight = 10F; // [Longueur]
 
 	// Death settings

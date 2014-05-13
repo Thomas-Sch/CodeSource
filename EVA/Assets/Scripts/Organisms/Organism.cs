@@ -57,6 +57,9 @@ public abstract class Organism : MonoBehaviour {
 
 	}
 
+	/// <summary>
+	/// Returns the prefab of the instance of the organism.
+	/// </summary>
 	public abstract GameObject Prefab();
 
 	/// <summary>

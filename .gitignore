@@ -12,6 +12,10 @@
 *.dll
 *.mdb
 *.asset
+./EVA/Temp/
+./EVA/ProjectSettings/
+./EVA/Library/
+*.meta
 
 #################
 ## Eclipse

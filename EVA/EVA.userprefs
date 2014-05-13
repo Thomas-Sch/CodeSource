@@ -1,15 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Simulation\Initialisation.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Organisms\Organism.cs">
     <Files>
-      <File FileName="Assets\Scripts\Simulation\Simulation.cs" Line="13" Column="50" />
-      <File FileName="Assets\Scripts\Simulation\Initialisation.cs" Line="19" Column="44" />
-      <File FileName="Assets\Scripts\Organisms\States\Generic\Adult.cs" Line="22" Column="4" />
-      <File FileName="Assets\Scripts\Organisms\Organism.cs" Line="9" Column="49" />
-      <File FileName="Assets\Scripts\Organisms\States\Generic\Reproduction.cs" Line="108" Column="67" />
-      <File FileName="Assets\Scripts\Organisms\A.cs" Line="34" Column="12" />
-      <File FileName="Assets\Scripts\Organisms\B.cs" Line="22" Column="63" />
-      <File FileName="Assets\Scripts\Organisms\D.cs" Line="28" Column="3" />
+      <File FileName="Assets\Scripts\Simulation\Simulation.cs" Line="17" Column="53" />
+      <File FileName="Assets\Scripts\Simulation\Initialisation.cs" Line="34" Column="2" />
+      <File FileName="Assets\Scripts\Organisms\Organism.cs" Line="98" Column="17" />
+      <File FileName="Assets\Scripts\Organisms\A.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Organisms\B.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Organisms\D.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
