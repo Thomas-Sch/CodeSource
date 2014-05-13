@@ -12,9 +12,9 @@
 *.dll
 *.mdb
 *.asset
-./EVA/Temp/
-./EVA/ProjectSettings/
-./EVA/Library/
+EVA/Temp/
+EVA/ProjectSettings/
+EVA/Library/
 *.meta
 
 #################
