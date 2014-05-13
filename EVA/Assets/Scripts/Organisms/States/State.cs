@@ -39,6 +39,8 @@ namespace States {
 			FixedAction();
 		}
 
+		public abstract string Tag();
+
 		/// <summary>
 		/// Action to do during the update.
 		/// </summary>

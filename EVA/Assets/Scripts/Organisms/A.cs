@@ -11,14 +11,13 @@ using Tools;
 using States;
 
 public class A : Organism {
-	private static GameObject prefab = Resources.Load<GameObject>(Path + "Template A");
 
 	public new void Awake() {
 		base.Awake();
 		
 		Mutation init = new Mutation();
 		init.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.5F));
-		init.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeexpectancy"}), 100.0F));
+		init.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeduration"}), 100.0F));
 		init.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}), new Set(new [] {"speed"}), 0.2F));
 		Genotype.Mutate(init);
 		
@@ -29,7 +28,7 @@ public class A : Organism {
 
 	public override GameObject Prefab ()
 	{
-		return prefab;
+		return Initialisation.A;
 	}
 
 	#endregion

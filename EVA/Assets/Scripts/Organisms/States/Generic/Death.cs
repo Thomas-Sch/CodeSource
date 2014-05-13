@@ -15,6 +15,10 @@ namespace States {
 			Organism.Invoke("Kill", TimeBeforeRemove);
 		}
 
+		public override string Tag() {
+			return "Death";
+		}
+
 		#region implemented abstract members of State
 
 		public override void Action ()

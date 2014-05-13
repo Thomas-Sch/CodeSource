@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using GeneticLibrary;
 using Wrappers;
@@ -8,12 +8,9 @@ using System;
 
 public abstract class Organism : MonoBehaviour {
 
-	public static string Path = "Prefabs/";
-
 	private static int NumberOfOrganisms = 0;
 
 	public int Name {get; private set;}
-
 
 	public State State {get; set;}
 	public PhenotypeData phenotypeData {get; set;} // Need renommage maybe. Confusion entre le phenotype des extensions et des données.
@@ -26,7 +23,6 @@ public abstract class Organism : MonoBehaviour {
 	private static float PreAdultDuration = Simulation.PreAdultDuration;
 
 	public void Awake() {
-
 		Genotype = new Genotype();
 		Genotype.RootElement = new Square(new GeneticData());
 
@@ -63,23 +59,34 @@ public abstract class Organism : MonoBehaviour {
 
 	public abstract GameObject Prefab();
 
+	/// <summary>
+	/// Enable or disable the collider on the organism.
+	/// </summary>
+	/// <param name="b">If set to <c>true</c> b.</param>
+	public void SetCollider(bool b) {
+		collider.enabled = b;
+		foreach(var child in GetComponentsInChildren<Collider>()) {
+			child.enabled = b;
+		}
+	}
+
 	public void Kill() {
 		Destroy(gameObject);
 	}
 
-	#region State changing
+	#region State changing STAYS
 
 	protected void BirthToPreAdult() {
 		State = new PreAdult(this, PreAdultToAdult);
 	}
 
 	protected void PreAdultToAdult() {
-		if((float)Age/phenotypeData.LifeExpectancy > PreAdultDuration)
+		if((float)Age/phenotypeData.LifeDuration > PreAdultDuration)
 			State = new Adult(this, AdultToDeath);
 	}
 
 	protected void AdultToDeath() {
-		if(Age > phenotypeData.LifeExpectancy)
+		if(Age > phenotypeData.LifeDuration)
 			State = new Death(this, null);
 	}
 
@@ -87,7 +94,7 @@ public abstract class Organism : MonoBehaviour {
 
 	#region Genetic modifications
 	/// <summary>
-	/// Deducts the genotype.
+	/// Deducts the genotype. STAYS
 	/// </summary>
 	/// <param name="t">T. The current transform component examined.</param>
 	/// <param name="e">E. The last extension treated (will serve as the parent for this call)</param>
@@ -107,10 +114,10 @@ public abstract class Organism : MonoBehaviour {
 	/// Modifies the phenotype accordingly to the genotype.
 	/// </summary>
 	/// <param name="g">The genotype used</param>
-	public void ModifyPhenotype(Genotype g) {
+	public void ModifyPhenotype(Genotype g) { // DON'T STAYS
 		ModifyElement(transform, g.RootElement);
 		
-		phenotypeData.LifeExpectancy = (int)((WFloat)g.RootElement.GeneticData.Get("lifeexpectancy")).Value;
+		phenotypeData.LifeDuration = (int)((WFloat)g.RootElement.GeneticData.Get("lifeduration")).Value;
 		phenotypeData.Speed = ((WFloat)g.RootElement.GeneticData.Get("speed")).Value;
 	}
 	
@@ -130,7 +137,7 @@ public abstract class Organism : MonoBehaviour {
 	public void ExtendGenotype (Extension element)
 	{
 		element.Tag = "root";
-		element.SetGeneticData("lifeexpectancy", new WFloat(500));
+		element.SetGeneticData("lifeduration", new WFloat(500));
 		element.SetGeneticData("speed", new WFloat(0.2F));
 	}
 	#endregion

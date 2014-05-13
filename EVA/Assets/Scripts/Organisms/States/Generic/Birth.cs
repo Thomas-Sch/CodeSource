@@ -14,6 +14,10 @@ namespace States
 			Debug.Log(Organism + " is born.");
 		}
 
+		public override string Tag() {
+			return "Birth";
+		}
+
 		#region implemented abstract members of State
 		public override void Action ()
 		{

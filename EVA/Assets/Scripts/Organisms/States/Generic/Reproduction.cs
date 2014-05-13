@@ -38,6 +38,10 @@ namespace States
 			Debug.Log(Organism + " is reproducing with " + Other);
 		}
 
+		public override string Tag() {
+			return "Reproduction";
+		}
+
 		#region implemented abstract members of State
 
 		public override void Action ()
@@ -53,7 +57,7 @@ namespace States
 				{
 					Organism.transform.localRotation = Quaternion.Slerp(Organism.transform.localRotation, Quaternion.LookRotation(Other.transform.position - Organism.transform.position), 0.02F);
 					Organism.transform.position = Vector3.Lerp(Organism.transform.position, Other.transform.position, Time.deltaTime * ApproachRate);
-				} else {
+				} else if(Other.State.Tag() == Organism.State.Tag() && ((Adult)Other.State).inner.Tag() == Tag()){
 					InnerState = InnerStates.Separation;
 					OtherReproduction = (Reproduction)((Adult)Other.State).inner;
 					((Adult)Organism.State).NoNewChild = NoNewChildDuration;
@@ -64,7 +68,9 @@ namespace States
 				break;
 				
 			case InnerStates.Separation:
-				if(OtherReproduction.Finished) {
+
+				// If the reproduction partner is null it means he's not available anymore. (Dead probably).
+				if(OtherReproduction != null && OtherReproduction.Finished) {
 					Vector3 newPos = Organism.transform.localPosition + -BackDistanceMultiplier * Organism.transform.forward;
 					newPos.y = Organism.transform.localPosition.y;
 					Organism.transform.localPosition = newPos;
@@ -78,12 +84,14 @@ namespace States
 
 					if(IsMother) {
 						Vector3 Position = new Vector3();
-						Position.x = (Organism.transform.localPosition.x + Other.transform.localPosition.x) / 2;
+						Position.x = (Organism.transform.position.x + Other.transform.position.x) / 2;
 						Position.y = SpawnHeight;
-						Position.z = (Organism.transform.localPosition.z + Other.transform.localPosition.z) / 2;
+						Position.z = (Organism.transform.position.z + Other.transform.position.z) / 2;
 						SpawnChildren(Position);
                     }
-                }
+                } else {
+					((Adult)Organism.State).ReproductionToMovement();
+				}
                 break;
 			}
 		}
@@ -105,6 +113,7 @@ namespace States
                     child.Genotype = childGenotype;
                     child.ModifyPhenotype(childGenotype);
                 }
+//				child.transform.position = position;
 			}
 		}
 	}

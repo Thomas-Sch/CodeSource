@@ -3,8 +3,11 @@ using System.Collections;
 
 public class Initialisation : MonoBehaviour {
 
-	private static GameObject A;
-	private static GameObject B;
+	public static GameObject A;
+	public static GameObject B;
+	public static GameObject D;
+
+	public static string Path = "Prefabs/";
 
 	private static readonly float SpawnHeight = 2f;
 	private float SemiSideLength;
@@ -12,8 +15,9 @@ public class Initialisation : MonoBehaviour {
 	public GameObject Terrain;
 
 	void Awake() {
-		A = Resources.Load<GameObject>(Organism.Path + "Template A");
-		B = Resources.Load<GameObject>(Organism.Path + "Template B");
+		A = Resources.Load<GameObject>(Path + "Template A");
+		B = Resources.Load<GameObject>(Path + "Template B");
+		D = Resources.Load<GameObject>(Path + "Template D");
 	}
 
 	// Use this for initialization
@@ -26,10 +30,6 @@ public class Initialisation : MonoBehaviour {
 		for(var i = 0; i < Simulation.InitialPopulation; ++i) {
 			Spawn (A);
 		}
-
-//		for(var i = 0; i < Simulation.InitialPopulation; ++i) {
-//			Spawn (B);
-//		}
 	}
 	
 	// Update is called once per frame

@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Initialisation.cs" />
      <Compile Include="Assets\Scripts\GeneticCode\Mutations\GeneticModifiers\Addition.cs" />
      <Compile Include="Assets\Scripts\GeneticCode\Mutations\GeneticModifiers\Blur.cs" />
      <Compile Include="Assets\Scripts\GeneticCode\Mutations\GeneticModifiers\Multiplication.cs" />
@@ -78,17 +77,17 @@
      <Compile Include="Assets\Scripts\GeneticLibrary\Wrappers\WString.cs" />
      <Compile Include="Assets\Scripts\Organisms\A.cs" />
      <Compile Include="Assets\Scripts\Organisms\B.cs" />
-     <Compile Include="Assets\Scripts\Organisms\C.cs" />
+     <Compile Include="Assets\Scripts\Organisms\D.cs" />
      <Compile Include="Assets\Scripts\Organisms\Organism.cs" />
      <Compile Include="Assets\Scripts\Organisms\States\Generic\Adult.cs" />
      <Compile Include="Assets\Scripts\Organisms\States\Generic\Birth.cs" />
      <Compile Include="Assets\Scripts\Organisms\States\Generic\Death.cs" />
-     <Compile Include="Assets\Scripts\Organisms\States\Generic\Dummy.cs" />
      <Compile Include="Assets\Scripts\Organisms\States\Generic\Movement.cs" />
      <Compile Include="Assets\Scripts\Organisms\States\Generic\PreAdult.cs" />
      <Compile Include="Assets\Scripts\Organisms\States\Generic\Reproduction.cs" />
      <Compile Include="Assets\Scripts\Organisms\States\State.cs" />
      <Compile Include="Assets\Scripts\PhenotypeData.cs" />
+     <Compile Include="Assets\Scripts\Simulation\Initialisation.cs" />
      <Compile Include="Assets\Scripts\Simulation\Reposition.cs" />
      <Compile Include="Assets\Scripts\Simulation\Simulation.cs" />
      <Compile Include="Assets\Scripts\Simulation\Tools\ExtendedFlycam.cs" />

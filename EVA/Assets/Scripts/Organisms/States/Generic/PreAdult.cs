@@ -7,8 +7,12 @@ namespace States {
 		public PreAdult(Organism organism, DUpdateState updateState) : base(organism, updateState) {
 			inner = new Movement(Organism, null);
 			Debug.Log(Organism + " is pre adult");
-			Organism.collider.enabled = true;
 		}
+
+		public override string Tag() {
+			return "PreAdult";
+		}
+
 		#region implemented abstract members of State
 		public override void Action ()
 		{

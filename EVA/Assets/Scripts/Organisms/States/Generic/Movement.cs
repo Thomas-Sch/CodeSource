@@ -13,6 +13,10 @@ namespace States {
 
 		public Movement(Organism organism, DUpdateState updateState) : base(organism, updateState) { }
 
+		public override string Tag() {
+			return "Movement";
+		}
+
 		#region implemented abstract members of State
 		public override void Action ()
 		{
@@ -28,7 +32,6 @@ namespace States {
 				v.x = 0;
 				v.z = 0;
 				newRotation.eulerAngles = v;
-
 	    	}
 			Organism.transform.rotation = Quaternion.Slerp(Organism.transform.rotation, newRotation, Time.deltaTime * TurnRate);
 		}
