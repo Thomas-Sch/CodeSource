@@ -8,23 +8,17 @@ using GeneticLibrary.Mutations;
 using GeneticLibrary.Recombination;
 using GeneticLibrary.Collections;
 using Tools;
+using GeneticLibrary.Interfaces;
 
 public class D : Organism {
 
-	private Quaternion newRotation;
-
-	public new void Awake() {
-		base.Awake();
-
-		Age = 0;
-		
-		Mutation init = new Mutation();
-		init.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.5F));
-		init.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeduration"}), 100.0F));
-		init.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}), new Set(new [] {"speed"}), 0.2F));
-		Genotype.Mutate(init);
-		
-		ModifyPhenotype(Genotype);
+	/// <summary>
+	/// Rajoute des informations au génotype.
+	/// </summary>
+	new private void ExtendGenotype() {
+		base.ExtendGenotype();
+		Genotype.RootElement.SetGeneticData("lifeduration", new WFloat(500));
+		Genotype.RootElement.SetGeneticData("speed", new WFloat(0.2F));
 	}
 
 	#region implemented abstract members of Organism
@@ -32,6 +26,15 @@ public class D : Organism {
 	public override GameObject Prefab ()
 	{
 		return Initialisation.D;
+	}
+
+	protected override IMutation PreSpawnMutation ()
+	{
+		Mutation result = new Mutation();
+		result.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.5F));
+		result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeduration"}), 100.0F));
+		result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}), new Set(new [] {"speed"}), 0.2F));
+		return result;
 	}
 
 	#endregion

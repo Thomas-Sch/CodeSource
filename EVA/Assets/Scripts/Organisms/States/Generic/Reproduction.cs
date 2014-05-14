@@ -111,7 +111,7 @@ namespace States
 					Debug.LogError("No script is attached");
 				} else {
                     child.Genotype = childGenotype;
-                    child.ModifyPhenotype(childGenotype);
+                    child.ChangePhenotype(childGenotype);
                 }
 //				child.transform.position = position;
 			}

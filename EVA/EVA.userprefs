@@ -1,13 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Organisms\Organism.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Simulation\Initialisation.cs">
     <Files>
-      <File FileName="Assets\Scripts\Simulation\Simulation.cs" Line="17" Column="53" />
-      <File FileName="Assets\Scripts\Simulation\Initialisation.cs" Line="34" Column="2" />
-      <File FileName="Assets\Scripts\Organisms\Organism.cs" Line="98" Column="17" />
-      <File FileName="Assets\Scripts\Organisms\A.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Organisms\B.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Organisms\D.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PhenotypeData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Organisms\Organism.cs" Line="57" Column="2" />
+      <File FileName="Assets\Scripts\Organisms\States\Generic\Adult.cs" Line="87" Column="5" />
+      <File FileName="Assets\Scripts\Simulation\Initialisation.cs" Line="21" Column="22" />
+      <File FileName="Assets\Scripts\Organisms\States\Generic\Movement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Organisms\States\Generic\Birth.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Organisms\States\Generic\Death.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Organisms\States\Generic\PreAdult.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Organisms\States\Generic\Reproduction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Organisms\States\State.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Simulation\Simulation.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

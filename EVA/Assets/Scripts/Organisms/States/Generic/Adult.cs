@@ -61,10 +61,7 @@ namespace States {
 		{
 			inner.Update();
 
-			Organism.Age++;
-			if(NoNewChild > 0) {
-				NoNewChild--;
-			}
+
 
 //			// Mutation during adult life.
 //			if(mutation1.Test()) {
@@ -83,6 +80,11 @@ namespace States {
 		public override void FixedAction ()
 		{
 			inner.FixedUpdate();
+
+			Organism.Age++;
+			if(NoNewChild > 0) {
+				NoNewChild--;
+			}
 		}
 		#endregion
 	}

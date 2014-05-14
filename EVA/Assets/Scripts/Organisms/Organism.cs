@@ -6,35 +6,52 @@ using GeneticLibrary.BodyParts;
 using States;
 using System;
 
+/// <summary>
+/// Provide base support to handle Organisms.
+/// It supports the concept of speed and aging.
+/// </summary>
+using GeneticLibrary.Mutations;
+using GeneticLibrary.Interfaces;
+
+
 public abstract class Organism : MonoBehaviour {
 
 	private static int NumberOfOrganisms = 0;
-
-	public int Name {get; private set;}
-
-	public State State {get; set;}
-	public PhenotypeData phenotypeData {get; set;} // Need renommage maybe. Confusion entre le phenotype des extensions et des données.
-	public Genotype Genotype {get; set;}
-	public int Age {get; set;}
-
-	// StateChangingVariables //
-
 	// Duration of this state based on the age of the organism.
 	private static float PreAdultDuration = Simulation.PreAdultDuration;
 
-	public void Awake() {
-		Genotype = new Genotype();
-		Genotype.RootElement = new Square(new GeneticData());
+	// Name of the organism.
+	public int Name {get; private set;}
+	// Age of the organism.
+	public int Age {get; set;}
 
-		phenotypeData = new PhenotypeData();
+	//--- Control of the organism. ---//
+	public PhenotypeData phenotypeData {get; set;} // Need renommage maybe. Confusion entre le phenotype des extensions et des données.
+	public State State {get; set;}
+	public Genotype Genotype {get; set;}
 
-		DeductGenotype(transform, Genotype.RootElement);
-		ExtendGenotype(Genotype.RootElement);
-
+	public Organism() {
 		Name = ++NumberOfOrganisms;
 	}
 
+	/// <summary>
+	/// Initialisation of an organism.
+	/// </summary>
+	private void Initialisation() {
+		Genotype = new Genotype(new Square(new GeneticData()));
+		
+		DeductGenotype(transform, Genotype.RootElement);
+		
+		ExtendGenotype();
+		
+		Genotype.Mutate(PreSpawnMutation());
+		
+		ChangePhenotype(Genotype);
+	}
+
 	public void Start() {
+		Initialisation();
+
 		State = new Birth(this, BirthToPreAdult);
 	}
 
@@ -62,6 +79,8 @@ public abstract class Organism : MonoBehaviour {
 	/// </summary>
 	public abstract GameObject Prefab();
 
+	protected abstract IMutation PreSpawnMutation();
+
 	/// <summary>
 	/// Enable or disable the collider on the organism.
 	/// </summary>
@@ -73,6 +92,9 @@ public abstract class Organism : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Kill this instance.
+	/// </summary>
 	public void Kill() {
 		Destroy(gameObject);
 	}
@@ -97,11 +119,11 @@ public abstract class Organism : MonoBehaviour {
 
 	#region Genetic modifications
 	/// <summary>
-	/// Deducts the genotype. STAYS
+	/// Deducts the genotype.
 	/// </summary>
 	/// <param name="t">T. The current transform component examined.</param>
 	/// <param name="e">E. The last extension treated (will serve as the parent for this call)</param>
-	public void DeductGenotype(Transform t, Extension e) {
+	private void DeductGenotype(Transform t, Extension e) {
 		e.GeneticData.Set("scale", new WVector3(t.localScale));
 		e.GeneticData.Set("rotation", new WVector3(t.localRotation.eulerAngles));
 		e.GeneticData.Set("position", new WVector3(t.localPosition));
@@ -114,16 +136,24 @@ public abstract class Organism : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Modifies the phenotype accordingly to the genotype.
+	/// Applies the genotype to the phenotype.
 	/// </summary>
-	/// <param name="g">The genotype used</param>
-	public void ModifyPhenotype(Genotype g) { // DON'T STAYS
+	/// <param name="g">The green component.</param>
+	public void ChangePhenotype(Genotype g) {
 		ModifyElement(transform, g.RootElement);
-		
+
+		if(phenotypeData == null) {
+			phenotypeData = new PhenotypeData();
+		}
 		phenotypeData.LifeDuration = (int)((WFloat)g.RootElement.GeneticData.Get("lifeduration")).Value;
 		phenotypeData.Speed = ((WFloat)g.RootElement.GeneticData.Get("speed")).Value;
 	}
-	
+
+	/// <summary>
+	/// Modify the transform of one gameobject based on the given genetic data.
+	/// </summary>
+	/// <param name="t">The transform to modify.</param>
+	/// <param name="e">The extension containing the genetic data.</param>
 	private void ModifyElement(Transform t, Extension e) {
 		t.localPosition = ((WVector3)e.GeneticData.Get("position")).Value;
 		t.localRotation = Quaternion.Euler(((WVector3)e.GeneticData.Get("rotation")).Value);
@@ -137,11 +167,16 @@ public abstract class Organism : MonoBehaviour {
 		}
 	}
 
-	public void ExtendGenotype (Extension element)
+	/// <summary>
+	/// Adds informations to the genotype.
+	/// </summary>
+	protected void ExtendGenotype ()
 	{
-		element.Tag = "root";
-		element.SetGeneticData("lifeduration", new WFloat(500));
-		element.SetGeneticData("speed", new WFloat(0.2F));
+		Genotype.RootElement.Tag = "root";
+
+		// Par défaut.
+		Genotype.RootElement.SetGeneticData("lifeduration", new WFloat(500));
+		Genotype.RootElement.SetGeneticData("speed", new WFloat(0.2F));
 	}
 	#endregion
 

@@ -16,6 +16,14 @@ namespace GeneticLibrary
 {
     public class Genotype
     {
+		public Genotype() {
+
+		}
+
+		public Genotype(Extension root) {
+			RootElement = root;
+		}
+
 		private Extension rootElement;
         /// <summary>
         /// First element in the structure of the genotype.
@@ -43,7 +51,11 @@ namespace GeneticLibrary
         /// <param name="m">The mutation</param>
         public void Mutate(IMutation m)
         {
-            RootElement.Accept(m);
+			if(m != null) {
+            	RootElement.Accept(m);
+			} else {
+				throw new Exception("The mutation is null");
+			}
         }
 	
 

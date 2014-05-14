@@ -9,22 +9,29 @@ using GeneticLibrary.Recombination;
 using GeneticLibrary.Collections;
 using Tools;
 using States;
+using GeneticLibrary.Interfaces;
 
 public class A : Organism {
 
-	public new void Awake() {
-		base.Awake();
-		
-		Mutation init = new Mutation();
-		init.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.5F));
-		init.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeduration"}), 100.0F));
-		init.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}), new Set(new [] {"speed"}), 0.2F));
-		Genotype.Mutate(init);
-		
-		ModifyPhenotype(Genotype);
-	}	
+	/// <summary>
+	/// Rajoute des informations au génotype.
+	/// </summary>
+	new protected void ExtendGenotype() {
+		base.ExtendGenotype();
+		Genotype.RootElement.SetGeneticData("lifeduration", new WFloat(700));
+		Genotype.RootElement.SetGeneticData("speed", new WFloat(0.1F));
+	}
 
 	#region implemented abstract members of Organism
+
+	protected override IMutation PreSpawnMutation ()
+	{
+		Mutation result = new Mutation();
+		result.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.5F));
+		result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeduration"}), 100.0F));
+		result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}), new Set(new [] {"speed"}), 0.1F));
+		return result;
+	}
 
 	public override GameObject Prefab ()
 	{

@@ -21,16 +21,17 @@ namespace States
 		#region implemented abstract members of State
 		public override void Action ()
 		{
-			if(Duration > 0)
-				Duration--;
-			else {
-				UpdateState();
-			}
+
 		}
 
 		public override void FixedAction ()
 		{
 			// Nothing to do here.
+			if(Duration > 0)
+				Duration--;
+			else {
+				UpdateState();
+			}
 		}
 		#endregion
 	}

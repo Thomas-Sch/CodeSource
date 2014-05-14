@@ -17,12 +17,13 @@ namespace States {
 		public override void Action ()
 		{
 			inner.Action();
-			Organism.Age++;
+
 		}
 
 		public override void FixedAction ()
 		{
 			inner.FixedAction();
+			Organism.Age++;
 		}
 
 		#endregion

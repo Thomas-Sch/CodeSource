@@ -23,8 +23,6 @@ namespace States {
 
 		public override void Action ()
 		{
-			// Temporaire.
-			Organism.gameObject.transform.localScale = Vector3.Lerp(Organism.gameObject.transform.localScale, new Vector3(DeathSize, DeathSize, DeathSize), Smooth);
 		}
 
 		public override void FixedAction ()

@@ -18,6 +18,7 @@ public class Initialisation : MonoBehaviour {
 		A = Resources.Load<GameObject>(Path + "Template A");
 		B = Resources.Load<GameObject>(Path + "Template B");
 		D = Resources.Load<GameObject>(Path + "Template D");
+		Time.timeScale = 1;
 	}
 
 	// Use this for initialization
@@ -31,9 +32,17 @@ public class Initialisation : MonoBehaviour {
 			Spawn (A);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void Update() {
+		if (Input.GetKey (KeyCode.O)) {
+			Time.timeScale = 0.5f;
+		}
+		if (Input.GetKey (KeyCode.R)) {
+			Time.timeScale = 1f;
+		}
+		if (Input.GetKey (KeyCode.P)) {
+			Time.timeScale = 2f;
+		}
 	}
 
 	private void Spawn(GameObject prefab) {	
