@@ -6,8 +6,6 @@ namespace States {
 
 		private readonly float TimeBeforeRemove = Simulation.TimeBeforeRemove;
 		private readonly float Smooth = Simulation.DeathSmooth;
-
-		private readonly float DeathSize = 0.01f;
 		
 		public Death (Organism organism, DUpdateState updateState) : base(organism, updateState){
 			Debug.Log(Organism + " is dead");

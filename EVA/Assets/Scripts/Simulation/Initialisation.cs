@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class Initialisation : MonoBehaviour {
 
@@ -19,6 +20,19 @@ public class Initialisation : MonoBehaviour {
 		B = Resources.Load<GameObject>(Path + "Template B");
 		D = Resources.Load<GameObject>(Path + "Template D");
 		Time.timeScale = 1;
+
+		#if UNITY_EDITOR
+		EditorApplication.playmodeStateChanged += ExitPlayMode;
+		#endif
+
+	}
+
+	void ExitPlayMode(){
+		if(EditorApplication.isPlayingOrWillChangePlaymode) {
+			Debug.Log("Time elapsed 1: " + Time.realtimeSinceStartup);
+			Debug.Log("Time elapsed 2: " + Time.time);
+			Debug.Log("Number of frames: " + Time.frameCount);
+		}
 	}
 
 	// Use this for initialization
