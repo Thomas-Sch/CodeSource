@@ -27,9 +27,6 @@ namespace States {
 		/// </summary>
 		public void Update() {
 			Action();
-			if(UpdateState != null) {
-				UpdateState();
-			}
 		}
 
 		/// <summary>
@@ -37,6 +34,9 @@ namespace States {
 		/// </summary>
 		public void FixedUpdate() {
 			FixedAction();
+			if(UpdateState != null) {
+				UpdateState();
+			}
 		}
 
 		public abstract string Tag();
