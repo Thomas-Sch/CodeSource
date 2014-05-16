@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
-using GeneticLibrary.Recombination;
-using GeneticLibrary;
+﻿/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : May 2014
+/// </summary>
+
+using UnityEngine;
 using Tools;
-using GeneticLibrary.Mutations;
-using GeneticLibrary.Mutations.GeneticModifiers;
-using GeneticLibrary.Collections;
 
 namespace States {
 	public class Adult : State {

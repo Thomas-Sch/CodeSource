@@ -1,7 +1,9 @@
+/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : May 2014
+/// </summary>
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using GeneticLibrary.Interfaces;
 using UnityEngine;
 
@@ -20,6 +22,9 @@ namespace Wrappers
 		public float z {get { return Value.z;}}
 
 		public WVector3(Vector3 v) {
+			if(v == null) {
+				throw new ArgumentNullException();
+			}
 			Value = v;
 		}
         public WVector3() : this(0,0,0) { }

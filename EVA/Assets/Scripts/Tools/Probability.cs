@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : May 2014
+/// </summary>
+/// 
+using System;
 
 namespace Tools
 {
+	/// <summary>
+	/// This class is used to reprent a probability.
+	/// </summary>
     public class Probability
     {
         private Double probability;

@@ -1,7 +1,8 @@
 /// <summary>
-/// Contains global variables used in the code.
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : May 2014
 /// </summary>
-using System;
 
 /// <summary>
 /// Starting and general parameters for the simulation. Parents have 1 child per reproduction.

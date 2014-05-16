@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : May 2014
+/// </summary>
+
+using UnityEngine;
 
 /// <summary>
 /// Reposition the game object with the defined Tag on the opposite side of the board. 

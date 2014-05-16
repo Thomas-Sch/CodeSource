@@ -1,15 +1,20 @@
+/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : May 2014
+/// </summary>
+
 using UnityEngine;
-using System.Collections;
 using GeneticLibrary;
 using GeneticLibrary.Wrappers;
-using GeneticLibrary.BodyParts;
 using GeneticLibrary.Mutations.GeneticModifiers;
 using GeneticLibrary.Mutations;
-using GeneticLibrary.Recombination;
 using GeneticLibrary.Collections;
-using Tools;
 using GeneticLibrary.Interfaces;
 
+/// <summary>
+/// Behaviour of a type D organism.
+/// </summary>
 public class D : Organism {
 
 	/// <summary>

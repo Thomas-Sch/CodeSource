@@ -1,19 +1,23 @@
-using UnityEngine;
+/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : May 2014
+/// </summary>
+
+using System;
 using System.Collections;
 using GeneticLibrary;
-using Wrappers;
 using GeneticLibrary.BodyParts;
+using GeneticLibrary.Mutations;
+using GeneticLibrary.Interfaces;
+using Wrappers;
 using States;
-using System;
+using UnityEngine;
 
 /// <summary>
 /// Provide base support to handle Organisms.
 /// It supports the concept of speed and aging.
 /// </summary>
-using GeneticLibrary.Mutations;
-using GeneticLibrary.Interfaces;
-
-
 public abstract class Organism : MonoBehaviour {
 
 	private static int NumberOfOrganisms = 0;
