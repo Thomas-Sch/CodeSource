@@ -11,6 +11,10 @@ using UnityEngine;
 /// </summary>
 public class Reposition : MonoBehaviour {
 
+	/// <summary>
+	/// When the gameobject leaves the area, it's repositionned on the other side of the area.
+	/// </summary>
+	/// <param name="other">The leaving gameobject</param>
 	void OnTriggerExit(Collider other) {
 		Transform t = other.transform;
 		if(other.CompareTag(Simulation.OrganismTag)) {

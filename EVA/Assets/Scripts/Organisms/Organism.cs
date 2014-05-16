@@ -25,7 +25,7 @@ public abstract class Organism : MonoBehaviour {
 	private static float PreAdultDuration = Simulation.PreAdultDuration;
 
 	// Name of the organism.
-	public int Name {get; private set;}
+	public String Name {get; private set;}
 	// Age of the organism.
 	public int Age {get; set;}
 
@@ -35,56 +35,38 @@ public abstract class Organism : MonoBehaviour {
 	public Genotype Genotype {get; set;}
 
 	public Organism() {
-		Name = ++NumberOfOrganisms;
-	}
-
-	/// <summary>
-	/// Initialisation of an organism.
-	/// </summary>
-	private void Initialisation() {
-		Genotype = new Genotype(new Square(new GeneticData()));
-		
-		DeductGenotype(transform, Genotype.RootElement);
-		
-		ExtendGenotype();
-		
-		Genotype.Mutate(PreSpawnMutation());
-		
-		ChangePhenotype(Genotype);
-	}
-
-	public void Start() {
-		Initialisation();
-
-		State = new Birth(this, BirthToPreAdult);
-	}
-
-	// Update is called once per frame
-	public void Update () {
-		try {
-			State.Update();
-		} catch (Exception e) {
-			Debug.LogException(e);
-		}
-	}
-
-	// Fixed Update is called once by physic engine
-	public void FixedUpdate() {
-		try {
-			State.FixedUpdate();
-		} catch (Exception e) {
-			Debug.LogException(e);
-		}
-
+		Name = (++NumberOfOrganisms).ToString();
 	}
 
 	/// <summary>
 	/// Returns the prefab of the instance of the organism.
 	/// </summary>
 	public abstract GameObject Prefab();
-
+	
+	/// <summary>
+	/// Returns the mutation which is applied before the organism is born.
+	/// </summary>
+	/// <returns>The spawn mutation.</returns>
 	protected abstract IMutation PreSpawnMutation();
-
+	
+	/// <summary>
+	/// Initialisation of an organism.
+	/// </summary>
+	private void Initialisation() {
+		// Defining the genotype.
+		Genotype = new Genotype(new Square(new GeneticData()));
+		DeductGenotype(transform, Genotype.RootElement);
+		
+		// Adding extra parameters.		
+		ExtendGenotype();
+		
+		// First time mutation to add noise and whatever.
+		Genotype.Mutate(PreSpawnMutation());
+		
+		// Applying it to the phenotype.
+		ChangePhenotype(Genotype);
+	}
+	
 	/// <summary>
 	/// Enable or disable the collider on the organism.
 	/// </summary>
@@ -95,7 +77,7 @@ public abstract class Organism : MonoBehaviour {
 			child.enabled = b;
 		}
 	}
-
+	
 	/// <summary>
 	/// Kill this instance.
 	/// </summary>
@@ -103,7 +85,27 @@ public abstract class Organism : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
-	#region State changing STAYS
+	#region Unity
+
+	public void Start() {
+		Initialisation();
+
+		State = new Birth(this, BirthToPreAdult);
+	}
+
+
+	// Fixed Update is called once by physic engine
+	public void FixedUpdate() {
+		try {
+			State.FixedUpdate();
+		} catch (Exception e) {
+			Debug.LogException(e);
+		}
+	}
+
+	#endregion
+
+	#region State transition delegates
 
 	protected void BirthToPreAdult() {
 		State = new PreAdult(this, PreAdultToAdult);
@@ -121,7 +123,7 @@ public abstract class Organism : MonoBehaviour {
 
 	#endregion
 
-	#region Genetic modifications
+	#region Genetic handling
 	/// <summary>
 	/// Deducts the genotype.
 	/// </summary>
@@ -184,7 +186,9 @@ public abstract class Organism : MonoBehaviour {
 	}
 	#endregion
 
+	#region Overriding
 	override public string ToString() {
-		return GetType() + Name.ToString();
+		return GetType() + Name;
 	}
+	#endregion
 }

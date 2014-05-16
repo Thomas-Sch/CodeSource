@@ -26,10 +26,6 @@ namespace States
 		}
 
 		#region implemented abstract members of State
-		public override void Action ()
-		{
-
-		}
 
 		public override void FixedAction ()
 		{

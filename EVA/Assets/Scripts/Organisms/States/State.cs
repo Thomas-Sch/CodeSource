@@ -25,16 +25,9 @@ namespace States {
 		// Automaticaly called at the end of an update.
 		protected DUpdateState UpdateState;
 
-		public State(Organism organism, DUpdateState checkAndUpdateState) {
+		public State(Organism organism, DUpdateState updateState) {
 			Organism = organism;
-			UpdateState = checkAndUpdateState;
-		}
-
-		/// <summary>
-		/// Action to do when Unity's Update function is triggered.
-		/// </summary>
-		public void Update() {
-			Action();
+			UpdateState = updateState;
 		}
 
 		/// <summary>
@@ -47,12 +40,11 @@ namespace States {
 			}
 		}
 
+		/// <summary>
+		/// Tag of this instance.
+		/// </summary>
 		public abstract string Tag();
 
-		/// <summary>
-		/// Action to do during the update.
-		/// </summary>
-		public abstract void Action();
 
 		/// <summary>
 		/// Action to do during the fixed update.

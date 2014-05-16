@@ -16,8 +16,9 @@ using GeneticLibrary.Interfaces;
 /// Behaviour of a type B organism.
 /// </summary>
 public class B : Organism {
+
 	/// <summary>
-	/// Rajoute des informations au génotype.
+	/// Overriding lifeduration and speed parameters.
 	/// </summary>
 	new protected void ExtendGenotype() {
 		base.ExtendGenotype();

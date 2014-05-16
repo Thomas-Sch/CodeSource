@@ -18,7 +18,7 @@ using GeneticLibrary.Interfaces;
 public class A : Organism {
 
 	/// <summary>
-	/// Rajoute des informations au génotype.
+	/// Overriding lifeduration and speed parameters.
 	/// </summary>
 	new protected void ExtendGenotype() {
 		base.ExtendGenotype();

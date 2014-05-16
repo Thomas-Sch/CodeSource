@@ -25,7 +25,7 @@ namespace States {
 			return "Adult";
 		}
 
-		#region State changing methods
+		#region State transition delegates
 
 		/// <summary>
 		/// Called directly inside the state.
@@ -57,26 +57,6 @@ namespace States {
 		#endregion
 
 		#region implemented abstract members of State
-		public override void Action ()
-		{
-			inner.Update();
-
-
-			// A Discuter avec C. Pena.
-//			// Mutation during adult life.
-//			if(mutation1.Test()) {
-//				Mutation m = new Mutation();
-//
-//				m.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.1f));
-//				Debug.Log("Mutation");
-////
-////				Organism.Genotype.Mutate(m);
-////				Organism.ModifyPhenotype(Organism.Genotype); // Not working as intendeed because of position attribute reset.
-//
-//				// Need Organisme.Mutate(M); for convienience.
-//			}
-		}
-
 		public override void FixedAction ()
 		{
 			inner.FixedUpdate();
@@ -85,6 +65,20 @@ namespace States {
 			if(NoNewChild > 0) {
 				NoNewChild--;
 			}
+
+			// A Discuter avec C. Pena.
+			//			// Mutation during adult life.
+			//			if(mutation1.Test()) {
+			//				Mutation m = new Mutation();
+			//
+			//				m.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.1f));
+			//				Debug.Log("Mutation");
+			////
+			////				Organism.Genotype.Mutate(m);
+			////				Organism.ModifyPhenotype(Organism.Genotype); // Not working as intendeed because of position attribute reset.
+			//
+			//				// Need Organisme.Mutate(M); for convienience.
+			//			}
 		}
 		#endregion
 	}

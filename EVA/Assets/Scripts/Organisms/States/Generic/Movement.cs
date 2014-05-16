@@ -22,14 +22,10 @@ namespace States {
 		}
 
 		#region implemented abstract members of State
-		public override void Action ()
-		{
-
-		}
 
 		public override void FixedAction ()
 		{
-			// Nothing to do here.
+			// Will change with iteration III.
 			// On déplace la forme seulement si elle n'est pas en l'air.
 			if(Organism.transform.position.y < 1.0F){
 				Vector3 newPos = new Vector3(Organism.phenotypeData.Speed * Organism.transform.forward.x, 0, Organism.phenotypeData.Speed * Organism.transform.forward.z);

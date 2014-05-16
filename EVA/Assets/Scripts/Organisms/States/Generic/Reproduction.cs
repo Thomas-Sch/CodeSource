@@ -47,12 +47,26 @@ namespace States
 			return "Reproduction";
 		}
 
-		#region implemented abstract members of State
-
-		public override void Action ()
-		{
-			// Nothing to do here.
+		/// <summary>
+		/// Spawns the children at the given position.
+		/// </summary>
+		/// <param name="position">Position.</param>
+		private void SpawnChildren(Vector3 position) {
+			RecombinationOutput childrenGenotypes = SimpleReco.getInstance().Recombine(Organism.Genotype,Other.Genotype);
+			foreach(Genotype childGenotype in childrenGenotypes) {
+				GameObject childInstance = Organism.Instantiate(Organism.Prefab(), position, Organism.transform.localRotation) as GameObject;
+				Organism child = childInstance.GetComponent<Organism>();
+				if(child == null) {
+					Debug.LogError("No script is attached");
+				} else {
+					child.Genotype = childGenotype;
+					child.ChangePhenotype(childGenotype);
+				}
+				child.transform.position = position;
+			}
 		}
+
+		#region implemented abstract members of State
 
 		public override void FixedAction ()
 		{
@@ -76,23 +90,27 @@ namespace States
 
 				// If the reproduction partner is null it means he's not available anymore. (Dead probably).
 				if(OtherReproduction != null && OtherReproduction.Finished) {
-					Vector3 newPos = Organism.transform.localPosition + -BackDistanceMultiplier * Organism.transform.forward;
-					newPos.y = Organism.transform.localPosition.y;
-					Organism.transform.localPosition = newPos;
+
+					// Calculate the position of child.
+					Vector3 ChildPosition = new Vector3();
+					if(IsMother) {
+						ChildPosition.x = (Organism.transform.position.x + Other.transform.position.x) / 2;
+						ChildPosition.y = SpawnHeight;
+						ChildPosition.z = (Organism.transform.position.z + Other.transform.position.z) / 2;
+					}
+
+					// New position of the parent.
+					Vector3 SeparationPosition = Organism.transform.localPosition + -BackDistanceMultiplier * Organism.transform.forward;
+					SeparationPosition.y = Organism.transform.localPosition.y;
+					Organism.transform.localPosition = SeparationPosition;
 					Organism.transform.localEulerAngles = Organism.transform.localEulerAngles + UnityEngine.Random.Range(MinAngle, MaxAngle) * Vector3.up;
-
-					Organism.collider.enabled = true;
-					Organism.rigidbody.collider.enabled = true;
-
+	
 					Debug.Log(Organism + " is ready to move");
+
                     ((Adult)Organism.State).ReproductionToMovement();
 
 					if(IsMother) {
-						Vector3 Position = new Vector3();
-						Position.x = (Organism.transform.position.x + Other.transform.position.x) / 2;
-						Position.y = SpawnHeight;
-						Position.z = (Organism.transform.position.z + Other.transform.position.z) / 2;
-						SpawnChildren(Position);
+						SpawnChildren(ChildPosition);
                     }
                 } else {
 					((Adult)Organism.State).ReproductionToMovement();
@@ -100,27 +118,7 @@ namespace States
                 break;
 			}
 		}
-
 		#endregion
-
-		/// <summary>
-		/// Spawns the children at the given position.
-		/// </summary>
-		/// <param name="position">Position.</param>
-		private void SpawnChildren(Vector3 position) {
-			RecombinationOutput childrenGenotypes = SimpleReco.getInstance().Recombine(Organism.Genotype,Other.Genotype);
-			foreach(Genotype childGenotype in childrenGenotypes) {
-				GameObject childInstance = Organism.Instantiate(Organism.Prefab(), position, Organism.transform.localRotation) as GameObject;
-				Organism child = childInstance.GetComponent<Organism>();
-				if(child == null) {
-					Debug.LogError("No script is attached");
-				} else {
-                    child.Genotype = childGenotype;
-                    child.ChangePhenotype(childGenotype);
-                }
-//				child.transform.position = position;
-			}
-		}
 	}
 }
 
