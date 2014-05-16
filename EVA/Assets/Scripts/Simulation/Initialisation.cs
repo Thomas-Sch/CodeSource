@@ -28,19 +28,17 @@ public class Initialisation : MonoBehaviour {
 		B = Resources.Load<GameObject>(Path + "Template B");
 		D = Resources.Load<GameObject>(Path + "Template D");
 		Time.timeScale = 1;
-
-		#if UNITY_EDITOR
-		EditorApplication.playmodeStateChanged += ExitPlayMode;
-		#endif
-
 	}
 
-	void ExitPlayMode(){
-		if(EditorApplication.isPlayingOrWillChangePlaymode) {
-			Debug.Log("Time elapsed 1: " + Time.realtimeSinceStartup);
-			Debug.Log("Time elapsed 2: " + Time.time);
-			Debug.Log("Number of frames: " + Time.frameCount);
-		}
+	public static void SimulationEndStatistics(){
+		Debug.Log("Time elapsed: " + Time.realtimeSinceStartup);
+		Debug.Log("Number of frames: " + Time.frameCount);
+		Debug.Log("Number of organisms: " + Organism.NumberOfOrganisms);
+	}
+
+	public static void StopSimulation() {
+		EditorApplication.isPlaying = false;
+		Application.Quit();
 	}
 
 	// Use this for initialization

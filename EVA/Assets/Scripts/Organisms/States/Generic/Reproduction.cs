@@ -37,7 +37,6 @@ namespace States
 			Other = other;
 			IsMother = isMother;
 			Organism.collider.enabled = false;
-			Organism.rigidbody.collider.enabled = false;
 			InnerState = InnerStates.Approach;
 
 			Debug.Log(Organism + " is reproducing with " + Other);
@@ -107,14 +106,13 @@ namespace States
 	
 					Debug.Log(Organism + " is ready to move");
 
-                    ((Adult)Organism.State).ReproductionToMovement();
-
 					if(IsMother) {
 						SpawnChildren(ChildPosition);
                     }
-                } else {
-					((Adult)Organism.State).ReproductionToMovement();
 				}
+
+				Organism.collider.enabled = true;
+				((Adult)Organism.State).ReproductionToMovement();
                 break;
 			}
 		}

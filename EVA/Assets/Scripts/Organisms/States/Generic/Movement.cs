@@ -15,7 +15,9 @@ namespace States {
 		private static Probability Turn = new Probability(0.01);
 		private Quaternion newRotation;
 
-		public Movement(Organism organism, DUpdateState updateState) : base(organism, updateState) { }
+		public Movement(Organism organism, DUpdateState updateState) : base(organism, updateState) { 
+			Organism.collider.enabled = true;
+		}
 
 		public override string Tag() {
 			return "Movement";

@@ -20,7 +20,8 @@ using UnityEngine;
 /// </summary>
 public abstract class Organism : MonoBehaviour {
 
-	private static int NumberOfOrganisms = 0;
+	public static int NumberOfOrganisms = 0;
+	public static int LivingOrganisms = 0;
 	// Duration of this state based on the age of the organism.
 	private static float PreAdultDuration = Simulation.PreAdultDuration;
 

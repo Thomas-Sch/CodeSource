@@ -11,11 +11,16 @@ namespace States {
 	public class Death : State {
 
 		private readonly float TimeBeforeRemove = Simulation.TimeBeforeRemove;
-		private readonly float Smooth = Simulation.DeathSmooth;
+//		private readonly float Smooth = Simulation.DeathSmooth;
 		
 		public Death (Organism organism, DUpdateState updateState) : base(organism, updateState){
 			Debug.Log(Organism + " is dead");
-			Organism.collider.enabled = false;
+
+			if(--Organism.LivingOrganisms <= 0) {
+				Initialisation.SimulationEndStatistics();
+				Initialisation.StopSimulation();
+			}
+
 			Organism.Invoke("Kill", TimeBeforeRemove);
 		}
 

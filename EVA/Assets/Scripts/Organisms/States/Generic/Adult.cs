@@ -10,7 +10,7 @@ using Tools;
 namespace States {
 	public class Adult : State {
 		private static float OrganismSight = Simulation.OrganismSight;
-		private static Probability mutation1 = new Probability(0.1);
+//		private static Probability mutation1 = new Probability(0.1);
 		public State inner;
 
 		public int NoNewChild {get; set;}

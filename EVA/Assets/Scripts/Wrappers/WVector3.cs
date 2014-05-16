@@ -22,7 +22,7 @@ namespace Wrappers
 		public float z {get { return Value.z;}}
 
 		public WVector3(Vector3 v) {
-			if(v == null) {
+			if(v.Equals(null)) {
 				throw new ArgumentNullException();
 			}
 			Value = v;

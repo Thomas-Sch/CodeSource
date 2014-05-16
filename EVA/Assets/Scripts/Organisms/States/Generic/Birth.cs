@@ -19,6 +19,7 @@ namespace States
 			Organism.Age = 0;
 			UpdateState = updateState;
 			Debug.Log(Organism + " is born.");
+			Organism.LivingOrganisms++;
 		}
 
 		public override string Tag() {
