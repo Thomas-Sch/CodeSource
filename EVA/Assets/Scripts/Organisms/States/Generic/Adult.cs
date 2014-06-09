@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// This file is part of the EVA simulation. 
 /// Author : Thomas Schweizer
 /// Date   : May 2014
@@ -9,9 +9,9 @@ using Tools;
 
 namespace States {
 	public class Adult : State {
-		private static float OrganismSight = Simulation.OrganismSight;
+		private static float OrganismSight = Parameters.OrganismSight;
 //		private static Probability mutation1 = new Probability(0.1);
-		public State inner;
+		public State inner {get; set;}
 
 		public int NoNewChild {get; set;}
 
@@ -35,12 +35,15 @@ namespace States {
 		}
 
 		public void MovementToReproduction() {
+
 			RaycastHit hit;
 			var rayDirection = Organism.gameObject.transform.forward;
+
 			Debug.DrawRay(Organism.gameObject.transform.position, rayDirection * OrganismSight);
+
 			Physics.Raycast(Organism.gameObject.transform.position, rayDirection, out hit, OrganismSight);
 			
-			if(hit.collider != null && hit.collider.CompareTag(Simulation.OrganismTag)) {
+			if(hit.collider != null && hit.collider.CompareTag(Parameters.OrganismTag)) {
 
 				// Récupération de l'instance de script.s
 				Organism other = hit.collider.gameObject.GetComponent<Organism>();

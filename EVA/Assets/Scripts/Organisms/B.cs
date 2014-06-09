@@ -22,15 +22,15 @@ public class B : Organism {
 	/// </summary>
 	new protected void ExtendGenotype() {
 		base.ExtendGenotype();
-		Genotype.RootElement.SetGeneticData("lifeduration", new WFloat(500));
-		Genotype.RootElement.SetGeneticData("speed", new WFloat(0.2F));
+		Genotype.Root.SetGeneticData("lifeduration", new WFloat(500));
+		Genotype.Root.SetGeneticData("speed", new WFloat(0.2F));
 	}
 
 	#region implemented abstract members of Organism
 
 	public override GameObject Prefab ()
 	{
-		return Initialisation.B;
+		return Simulation.B;
 	}
 
 	protected override IMutation PreSpawnMutation ()

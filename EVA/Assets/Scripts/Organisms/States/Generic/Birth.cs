@@ -11,7 +11,7 @@ namespace States
 {
 	public class Birth : State
 	{
-		private int Duration = Simulation.BirhtDuration;
+		private int Duration = Parameters.BirhtDuration;
 
 		new private DUpdateState UpdateState;
 

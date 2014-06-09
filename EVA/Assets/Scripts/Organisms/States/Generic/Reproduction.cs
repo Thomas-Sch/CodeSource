@@ -12,8 +12,8 @@ namespace States
 {
 	public class Reproduction : State
 	{
-		private readonly static  float ApproachRate = Simulation.ApproachRate;
-		private readonly static int NoNewChildDuration = Simulation.NoNewChildDuration;
+		private readonly static  float ApproachRate = Parameters.ApproachRate;
+		private readonly static int NoNewChildDuration = Parameters.NoNewChildDuration;
 
 		private readonly static float ApproachDistance = 2f;
         private readonly static float BackDistanceMultiplier = 1.5f;

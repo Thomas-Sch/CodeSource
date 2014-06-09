@@ -16,34 +16,34 @@ namespace GeneticLibrary
 {
     public class Genotype
     {
-		public Genotype() {
+		private Extension root;
 
+		/// <summary>
+		/// First element in the structure of the genotype.
+		/// </summary>
+		public Extension Root { 
+			get {           
+				if (root == null)
+					throw new NullReferenceException(errorEmptyGenotype);
+				return root;
+			} 
+			
+			set {
+				root = value;
+			}
+		}
+		
+		/// <summary>
+		/// Message when genotype is empty or not set.
+		/// </summary>
+		private const String errorEmptyGenotype = "The genotype is empty"; 
+
+		public Genotype() {
 		}
 
 		public Genotype(Extension root) {
-			RootElement = root;
+			Root = root;
 		}
-
-		private Extension rootElement;
-        /// <summary>
-        /// First element in the structure of the genotype.
-        /// </summary>
-		public Extension RootElement { 
-			get {           
-				if (rootElement == null)
-					throw new NullReferenceException(errorEmptyGenotype);
-				return rootElement;
-			} 
-
-			set {
-				rootElement = value;
-			}
-		}
-
-        /// <summary>
-        /// Message when genotype is empty or not set.
-        /// </summary>
-        private const String errorEmptyGenotype = "The genotype is empty";
 
         /// <summary>
         /// Causes the organism to mutate accordingly to the settings in the mutation.
@@ -52,7 +52,7 @@ namespace GeneticLibrary
         public void Mutate(IMutation m)
         {
 			if(m != null) {
-            	RootElement.Accept(m);
+            	Root.Accept(m);
 			} else {
 				throw new Exception("The mutation is null");
 			}
@@ -61,7 +61,7 @@ namespace GeneticLibrary
 
         override public String ToString()
         {
-            return (rootElement != null ? RootElement.ToString(1) : errorEmptyGenotype);
+            return (root != null ? Root.ToString(1) : errorEmptyGenotype);
         }
     }
 }

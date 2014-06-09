@@ -10,7 +10,7 @@ using GeneticLibrary.Collections;
 
 namespace GeneticLibrary.Mutations
 {
-    public class Modifier
+    public abstract class Modifier
     {
         protected Set TargetedExtensions { get; private set; }
 

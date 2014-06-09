@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// This file is part of the EVA simulation. 
 /// Author : Thomas Schweizer
 /// Date   : May 2014
@@ -10,7 +10,7 @@ using Tools;
 namespace States {
 	public class Movement : State {
 
-		private static float TurnRate = Simulation.MovementTurnRate;
+		private static float TurnRate = Parameters.MovementTurnRate;
 
 		private static Probability Turn = new Probability(0.01);
 		private Quaternion newRotation;

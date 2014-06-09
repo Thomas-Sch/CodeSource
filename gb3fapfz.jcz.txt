@@ -1,0 +1,39 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   EVA/Assembly-UnityScript-firstpass-vs.unityproj
+#	new file:   EVA/Assembly-UnityScript-firstpass.unityproj
+#	new file:   EVA/Assets/Editor/SetPivot.cs
+#	modified:   EVA/Assets/Scripts/GeneticCode/Recombinations/SimpleReco.cs
+#	modified:   EVA/Assets/Scripts/GeneticLibrary/Genotype.cs
+#	modified:   EVA/Assets/Scripts/GeneticLibrary/Mutations/Modifier.cs
+#	modified:   EVA/Assets/Scripts/Organisms/A.cs
+#	modified:   EVA/Assets/Scripts/Organisms/B.cs
+#	modified:   EVA/Assets/Scripts/Organisms/D.cs
+#	modified:   EVA/Assets/Scripts/Organisms/Organism.cs
+#	modified:   EVA/Assets/Scripts/Organisms/States/Generic/Adult.cs
+#	modified:   EVA/Assets/Scripts/Organisms/States/Generic/Birth.cs
+#	modified:   EVA/Assets/Scripts/Organisms/States/Generic/Death.cs
+#	modified:   EVA/Assets/Scripts/Organisms/States/Generic/Movement.cs
+#	modified:   EVA/Assets/Scripts/Organisms/States/Generic/Reproduction.cs
+#	new file:   EVA/Assets/Scripts/Simulation/Logger.cs
+#	renamed:    EVA/Assets/Scripts/Simulation/Simulation.cs -> EVA/Assets/Scripts/Simulation/Parameters.cs
+#	modified:   EVA/Assets/Scripts/Simulation/Reposition.cs
+#	new file:   EVA/Assets/Scripts/Simulation/SerializableParameters.cs
+#	modified:   EVA/Assets/Scripts/Simulation/Simulation.cs
+#	new file:   EVA/Assets/Scripts/Tools/ExtendedFlycam.cs
+#	new file:   EVA/Logs/Initial_Parameters-9_6_2014-16_8_28.txt
+#	new file:   EVA/Logs/Initial_Parameters_9_6_2014-16_4_15.txt
+#
+# Changes not staged for commit:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	deleted:    EVA/Assets/Scripts/Simulation/Initialisation.cs
+#	deleted:    EVA/Assets/Scripts/Simulation/Tools/ExtendedFlycam.cs
+#
+

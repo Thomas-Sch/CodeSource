@@ -23,7 +23,7 @@ public abstract class Organism : MonoBehaviour {
 	public static int NumberOfOrganisms = 0;
 	public static int LivingOrganisms = 0;
 	// Duration of this state based on the age of the organism.
-	private static float PreAdultDuration = Simulation.PreAdultDuration;
+	private static float PreAdultDuration = Parameters.PreAdultDuration;
 
 	// Name of the organism.
 	public String Name {get; private set;}
@@ -56,7 +56,7 @@ public abstract class Organism : MonoBehaviour {
 	private void Initialisation() {
 		// Defining the genotype.
 		Genotype = new Genotype(new Square(new GeneticData()));
-		DeductGenotype(transform, Genotype.RootElement);
+		DeductGenotype(transform, Genotype.Root);
 		
 		// Adding extra parameters.		
 		ExtendGenotype();
@@ -90,10 +90,8 @@ public abstract class Organism : MonoBehaviour {
 
 	public void Start() {
 		Initialisation();
-
 		State = new Birth(this, BirthToPreAdult);
 	}
-
 
 	// Fixed Update is called once by physic engine
 	public void FixedUpdate() {
@@ -104,7 +102,11 @@ public abstract class Organism : MonoBehaviour {
 		}
 	}
 
-	#endregion
+	public void OnDrawGizmos() {
+		Gizmos.DrawWireSphere(transform.position, 4);
+	}
+    
+    #endregion
 
 	#region State transition delegates
 
@@ -147,13 +149,13 @@ public abstract class Organism : MonoBehaviour {
 	/// </summary>
 	/// <param name="g">The green component.</param>
 	public void ChangePhenotype(Genotype g) {
-		ModifyElement(transform, g.RootElement);
+		ModifyElement(transform, g.Root);
 
 		if(phenotypeData == null) {
 			phenotypeData = new PhenotypeData();
 		}
-		phenotypeData.LifeDuration = (int)((WFloat)g.RootElement.GeneticData.Get("lifeduration")).Value;
-		phenotypeData.Speed = ((WFloat)g.RootElement.GeneticData.Get("speed")).Value;
+		phenotypeData.LifeDuration = (int)((WFloat)g.Root.GeneticData.Get("lifeduration")).Value;
+		phenotypeData.Speed = ((WFloat)g.Root.GeneticData.Get("speed")).Value;
 	}
 
 	/// <summary>
@@ -179,11 +181,11 @@ public abstract class Organism : MonoBehaviour {
 	/// </summary>
 	protected void ExtendGenotype ()
 	{
-		Genotype.RootElement.Tag = "root";
+		Genotype.Root.Tag = "root";
 
 		// Par défaut.
-		Genotype.RootElement.SetGeneticData("lifeduration", new WFloat(500));
-		Genotype.RootElement.SetGeneticData("speed", new WFloat(0.2F));
+		Genotype.Root.SetGeneticData("lifeduration", new WFloat(500));
+		Genotype.Root.SetGeneticData("speed", new WFloat(0.2F));
 	}
 	#endregion
 

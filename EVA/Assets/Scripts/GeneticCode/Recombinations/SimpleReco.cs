@@ -37,21 +37,21 @@ namespace GeneticLibrary.Recombination
 
                 // 50% chance to inherit the base extension from one of the parents.
                 if (_50p.Test())
-                    e = a.RootElement;
+                    e = a.Root;
                 else
-                    e = b.RootElement;
+                    e = b.Root;
 
-                g.RootElement = e.LocalClone();
+                g.Root = e.LocalClone();
 
                 // The structure recombination is done only for the first level.
-                IEnumerator<Extension> t1 = (IEnumerator <Extension>) a.RootElement.GetEnumerator();
-                IEnumerator<Extension> t2 = (IEnumerator <Extension>) b.RootElement.GetEnumerator();
+                IEnumerator<Extension> t1 = (IEnumerator <Extension>) a.Root.GetEnumerator();
+                IEnumerator<Extension> t2 = (IEnumerator <Extension>) b.Root.GetEnumerator();
 
                 while (t1.MoveNext() && t2.MoveNext()){
                     if (_50p.Test())
-                        g.RootElement.AddExtension((Extension)t1.Current.DeepClone());
+                        g.Root.AddExtension((Extension)t1.Current.DeepClone());
                     else
-                        g.RootElement.AddExtension((Extension)t2.Current.DeepClone());
+                        g.Root.AddExtension((Extension)t2.Current.DeepClone());
                 } 
                 
                 // Rare mutation that extends plate size.

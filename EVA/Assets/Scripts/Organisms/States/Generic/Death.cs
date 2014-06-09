@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// This file is part of the EVA simulation. 
 /// Author : Thomas Schweizer
 /// Date   : May 2014
@@ -10,15 +10,15 @@ using States;
 namespace States {
 	public class Death : State {
 
-		private readonly float TimeBeforeRemove = Simulation.TimeBeforeRemove;
+		private readonly float TimeBeforeRemove = Parameters.TimeBeforeRemove;
 //		private readonly float Smooth = Simulation.DeathSmooth;
 		
 		public Death (Organism organism, DUpdateState updateState) : base(organism, updateState){
 			Debug.Log(Organism + " is dead");
 
 			if(--Organism.LivingOrganisms <= 0) {
-				Initialisation.SimulationEndStatistics();
-				Initialisation.StopSimulation();
+				Simulation.SimulationEndStatistics();
+				Simulation.StopSimulation();
 			}
 
 			Organism.Invoke("Kill", TimeBeforeRemove);

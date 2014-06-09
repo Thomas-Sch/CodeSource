@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// This file is part of the EVA simulation. 
 /// Author : Thomas Schweizer
 /// Date   : May 2014
@@ -17,7 +17,7 @@ public class Reposition : MonoBehaviour {
 	/// <param name="other">The leaving gameobject</param>
 	void OnTriggerExit(Collider other) {
 		Transform t = other.transform;
-		if(other.CompareTag(Simulation.OrganismTag)) {
+		if(other.CompareTag(Parameters.OrganismTag)) {
 			t.position = new Vector3(t.position.x * -1,t.position.y,t.position.z * -1);
 		}
 	}
