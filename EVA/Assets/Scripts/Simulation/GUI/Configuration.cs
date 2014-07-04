@@ -23,8 +23,9 @@ namespace Simulation.GUI
 		private string organismSight = "";
 		private string noNewChildDuration = "";
 
-		private int width = 300;
-		private int height = 450;
+        private ResizableRectangle size = new ResizableRectangle(0.25, 0.6);
+
+        private Vector2 scrollPosition = new Vector2(0, 0);
 
         bool isConfigOk;
 
@@ -50,8 +51,11 @@ namespace Simulation.GUI
 		public void Draw()
 		{
 			isConfigOk = true;
+            size.Update();
 
-			GUILayout.BeginArea(new Rect(Screen.width / 2 - width / 2, Screen.height / 2 - height / 2, width, height), "", "box");
+			GUILayout.BeginArea(new Rect(Screen.width / 2 - size.Width / 2, Screen.height / 2 - size.Height / 2, size.Width, size.Height), "", "box");
+
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
 			GUILayout.Label("Configure the simulation", "box");
 
 			GUILayout.Label("Simulation parameters");
@@ -71,6 +75,8 @@ namespace Simulation.GUI
 
 			GUILayout.FlexibleSpace();
             OKCancel();
+
+            GUILayout.EndScrollView();
 
 			GUILayout.EndArea();
 		}

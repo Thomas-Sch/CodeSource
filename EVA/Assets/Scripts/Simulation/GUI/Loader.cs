@@ -15,8 +15,10 @@ namespace Simulation.GUI
     /// </summary>
     class Loader : IWindow
     {
-        private int width = 300;
-        private int height = 200;
+        private ResizableRectangle size = new ResizableRectangle(0.3, 0.3);
+
+        private Vector2 scrollPosition = new Vector2(0, 0);
+
         private String title = "Specify the parameter file (Parameters.json)";
 
         private String path = "";
@@ -28,12 +30,15 @@ namespace Simulation.GUI
 
         public void Draw()
         {
-            GUILayout.BeginArea(new Rect(Screen.width / 2 - width / 2, Screen.height / 2 - height / 2, width, height), "", "box");
-            GUILayout.Label(title, "box");
+            size.Update();
+            GUILayout.BeginArea(new Rect(Screen.width / 2 - size.Width / 2, Screen.height / 2 - size.Height / 2, size.Width, size.Height), "", "box");
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+
+            GUILayout.Label(title);
 
             if (error)
             {
-                GUILayout.Label("File is missing or format is corrupted:\n" + errorMessage + "\n\n Try again.", errorStyle);
+                GUILayout.Label("File is missing or format is corrupted:\n" + errorMessage + "\n\nTry again.", errorStyle);
             }
 
             GUILayout.FlexibleSpace();
@@ -67,9 +72,8 @@ namespace Simulation.GUI
             {
                 GUIHandler.Instance().ChangeWindow(new Title());
             }
-            GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
-            GUILayout.FlexibleSpace();
+            GUILayout.EndScrollView();
             GUILayout.EndArea();
         }
     }

@@ -13,6 +13,7 @@
 *.mdb
 *.asset
 EVA/Temp/
+EVA/Logs/
 EVA/ProjectSettings/
 EVA/Library/
 EVA/Assets/Materials/

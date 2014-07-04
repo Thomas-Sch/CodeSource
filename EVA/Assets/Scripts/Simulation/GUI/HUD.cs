@@ -25,17 +25,17 @@ namespace Simulation.GUI
         private int screenMargin = 20;
         private int windowMargin = 5;
 
-        private int wControlWidth = 200;
-        private int wControlHeight = 150;
+        private ResizableRectangle controlSize = new ResizableRectangle(0.2, 0.2);
+        private Vector2 controlScrollPosition = new Vector2(0, 0);
 
-        private int wStatsWidth = 250;
-        private int WStatsHeight = 190;
+        private ResizableRectangle statsSize = new ResizableRectangle(0.2, 0.3);
+        private Vector2 statsScrollPosition = new Vector2(0, 0);
 
-        private int wHelpWidth = 100;
-        private int wHelpHeight = 32;
+        private ResizableRectangle helpSize = new ResizableRectangle(0.15, 0.075);
+        private Vector2 helpScrollPosition = new Vector2(0, 0);
 
-        private int infoPaneWidth = 300;
-        private int infoPaneHeight = 200;
+        private ResizableRectangle infoPaneSize = new ResizableRectangle(0.2, 0.3);
+        private Vector2 infoPaneScrollPosition = new Vector2(0, 0);
 
         // Global logic
         private bool about = false;
@@ -68,9 +68,9 @@ namespace Simulation.GUI
         /// <param name="p">parameters of the simulation</param>
         public HUD(Parameters p)
         {
-            control = new Rect(screenMargin, screenMargin, wControlWidth, wControlHeight);
-            statistics = new Rect(Screen.width - wStatsWidth - screenMargin, screenMargin, wStatsWidth, WStatsHeight);
-            help = new Rect(screenMargin, Screen.height - wHelpHeight, wHelpWidth, wHelpHeight);
+            //control = new Rect(screenMargin, screenMargin, controlSize.Width, controlSize.Height);
+            //statistics = new Rect(Screen.width - statsSize.Width - screenMargin, screenMargin, statsSize.Width, statsSize.Height);
+            //help = new Rect(screenMargin, Screen.height - helpSize.Height, helpSize.Width, helpSize.Height);
 
             parameters = p;
             SimHandler.Control().Init(parameters);
@@ -78,10 +78,19 @@ namespace Simulation.GUI
 
         public void Draw()
         {
+            controlSize.Update();
+            statsSize.Update();
+            helpSize.Update();
+            infoPaneSize.Update();
+
+            control = new Rect(screenMargin, screenMargin, controlSize.Width, controlSize.Height);
+            statistics = new Rect(Screen.width - statsSize.Width - screenMargin, screenMargin, statsSize.Width, statsSize.Height);
+            help = new Rect(screenMargin, Screen.height - helpSize.Height, helpSize.Width, helpSize.Height);
+            
             // Draw the main windows.
             control = UnityEngine.GUI.Window(0, control, WindowControl, "Controls");
             statistics = UnityEngine.GUI.Window(1, statistics, WindowStatistics, "Statistics");
-            help = UnityEngine.GUI.Window(2, help, WindowHelp, "");
+            help = UnityEngine.GUI.Window(2, help, WindowHelp, "Help");
 
             // The drawing of the panes related to the help window is externalized here because
             // we can't draw outside of a window.
@@ -98,8 +107,8 @@ namespace Simulation.GUI
         /// <param name="id">The id of the window (Unity's GUI system requirement)</param>
         private void WindowControl(int id)
         {
-            GUILayout.BeginArea(new Rect(windowMargin, windowMargin + 15, wControlWidth - 2 * windowMargin, wControlHeight - 5 * windowMargin));
-            
+            GUILayout.BeginArea(new Rect(windowMargin, windowMargin + 15, controlSize.Width - 2 * windowMargin, controlSize.Height - 5 * windowMargin));
+            controlScrollPosition = GUILayout.BeginScrollView(controlScrollPosition);
             if (!isStarted && GUILayout.Button("Start"))
             {
                 SimHandler.Control().Play();
@@ -166,7 +175,9 @@ namespace Simulation.GUI
 
                 GUILayout.EndHorizontal();
             }
+            GUILayout.EndScrollView();
             GUILayout.EndArea();
+            UnityEngine.GUI.DragWindow();
         }
 
         /// <summary>
@@ -175,7 +186,8 @@ namespace Simulation.GUI
         /// <param name="id">The id of the window (Unity's GUI system requirement)</param>
         private void WindowStatistics(int id)
         {
-            GUILayout.BeginArea(new Rect(windowMargin, windowMargin + 15, wStatsWidth - 2 * windowMargin, WStatsHeight - 5 * windowMargin));
+            GUILayout.BeginArea(new Rect(windowMargin, windowMargin + 15, statsSize.Width - 2 * windowMargin, statsSize.Height - 5 * windowMargin));
+            statsScrollPosition = GUILayout.BeginScrollView(statsScrollPosition);
             LabelLabel("Elapsed time", SimHandler.Control().TimeElapsed().ToString());
             LabelLabel("Sim. step", SimHandler.Instance().Step.ToString());
             GUILayout.FlexibleSpace();
@@ -183,7 +195,9 @@ namespace Simulation.GUI
             LabelLabel("Average age", SimHandler.Statistics().AverageAge().ToString());
             LabelLabel("Number of alive organisms", SimHandler.Statistics().NbOrganismAlive().ToString());
             LabelLabel("Number of dead organisms", SimHandler.Statistics().NbOrganismDead().ToString());
+            GUILayout.EndScrollView();
             GUILayout.EndArea();
+            UnityEngine.GUI.DragWindow();
         }
 
         /// <summary>
@@ -206,7 +220,9 @@ namespace Simulation.GUI
         /// <param name="id">The id of the window (Unity's GUI system requirement)</param>
         private void WindowHelp(int id)
         {
-            GUILayout.BeginArea(new Rect(windowMargin, windowMargin, wHelpWidth - 2 * windowMargin, wHelpHeight - windowMargin));
+            GUILayout.BeginArea(new Rect(windowMargin, windowMargin, helpSize.Width - 2 * windowMargin, helpSize.Height - 2 * windowMargin));
+            helpScrollPosition = GUILayout.BeginScrollView(helpScrollPosition);
+            GUILayout.FlexibleSpace();
             GUILayout.BeginHorizontal();
 
             if (GUILayout.Button("?"))
@@ -220,7 +236,9 @@ namespace Simulation.GUI
             }
 
             GUILayout.EndHorizontal();
+            GUILayout.EndScrollView();
             GUILayout.EndArea();
+            UnityEngine.GUI.DragWindow();
         }
 
         /// <summary>
@@ -231,7 +249,8 @@ namespace Simulation.GUI
         private bool InfoPane(string text)
         {
             bool temp = true;
-            GUILayout.BeginArea(new Rect(Screen.width / 2 - infoPaneWidth / 2, Screen.height / 2 - infoPaneHeight / 2, infoPaneWidth, infoPaneHeight), "", "box");
+            GUILayout.BeginArea(new Rect(Screen.width / 2 - infoPaneSize.Width / 2, Screen.height / 2 - infoPaneSize.Height / 2, infoPaneSize.Width, infoPaneSize.Height), "", "box");
+            infoPaneScrollPosition = GUILayout.BeginScrollView(infoPaneScrollPosition);
             GUILayout.Label(text);
 
             GUILayout.FlexibleSpace();
@@ -239,7 +258,7 @@ namespace Simulation.GUI
             {
                 temp = false;
             }
-
+            GUILayout.EndScrollView();
             GUILayout.EndArea();
             return temp;
         }

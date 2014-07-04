@@ -15,12 +15,15 @@ namespace Simulation.GUI
     /// </summary>
     public class Title : IWindow
     {
-        private int width = 120;
-        private int height = 120;
+        private ResizableRectangle size = new ResizableRectangle(0.15, 0.2);
+
+        private Vector2 scrollPosition = new Vector2(0, 0);
 
         public void Draw()
         {
-            GUILayout.BeginArea(new Rect(Screen.width / 2 - width / 2, Screen.height / 2 - height / 2, width, height), "", "box");
+            size.Update();
+            GUILayout.BeginArea(new Rect(Screen.width / 2 - size.Width / 2, Screen.height / 2 - size.Height / 2, size.Width, size.Height), "", "box");
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
             GUILayout.Label("Main menu", "box");
             GUILayout.FlexibleSpace();
 
@@ -38,7 +41,7 @@ namespace Simulation.GUI
             {
                 SimHandler.Control().Stop();
             }
-            GUILayout.FlexibleSpace();
+            GUILayout.EndScrollView();
             GUILayout.EndArea();
         }
     }
