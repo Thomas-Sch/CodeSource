@@ -5,39 +5,41 @@
 /// </summary>
 
 using System;
+using Simulation.Handling;
 using UnityEngine;
 
 namespace States
 {
-	public class Birth : State
-	{
-		private int Duration = Parameters.BirhtDuration;
+    public class Birth : State
+    {
+        private int Duration = SimHandler.Instance().Parameters.BirthDuration;
 
-		new private DUpdateState UpdateState;
+        new private DUpdateState UpdateState;
 
-		public Birth (Organism organism, DUpdateState updateState) : base(organism, null){
-			Organism.Age = 0;
-			UpdateState = updateState;
-			Debug.Log(Organism + " is born.");
-			Organism.LivingOrganisms++;
-		}
+        public Birth (Organism organism, DUpdateState updateState) : base(organism, null){
+            Organism.Name = (++Organism.NumberOfOrganisms).ToString();
+            Organism.Birth = SimHandler.Instance().Step;
 
-		public override string Tag() {
-			return "Birth";
-		}
+            UpdateState = updateState;
+        }
 
-		#region implemented abstract members of State
+        public override string Tag() {
+            return "Birth";
+        }
 
-		public override void FixedAction ()
-		{
-			// Nothing to do here.
-			if(Duration > 0)
-				Duration--;
-			else {
-				UpdateState();
-			}
-		}
-		#endregion
-	}
+        #region implemented abstract members of State
+
+        public override void FixedAction ()
+        {
+            Organism.Age++;
+            // Nothing to do here.
+            if(Duration > 0)
+                Duration--;
+            else {
+                UpdateState();
+            }
+        }
+        #endregion
+    }
 }
 

@@ -1,32 +1,49 @@
-/// <summary>
-/// This file is part of the EVA simulation. 
-/// Author : Thomas Schweizer
-/// Date   : May 2014
-/// </summary>
+﻿using System;
+using Newtonsoft.Json;
 
-/// <summary>
-/// Starting and general parameters for the simulation. Parents have 1 child per reproduction.
-/// </summary>
-public class Parameters
+namespace Simulation
 {
-	// Simulation
-	public static readonly string OrganismTag = "Organism";
-	public static readonly int InitialPopulation = 1;
+    public class Parameters
+    {
+        public string OrganismTag = "Organism";
 
-	// Organisms
-	public static readonly int BirhtDuration = 100; // [Nombre d'updates]
-	public static readonly float PreAdultDuration = 0.2f; // [%]
-	public static readonly float OrganismSight = 10F; // [Longueur]
+        /// <summary>
+        /// Initial population of the simulation.
+        /// </summary>
+        public int InitialPopulation { get; set; }
 
-	// Death settings
-	public static readonly float TimeBeforeRemove = 0; // [s]
-	public static readonly float DeathSmooth = 0.01f; // [0.0 - 1.0]
+        // Organisms settings
+        /// <summary>
+        /// Duration of the birth for one organism.
+        /// </summary>
+        public int BirthDuration { get; set; } // [Number of updates]
 
-	// Movement settings
-	public static readonly float MovementTurnRate = 0.5f; // [0.0 - 1.0]
+        /// <summary>
+        /// Percentage of time the organism is a preadult in his life.
+        /// </summary>
+        public float PreAdultDuration { get; set; } // [%]
 
-	// Reproduction settings
-	public static readonly float ApproachRate = 0.5f; // [0.0 - 1.0]
-	public static readonly int NoNewChildDuration = 100; // [Nombre d'updates]
+        /// <summary>
+        /// Length of the organism sight in meters.
+        /// It's used to find new parteners for reproduction.
+        /// </summary>
+        public float OrganismSight { get; set; } // [Length in meters]
+
+        // Movement settings
+        /// <summary>
+        /// Turn rate of the organisms when they move.
+        /// </summary>
+        public float MovementTurnRate { get; set; } // [0.0 - 1.0]
+
+        // Reproduction settings
+        /// <summary>
+        /// Approach rate of the organism when they founded a partner.
+        /// </summary>
+        public float ApproachRate { get; set; } // [0.0 - 1.0]
+
+        /// <summary>
+        /// Duration of the time. The parents of a organism cannot have a new child.
+        /// </summary>
+        public int NoNewChildDuration { get; set; } // [Number of updates]
+    }
 }
-

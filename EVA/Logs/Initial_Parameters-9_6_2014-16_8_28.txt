@@ -1,2 +1,0 @@
-Initial parameters of the simulation
-{"InitialPopulation":1,"BirhtDuration":100,"PreAdultDuration":0.2,"OrganismSight":10.0,"TimeBeforeRemove":0.0,"DeathSmooth":0.01,"MovementTurnRate":0.5,"ApproachRate":0.5,"NoNewChildDuration":100}

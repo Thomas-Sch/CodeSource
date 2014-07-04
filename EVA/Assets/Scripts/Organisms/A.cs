@@ -11,6 +11,7 @@ using GeneticLibrary.Mutations.GeneticModifiers;
 using GeneticLibrary.Mutations;
 using GeneticLibrary.Collections;
 using GeneticLibrary.Interfaces;
+using Simulation.Handling;
 
 /// <summary>
 /// Behaviour of a type A organism.
@@ -39,7 +40,7 @@ public class A : Organism {
 
 	public override GameObject Prefab ()
 	{
-		return Simulation.A;
+		return SimHandler.A;
 	}
 
 	#endregion

@@ -6,35 +6,28 @@
 
 using UnityEngine;
 using States;
+using Simulation.Handling;
 
 namespace States {
-	public class Death : State {
+    public class Death : State {
+        
+        public Death (Organism organism, DUpdateState updateState) : base(organism, updateState){
+            Organism.Death = SimHandler.Instance().Step;
+            Organism.LogSelf();
+            SimHandler.PopulationHandler().Kill(Organism);
+        }
 
-		private readonly float TimeBeforeRemove = Parameters.TimeBeforeRemove;
-//		private readonly float Smooth = Simulation.DeathSmooth;
-		
-		public Death (Organism organism, DUpdateState updateState) : base(organism, updateState){
-			Debug.Log(Organism + " is dead");
+        public override string Tag() {
+            return "Death";
+        }
 
-			if(--Organism.LivingOrganisms <= 0) {
-				Simulation.SimulationEndStatistics();
-				Simulation.StopSimulation();
-			}
+        #region implemented abstract members of State
 
-			Organism.Invoke("Kill", TimeBeforeRemove);
-		}
+        public override void FixedAction ()
+        {
+            // Nothing to do here.
+        }
 
-		public override string Tag() {
-			return "Death";
-		}
-
-		#region implemented abstract members of State
-
-		public override void FixedAction ()
-		{
-			// Nothing to do here.
-		}
-
-		#endregion
-	}
+        #endregion
+    }
 }

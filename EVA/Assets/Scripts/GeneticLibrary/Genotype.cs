@@ -57,11 +57,10 @@ namespace GeneticLibrary
 				throw new Exception("The mutation is null");
 			}
         }
-	
 
         override public String ToString()
         {
-            return (root != null ? Root.ToString(1) : errorEmptyGenotype);
+            return (root != null ? Root.ToString() : errorEmptyGenotype);
         }
     }
 }

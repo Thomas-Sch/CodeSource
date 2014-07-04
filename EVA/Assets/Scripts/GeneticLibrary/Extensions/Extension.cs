@@ -115,14 +115,13 @@ namespace GeneticLibrary
             GeneticData.Set(tag, data);
         }
 
-        public String ToString(int level)
+        new public String ToString()
         {
             string result = this.GetType().Name + "(" + Tag + ")" + " " + GeneticData.ToString();
             foreach (Extension extension in extensions) {
-                result += Environment.NewLine;
-                for(int i = 0; i < level; i++)
-                    result += "   ";
-                result += extension.ToString(level + 1);
+                result += "{";
+                result += extension.ToString();
+				result += "}";
             }
             return result;
         }
