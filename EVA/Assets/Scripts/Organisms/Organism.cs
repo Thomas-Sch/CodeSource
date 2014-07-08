@@ -155,10 +155,6 @@ public abstract class Organism : MonoBehaviour {
     public void Update() {
         graphic.Update();
     }
-
-    public void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(transform.position, 4);
-    }
     
     #endregion
 
