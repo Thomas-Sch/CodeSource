@@ -48,6 +48,8 @@ namespace Simulation.Handling
             statistics = new SimulationStatistics(10);
             population = new PopulationHandler(this);
 
+            Parameters = new DefaultParameters();
+
             Step = 0;
         }
 

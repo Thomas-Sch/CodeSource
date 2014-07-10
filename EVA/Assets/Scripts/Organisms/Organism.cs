@@ -199,13 +199,16 @@ public abstract class Organism : MonoBehaviour {
     /// </summary>
     /// <param name="g">The green component.</param>
     public void ChangePhenotype(Genotype g) {
-        ModifyElement(transform, g.Root);
-
-        if(phenotypeData == null) {
+        if (phenotypeData == null)
+        {
             phenotypeData = new PhenotypeData();
         }
+        phenotypeData.Speed = 0;
+        ModifyElement(transform, g.Root);
+
+        phenotypeData.Speed = phenotypeData.Speed / 100;
+
         phenotypeData.LifeDuration = (int)((WFloat)g.Root.GeneticData.Get("lifeduration")).Value;
-        phenotypeData.Speed = ((WFloat)g.Root.GeneticData.Get("speed")).Value;
     }
 
     /// <summary>
@@ -217,6 +220,8 @@ public abstract class Organism : MonoBehaviour {
         t.localPosition = ((WVector3)e.GeneticData.Get("position")).Value;
         t.localRotation = Quaternion.Euler(((WVector3)e.GeneticData.Get("rotation")).Value);
         t.localScale = ((WVector3)e.GeneticData.Get("scale")).Value;
+
+        phenotypeData.Speed += t.localScale.sqrMagnitude;
         
         IEnumerator transforms = t.GetEnumerator();
         IEnumerator extensions = e.GetEnumerator();

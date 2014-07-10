@@ -71,7 +71,7 @@ namespace Simulation.Handling
             {
                 // Last log of the simulation.
                 SimHandler.Statistics().Log();
-                SimHandler.Control().Stop();
+                //SimHandler.Control().Stop();
             }
         }
     }

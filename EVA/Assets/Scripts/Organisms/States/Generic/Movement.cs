@@ -39,14 +39,14 @@ namespace States {
                 Organism.transform.Translate(newPos, Space.World);
             }
             
-            if(Turn.Test()) {
-                newRotation = UnityEngine.Random.rotation;
-                Vector3 v = newRotation.eulerAngles;
-                v.x = 0;
-                v.z = 0;
-                newRotation.eulerAngles = v;
-            }
-            Organism.transform.rotation = Quaternion.Slerp(Organism.transform.rotation, newRotation, Time.deltaTime * TurnRate);
+            //if(Turn.Test()) {
+            //    newRotation = UnityEngine.Random.rotation;
+            //    Vector3 v = newRotation.eulerAngles;
+            //    v.x = 0;
+            //    v.z = 0;
+            //    newRotation.eulerAngles = v;
+            //}
+            //Organism.transform.rotation = Quaternion.Slerp(Organism.transform.rotation, newRotation, Time.deltaTime * TurnRate);
         } 
         #endregion
     }

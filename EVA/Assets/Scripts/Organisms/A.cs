@@ -32,9 +32,9 @@ public class A : Organism {
 	protected override IMutation PreSpawnMutation ()
 	{
 		Mutation result = new Mutation();
-		result.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.2F));
+		result.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.5F));
 		result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeduration"}), 100.0F));
-		result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}), new Set(new [] {"speed"}), 0.1F));
+        //result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}), new Set(new [] {"speed"}), 0.1F));
 		return result;
 	}
 
