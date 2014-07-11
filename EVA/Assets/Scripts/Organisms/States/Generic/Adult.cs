@@ -11,13 +11,11 @@ using Simulation.Handling;
 namespace States {
     public class Adult : State {
     private static float OrganismSight = SimHandler.Instance().Parameters.OrganismSight;
-//		private static Probability mutation1 = new Probability(0.1);
         public State inner {get; set;}
 
         public int NoNewChild {get; set;}
 
         public Adult(Organism organism, DUpdateState updateState) : base(organism, updateState) {
-            //Debug.Log(Organism + " is adult");
             inner = new Movement(Organism, MovementToReproduction);
             NoNewChild = 0;
         }
@@ -37,28 +35,31 @@ namespace States {
 
         public void MovementToReproduction() {
 
-            RaycastHit hit;
-            var rayDirection = Organism.gameObject.transform.forward;
+            
+            Collider[] results = Physics.OverlapSphere(Organism.transform.position, OrganismSight);
 
-            Debug.DrawRay(Organism.gameObject.transform.position, rayDirection * OrganismSight);
-
-            Physics.Raycast(Organism.gameObject.transform.position, rayDirection, out hit, OrganismSight);
-
-            if (hit.collider != null && hit.collider.CompareTag(SimHandler.Instance().Parameters.OrganismTag))
+            if (results.Length > 1)
             {
-
-                // Récupération de l'instance de script.s
-                Organism other = hit.collider.gameObject.GetComponent<Organism>();
-
-                if (other != null && NoNewChild <= 0 && other.State.Tag() == Organism.State.Tag())
+                foreach (Collider collider in results)
                 {
-                    Adult a = (Adult) Organism.State;
-                    Adult b = (Adult) other.GetComponent<Organism>().State;
+                    if (collider.CompareTag(SimHandler.Instance().Parameters.OrganismTag))
+                    {
+                        // Récupération de l'instance de script.s
+                        Organism other = collider.gameObject.GetComponent<Organism>();
 
-                    a.inner = new Reproduction(Organism, other, null, true);
-                    b.inner = new Reproduction(other, Organism, null, false);
+                        if (other != null && other != Organism && NoNewChild <= 0 && other.State.Tag() == Organism.State.Tag())
+                        {
+                            Adult a = (Adult)Organism.State;
+                            Adult b = (Adult)other.GetComponent<Organism>().State;
+
+                            a.inner = new Reproduction(Organism, other, null, true);
+                            b.inner = new Reproduction(other, Organism, null, false);
+                            break;
+                        }
+                    }
                 }
             }
+            
         }
         #endregion
 
@@ -71,20 +72,6 @@ namespace States {
             if(NoNewChild > 0) {
                 NoNewChild--;
             }
-
-            // A Discuter avec C. Pena.
-            //			// Mutation during adult life.
-            //			if(mutation1.Test()) {
-            //				Mutation m = new Mutation();
-            //
-            //				m.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.1f));
-            //				Debug.Log("Mutation");
-            ////
-            ////				Organism.Genotype.Mutate(m);
-            ////				Organism.ModifyPhenotype(Organism.Genotype); // Not working as intendeed because of position attribute reset.
-            //
-            //				// Need Organisme.Mutate(M); for convienience.
-            //			}
         }
         #endregion
     }

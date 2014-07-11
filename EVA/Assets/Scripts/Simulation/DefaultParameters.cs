@@ -14,18 +14,16 @@ namespace Simulation {
         public DefaultParameters()
         {
             // Simulation
-            InitialPopulation = 50;
+            InitialPopulation = 10;
 
             // Organisms
             BirthDuration = 100; // [Number of updates]
             PreAdultDuration = 0.2f; // [%]
-            OrganismSight = 10F; // [Length]
+            OrganismSight = 5f; // [Length]
 
             // Movement settings
-            MovementTurnRate = 0.5f; // [0.0 - 1.0]
 
             // Reproduction settings
-            ApproachRate = 0.5f; // [0.0 - 1.0]
             NoNewChildDuration = 100; // [Number of updates]
         }
     }

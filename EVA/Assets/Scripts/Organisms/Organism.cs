@@ -23,6 +23,8 @@ using Simulation;
 public abstract class Organism : MonoBehaviour {    
     public static String file = "Organism.csv";
 
+
+    public GameObject motor;
     public static int NumberOfOrganisms = 0;
 
     // Duration of this state based on the age of the organism.

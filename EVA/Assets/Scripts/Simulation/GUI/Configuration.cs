@@ -69,10 +69,6 @@ namespace Simulation.GUI
             noNewChildDuration = LabelField("No new child duration", noNewChildDuration, checkIntField(noNewChildDuration));
             organismSight = LabelField("Organism's sight range", organismSight, checkFloatField(organismSight));
 
-			GUILayout.Label("Movement parameters");
-			parameters.MovementTurnRate = LabelSlider("Mouvement turn rate", parameters.MovementTurnRate, 1.0f);
-			parameters.ApproachRate = LabelSlider("Approach turn rate", parameters.ApproachRate, 1.0f);
-
 			GUILayout.FlexibleSpace();
             OKCancel();
 

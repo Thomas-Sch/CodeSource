@@ -29,18 +29,6 @@ namespace Simulation
         /// </summary>
         public float OrganismSight { get; set; } // [Length in meters]
 
-        // Movement settings
-        /// <summary>
-        /// Turn rate of the organisms when they move.
-        /// </summary>
-        public float MovementTurnRate { get; set; } // [0.0 - 1.0]
-
-        // Reproduction settings
-        /// <summary>
-        /// Approach rate of the organism when they founded a partner.
-        /// </summary>
-        public float ApproachRate { get; set; } // [0.0 - 1.0]
-
         /// <summary>
         /// Duration of the time. The parents of a organism cannot have a new child.
         /// </summary>

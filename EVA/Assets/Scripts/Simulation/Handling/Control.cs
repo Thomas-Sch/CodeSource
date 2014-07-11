@@ -46,7 +46,7 @@ namespace Simulation.Handling
         {
             for (var i = 0; i < SimHandler.Instance().Parameters.InitialPopulation; ++i)
             {
-                SimHandler.PopulationHandler().SpawnWithRandomRotation(SimHandler.A, SimHandler.Instance().GetRandomPosition());
+                SimHandler.PopulationHandler().SpawnWithRandomRotation(SimHandler.D, SimHandler.Instance().GetRandomPosition());
             }
             time.Start();
         }

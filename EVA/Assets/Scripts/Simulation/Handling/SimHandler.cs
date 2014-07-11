@@ -22,6 +22,7 @@ namespace Simulation.Handling
         private static string Path = "Prefabs/";
         public static GameObject A;
         public static GameObject B;
+        public static GameObject C;
         public static GameObject D;
 
         // Variables related to the geographic of the terrain.
@@ -48,6 +49,8 @@ namespace Simulation.Handling
             statistics = new SimulationStatistics(10);
             population = new PopulationHandler(this);
 
+            // Temporaire !
+            //Parameters = new DefaultParameters();
             Step = 0;
         }
 
@@ -55,6 +58,7 @@ namespace Simulation.Handling
         {
             A = Resources.Load<GameObject>(Path + "Template A");
             B = Resources.Load<GameObject>(Path + "Template B");
+            C = Resources.Load<GameObject>(Path + "Template C");
             D = Resources.Load<GameObject>(Path + "Template D");
 
             // This line has to be done in this Unity's method.
