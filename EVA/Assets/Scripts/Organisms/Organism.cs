@@ -23,7 +23,6 @@ using Simulation;
 public abstract class Organism : MonoBehaviour {    
     public static String file = "Organism.csv";
 
-
     public GameObject motor;
     public static int NumberOfOrganisms = 0;
 
@@ -190,9 +189,12 @@ public abstract class Organism : MonoBehaviour {
         e.GeneticData.Set("position", new WVector3(t.localPosition));
         
         foreach(Transform child in t) {
-            Extension eChild = new Square(new GeneticData());
-            e.AddExtension(eChild);
-            DeductGenotype(child, eChild);
+            if (!child.CompareTag("Ignore"))
+            {
+                Extension eChild = new Square(new GeneticData());
+                e.AddExtension(eChild);
+                DeductGenotype(child, eChild);
+            }
         }
     }
 
@@ -216,15 +218,19 @@ public abstract class Organism : MonoBehaviour {
     /// <param name="t">The transform to modify.</param>
     /// <param name="e">The extension containing the genetic data.</param>
     private void ModifyElement(Transform t, Extension e) {
-        t.localPosition = ((WVector3)e.GeneticData.Get("position")).Value;
-        t.localRotation = Quaternion.Euler(((WVector3)e.GeneticData.Get("rotation")).Value);
-        t.localScale = ((WVector3)e.GeneticData.Get("scale")).Value;
-        
-        IEnumerator transforms = t.GetEnumerator();
-        IEnumerator extensions = e.GetEnumerator();
-        
-        while(transforms.MoveNext() && extensions.MoveNext()) {
-            ModifyElement((Transform)transforms.Current, (Extension)extensions.Current);
+        if (!t.CompareTag("Ignore"))
+        {
+            t.localPosition = ((WVector3)e.GeneticData.Get("position")).Value;
+            t.localRotation = Quaternion.Euler(((WVector3)e.GeneticData.Get("rotation")).Value);
+            t.localScale = ((WVector3)e.GeneticData.Get("scale")).Value;
+
+            IEnumerator transforms = t.GetEnumerator();
+            IEnumerator extensions = e.GetEnumerator();
+
+            while (transforms.MoveNext() && extensions.MoveNext())
+            {
+                ModifyElement((Transform)transforms.Current, (Extension)extensions.Current);
+            }
         }
     }
 
