@@ -7,7 +7,6 @@
 using System;
 using System.Collections;
 using GeneticLibrary;
-using GeneticLibrary.BodyParts;
 using GeneticLibrary.Mutations;
 using GeneticLibrary.Interfaces;
 using Wrappers;
@@ -83,7 +82,7 @@ public abstract class Organism : MonoBehaviour {
     /// </summary>
     private void Initialisation() {
         // Defining the genotype.
-        Genotype = new Genotype(new Square(new GeneticData()));
+        Genotype = new Genotype(new Extension(new GeneticData()));
         DeductGenotype(transform, Genotype.Root);
         
         // Adding extra parameters.		
@@ -191,7 +190,7 @@ public abstract class Organism : MonoBehaviour {
         foreach(Transform child in t) {
             if (!child.CompareTag("Ignore"))
             {
-                Extension eChild = new Square(new GeneticData());
+                Extension eChild = new Extension(new GeneticData());
                 e.AddExtension(eChild);
                 DeductGenotype(child, eChild);
             }

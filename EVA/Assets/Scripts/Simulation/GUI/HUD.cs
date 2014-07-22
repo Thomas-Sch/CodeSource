@@ -68,24 +68,34 @@ namespace Simulation.GUI
         /// <param name="p">parameters of the simulation</param>
         public HUD(Parameters p)
         {
-            //control = new Rect(screenMargin, screenMargin, controlSize.Width, controlSize.Height);
-            //statistics = new Rect(Screen.width - statsSize.Width - screenMargin, screenMargin, statsSize.Width, statsSize.Height);
-            //help = new Rect(screenMargin, Screen.height - helpSize.Height, helpSize.Width, helpSize.Height);
-
             parameters = p;
             SimHandler.Control().Init(parameters);
+
+            control = new Rect(screenMargin, screenMargin, controlSize.Width, controlSize.Height);
+            statistics = new Rect(Screen.width - statsSize.Width - screenMargin, screenMargin, statsSize.Width, statsSize.Height);
+            help = new Rect(screenMargin, Screen.height - helpSize.Height, helpSize.Width, helpSize.Height);
         }
 
-        public void Draw()
+        private void UpdateSizes()
         {
+            // Update the size of the rectangles.
             controlSize.Update();
             statsSize.Update();
             helpSize.Update();
             infoPaneSize.Update();
 
-            control = new Rect(screenMargin, screenMargin, controlSize.Width, controlSize.Height);
-            statistics = new Rect(Screen.width - statsSize.Width - screenMargin, screenMargin, statsSize.Width, statsSize.Height);
-            help = new Rect(screenMargin, Screen.height - helpSize.Height, helpSize.Width, helpSize.Height);
+            // Update the size of the windows.
+            control.width = controlSize.Width;
+            control.height = controlSize.Height;
+            statistics.width = statsSize.Width;
+            statistics.height = statsSize.Height;
+            help.width = statsSize.Width;
+            help.height = statsSize.Height;
+        }
+
+        public void Draw()
+        {
+            UpdateSizes();
             
             // Draw the main windows.
             control = UnityEngine.GUI.Window(0, control, WindowControl, "Controls");
@@ -191,8 +201,8 @@ namespace Simulation.GUI
             LabelLabel("Elapsed time", SimHandler.Control().TimeElapsed().ToString());
             LabelLabel("Sim. step", SimHandler.Instance().Step.ToString());
             GUILayout.FlexibleSpace();
-            LabelLabel("Average distance", SimHandler.Statistics().AverageDistance().ToString());
-            LabelLabel("Average age", SimHandler.Statistics().AverageAge().ToString());
+            LabelLabel("Average distance", SimHandler.Statistics().AverageDistanceCumulative().ToString());
+            LabelLabel("Average age", SimHandler.Statistics().AverageAgCumulative().ToString());
             LabelLabel("Number of alive organisms", SimHandler.Statistics().NbOrganismAlive().ToString());
             LabelLabel("Number of dead organisms", SimHandler.Statistics().NbOrganismDead().ToString());
             GUILayout.EndScrollView();

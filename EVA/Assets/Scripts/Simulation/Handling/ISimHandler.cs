@@ -18,6 +18,11 @@ namespace Simulation.Handling
         Parameters Parameters { get; set; }
 
         /// <summary>
+        /// Update the size of the terrain depending on the paramters of the simulatoin.
+        /// </summary>
+        void UpdateTerrain(int size);
+
+        /// <summary>
         ///  The step of the simulation.
         /// </summary>
         long Step { get;}

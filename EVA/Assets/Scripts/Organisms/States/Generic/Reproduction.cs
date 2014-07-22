@@ -37,16 +37,23 @@ namespace States
             RecombinationOutput childrenGenotypes = SimpleReco.getInstance().Recombine(Organism.Genotype,Other.Genotype);
             foreach(Genotype childGenotype in childrenGenotypes) {
                 GameObject childInstance = SimHandler.PopulationHandler().SpawnWithRandomRotation(Organism.Prefab(), position);
-                Organism child = childInstance.GetComponent<Organism>();
-                if(child == null) {
-                    Debug.LogError("No script is attached");
-                } else {
-                    child.Genotype = childGenotype;
-                    child.ChangePhenotype(childGenotype);
+
+                if (childInstance != null)
+                {
+                    Organism child = childInstance.GetComponent<Organism>();
+                    if (child == null)
+                    {
+                        Debug.LogError("No script is attached");
+                    }
+                    else
+                    {
+                        child.Genotype = childGenotype;
+                        child.ChangePhenotype(childGenotype);
+                    }
+                    child.transform.position = position;
+                    child.NameParent1 = nameParent1;
+                    child.NameParent2 = nameParent2;
                 }
-                child.transform.position = position;
-                child.NameParent1 = nameParent1;
-                child.NameParent2 = nameParent2;
             }
         }
 

@@ -7,9 +7,6 @@
 /// </summary>
 
 using System;
-using GeneticLibrary.BodyParts;
-using GeneticLibrary.Extensions.BodyParts;
-using GeneticLibrary.Extensions.Members;
 using GeneticLibrary.Interfaces;
 
 namespace GeneticLibrary

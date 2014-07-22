@@ -27,6 +27,8 @@ namespace Simulation.Handling
 
         // Variables related to the geographic of the terrain.
         public GameObject Terrain; // Unity variable.
+        public GameObject Limits; // Unity variable.
+
         private float semiSideLength;
         private float randomPositionHeight = 2f;
 
@@ -54,11 +56,17 @@ namespace Simulation.Handling
             Step = 0;
         }
 
+        public void UpdateTerrain(int size)
+        {
+            Terrain.transform.localScale = new Vector3(size, 1, size);
+            semiSideLength = Terrain.transform.localScale.x * Limits.transform.localScale.x / 2;
+        }
+
         void Awake()
         {
-            A = Resources.Load<GameObject>(Path + "Template A");
-            B = Resources.Load<GameObject>(Path + "Template B");
-            C = Resources.Load<GameObject>(Path + "Template C");
+            //A = Resources.Load<GameObject>(Path + "Template A");
+            //B = Resources.Load<GameObject>(Path + "Template B");
+            //C = Resources.Load<GameObject>(Path + "Template C");
             D = Resources.Load<GameObject>(Path + "Template D");
 
             // This line has to be done in this Unity's method.
@@ -66,9 +74,18 @@ namespace Simulation.Handling
 
             if (Terrain == null)
             {
-                UnityEngine.Debug.LogError("Terrain is not set !");
+                Debug.Log("Terrain is not set !");
             }
-            semiSideLength = transform.localScale.x * Terrain.transform.localScale.x * 4;
+
+            if (Limits == null)
+            {
+                Debug.Log("Limits are not set !");
+            }
+
+            if (transform == null)
+            {
+                Debug.Log("Transform -> null");
+            }
         }
 
         void FixedUpdate()

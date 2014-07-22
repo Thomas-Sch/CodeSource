@@ -20,13 +20,13 @@ namespace Simulation.Handling
         /// Returns the average distance traveled by the organisms.
         /// </summary>
         /// <returns>The distance in meters.</returns>
-        float AverageDistance();
+        float AverageDistanceCumulative();
 
         /// <summary>
         /// Returns the average age of all the organisms.
         /// </summary>
         /// <returns>The age.</returns>
-        float AverageAge();
+        float AverageAgCumulative();
 
         /// <summary>
         /// Returns the number of alive organisms.

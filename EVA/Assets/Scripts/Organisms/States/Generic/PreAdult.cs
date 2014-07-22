@@ -12,7 +12,6 @@ namespace States {
 
 		public PreAdult(Organism organism, DUpdateState updateState) : base(organism, updateState) {
 			inner = new Movement(Organism, null);
-            //Debug.Log(Organism + " is pre adult");
 		}
 
 		public override string Tag() {

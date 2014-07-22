@@ -44,9 +44,10 @@ namespace Simulation.Handling
 
         public void Play()
         {
+            SimHandler.Instance().UpdateTerrain(SimHandler.Instance().Parameters.WorldSize);
             for (var i = 0; i < SimHandler.Instance().Parameters.InitialPopulation; ++i)
             {
-                SimHandler.PopulationHandler().SpawnWithRandomRotation(SimHandler.D, SimHandler.Instance().GetRandomPosition());
+                SimHandler.PopulationHandler().SpawnWithRandomRotation(SimHandler.D, SimHandler.Instance().GetRandomPosition(), false);
             }
             time.Start();
         }

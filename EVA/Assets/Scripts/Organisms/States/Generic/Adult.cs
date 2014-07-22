@@ -34,8 +34,6 @@ namespace States {
         }
 
         public void MovementToReproduction() {
-
-            
             Collider[] results = Physics.OverlapSphere(Organism.transform.position, OrganismSight);
 
             if (results.Length > 1)
@@ -47,7 +45,10 @@ namespace States {
                         // Récupération de l'instance de script.s
                         Organism other = collider.gameObject.GetComponent<Organism>();
 
-                        if (other != null && other != Organism && NoNewChild <= 0 && other.State.Tag() == Organism.State.Tag())
+                        if (other != null
+                            && other != Organism 
+                            && NoNewChild <= 0 
+                            && other.State.Tag() == Organism.State.Tag())
                         {
                             Adult a = (Adult)Organism.State;
                             Adult b = (Adult)other.GetComponent<Organism>().State;

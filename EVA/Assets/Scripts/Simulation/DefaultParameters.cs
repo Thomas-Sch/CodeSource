@@ -15,6 +15,12 @@ namespace Simulation {
         {
             // Simulation
             InitialPopulation = 10;
+            WorldSize = 10;
+            PopulationLimit = 100;
+
+            // Statistics
+            BlockLength = 500;
+            SlidingWindowLength = 500;
 
             // Organisms
             BirthDuration = 100; // [Number of updates]

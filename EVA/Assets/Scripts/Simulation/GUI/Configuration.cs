@@ -22,6 +22,10 @@ namespace Simulation.GUI
 		private string birthDuration = "";
 		private string organismSight = "";
 		private string noNewChildDuration = "";
+        private string blockLength = "";
+        private string slidingWindowLength = "";
+        private string worldSize = "";
+        private string populationLimit = "";
 
         private ResizableRectangle size = new ResizableRectangle(0.25, 0.6);
 
@@ -43,6 +47,10 @@ namespace Simulation.GUI
 			birthDuration = parameters.BirthDuration.ToString();
 			organismSight = parameters.OrganismSight.ToString();
 			noNewChildDuration = parameters.NoNewChildDuration.ToString();
+            blockLength = parameters.BlockLength.ToString();
+            slidingWindowLength = parameters.SlidingWindowLength.ToString();
+            worldSize = parameters.WorldSize.ToString();
+            populationLimit = parameters.PopulationLimit.ToString();
 
             // Sets the style in case of error.
 			errorStyle.normal.textColor = Color.red;
@@ -58,8 +66,14 @@ namespace Simulation.GUI
             scrollPosition = GUILayout.BeginScrollView(scrollPosition);
 			GUILayout.Label("Configure the simulation", "box");
 
+            GUILayout.Label("Statistics paramters");
+            blockLength = LabelField("Block length", blockLength, checkIntField(blockLength));
+            slidingWindowLength = LabelField("Sliding window length", slidingWindowLength, checkIntField(slidingWindowLength));
+
 			GUILayout.Label("Simulation parameters");
             initialPopulation = LabelField("Initial population", initialPopulation, checkIntField(initialPopulation));
+            worldSize = LabelField("World size", worldSize, checkIntField(worldSize));
+            populationLimit = LabelField("PopulationLimit", populationLimit, checkIntField(populationLimit));
 
 			GUILayout.Label("Birth parameters");
 			birthDuration = LabelField("Bith duration", birthDuration, checkIntField(birthDuration));
@@ -167,6 +181,10 @@ namespace Simulation.GUI
                     parameters.BirthDuration = int.Parse(birthDuration);
                     parameters.NoNewChildDuration = int.Parse(noNewChildDuration);
                     parameters.OrganismSight = float.Parse(organismSight);
+                    parameters.BlockLength = int.Parse(blockLength);
+                    parameters.SlidingWindowLength = int.Parse(slidingWindowLength);
+                    parameters.WorldSize = int.Parse(worldSize);
+                    parameters.PopulationLimit = int.Parse(populationLimit);
                     GUIHandler.Instance().ChangeWindow(new HUD(parameters));
                 }
             }

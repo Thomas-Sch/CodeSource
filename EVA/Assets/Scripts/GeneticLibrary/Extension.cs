@@ -18,7 +18,7 @@ namespace GeneticLibrary
     /// Represents the structure in the genotype. Each part of the organism is called "Extension" and contains data
     /// about his structure in a tree shape and the data relative to each extension.
     /// </summary>
-    public abstract class Extension : IMutable, IDeepClonable, IEnumerable
+    public class Extension : IMutable, IDeepClonable, IEnumerable
     {
         /// <summary>
         /// Parent of the extension (it's a tree shaped structure).
@@ -152,17 +152,10 @@ namespace GeneticLibrary
         /// <returns>The copy</returns>
         public Extension LocalClone()
         {
-            Extension result = LocalCloneImpl();
+            Extension result = new Extension();
             result.GeneticData = (GeneticData) GeneticData.DeepClone();
             return result;
         }
-
-        /// <summary>
-        /// Return an empty node of the current type.
-        /// </summary>
-        /// <returns>An empty subclass of Extention</returns>
-        protected abstract Extension LocalCloneImpl();
-
 
         /// <summary>
         /// Clone the extension with the children.
