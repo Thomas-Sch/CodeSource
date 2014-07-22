@@ -51,11 +51,11 @@ namespace Simulation {
                 switch (model.State.Tag())
                 {
                     case "Birth":
-                        state.renderer.material.color = Color.white;
+                        state.renderer.material.color = Color.green;
                         break;
 
                     case "PreAdult":
-                        state.renderer.material.color = Color.green;
+                        state.renderer.material.color = Color.red;
                         break;
 
                     case "Adult":

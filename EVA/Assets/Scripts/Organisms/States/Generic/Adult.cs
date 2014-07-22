@@ -68,7 +68,6 @@ namespace States {
         public override void FixedAction ()
         {
             inner.FixedUpdate();
-
             Organism.Age++;
             if(NoNewChild > 0) {
                 NoNewChild--;

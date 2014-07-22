@@ -25,9 +25,6 @@ public abstract class Organism : MonoBehaviour {
     public GameObject motor;
     public static int NumberOfOrganisms = 0;
 
-    // Duration of this state based on the age of the organism.
-    private float PreAdultDuration;
-
     // Name of the organism.
     public String Name {get; set;}
     // Age of the organism.
@@ -137,11 +134,6 @@ public abstract class Organism : MonoBehaviour {
         Initialisation();
         State = new Birth(this, BirthToPreAdult);
     }
-    
-    public void Awake()
-    {
-        PreAdultDuration = SimHandler.Instance().Parameters.PreAdultDuration;
-    }
 
     // Fixed Update is called once by physic engine
     public void FixedUpdate() {
@@ -161,11 +153,12 @@ public abstract class Organism : MonoBehaviour {
     #region State transition delegates
 
     protected void BirthToPreAdult() {
+        if((float)Age /phenotypeData.LifeDuration > SimHandler.Instance().Parameters.BabyDuration)
         State = new PreAdult(this, PreAdultToAdult);
     }
 
     protected void PreAdultToAdult() {
-        if((float)Age/phenotypeData.LifeDuration > PreAdultDuration)
+        if ((float)Age / phenotypeData.LifeDuration > SimHandler.Instance().Parameters.BabyDuration + SimHandler.Instance().Parameters.TeenDuration)
             State = new Adult(this, AdultToDeath);
     }
 

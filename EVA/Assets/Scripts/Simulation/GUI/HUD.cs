@@ -89,8 +89,8 @@ namespace Simulation.GUI
             control.height = controlSize.Height;
             statistics.width = statsSize.Width;
             statistics.height = statsSize.Height;
-            help.width = statsSize.Width;
-            help.height = statsSize.Height;
+            help.width = helpSize.Width;
+            help.height = helpSize.Height;
         }
 
         public void Draw()

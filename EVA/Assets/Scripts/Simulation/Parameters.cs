@@ -31,14 +31,14 @@ namespace Simulation
 
         // Organisms settings
         /// <summary>
-        /// Duration of the birth for one organism.
+        /// Percentage of time the organism is a baby in his life.
         /// </summary>
-        public int BirthDuration { get; set; } // [Number of updates]
+        public float BabyDuration { get; set; } // [%]
 
         /// <summary>
-        /// Percentage of time the organism is a preadult in his life.
+        /// Percentage of time the organism is a teen in his life.
         /// </summary>
-        public float PreAdultDuration { get; set; } // [%]
+        public float TeenDuration { get; set; } // [%]
 
         /// <summary>
         /// Length of the organism sight in meters.

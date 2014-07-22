@@ -19,7 +19,6 @@ namespace Simulation.GUI
         private IWindow last;
 
 		private string initialPopulation = "";
-		private string birthDuration = "";
 		private string organismSight = "";
 		private string noNewChildDuration = "";
         private string blockLength = "";
@@ -44,7 +43,6 @@ namespace Simulation.GUI
 			parameters = p;
 
 			initialPopulation = parameters.InitialPopulation.ToString();
-			birthDuration = parameters.BirthDuration.ToString();
 			organismSight = parameters.OrganismSight.ToString();
 			noNewChildDuration = parameters.NoNewChildDuration.ToString();
             blockLength = parameters.BlockLength.ToString();
@@ -66,22 +64,22 @@ namespace Simulation.GUI
             scrollPosition = GUILayout.BeginScrollView(scrollPosition);
 			GUILayout.Label("Configure the simulation", "box");
 
-            GUILayout.Label("Statistics paramters");
-            blockLength = LabelField("Block length", blockLength, checkIntField(blockLength));
-            slidingWindowLength = LabelField("Sliding window length", slidingWindowLength, checkIntField(slidingWindowLength));
 
-			GUILayout.Label("Simulation parameters");
+            GUILayout.Label("Simulation parameters");
             initialPopulation = LabelField("Initial population", initialPopulation, checkIntField(initialPopulation));
             worldSize = LabelField("World size", worldSize, checkIntField(worldSize));
             populationLimit = LabelField("PopulationLimit", populationLimit, checkIntField(populationLimit));
 
-			GUILayout.Label("Birth parameters");
-			birthDuration = LabelField("Bith duration", birthDuration, checkIntField(birthDuration));
+            GUILayout.Label("Organisms parameters");
 
-			GUILayout.Label("Reproduction parameters");
-			parameters.PreAdultDuration = LabelSlider("Pre-Adult duration", parameters.PreAdultDuration, 1.0f);
+            parameters.BabyDuration = LabelSlider("Baby duration", parameters.BabyDuration, 1.0f);
+            parameters.TeenDuration = LabelSlider("Pre-Adult duration", parameters.TeenDuration, 1.0f);
             noNewChildDuration = LabelField("No new child duration", noNewChildDuration, checkIntField(noNewChildDuration));
             organismSight = LabelField("Organism's sight range", organismSight, checkFloatField(organismSight));
+
+            GUILayout.Label("Statistics parameters");
+            blockLength = LabelField("Block length", blockLength, checkIntField(blockLength));
+            slidingWindowLength = LabelField("Sliding window length", slidingWindowLength, checkIntField(slidingWindowLength));
 
 			GUILayout.FlexibleSpace();
             OKCancel();
@@ -178,7 +176,6 @@ namespace Simulation.GUI
                 { 
                     // Apply text field parameters to parameter objects.
                     parameters.InitialPopulation = int.Parse(initialPopulation);
-                    parameters.BirthDuration = int.Parse(birthDuration);
                     parameters.NoNewChildDuration = int.Parse(noNewChildDuration);
                     parameters.OrganismSight = float.Parse(organismSight);
                     parameters.BlockLength = int.Parse(blockLength);

@@ -12,15 +12,9 @@ namespace States
 {
     public class Birth : State
     {
-        private int Duration = SimHandler.Instance().Parameters.BirthDuration;
-
-        new private DUpdateState UpdateState;
-
-        public Birth (Organism organism, DUpdateState updateState) : base(organism, null){
+        public Birth (Organism organism, DUpdateState updateState) : base(organism, updateState){
             Organism.Name = (++Organism.NumberOfOrganisms).ToString();
             Organism.Birth = SimHandler.Instance().Step;
-
-            UpdateState = updateState;
         }
 
         public override string Tag() {
@@ -32,12 +26,6 @@ namespace States
         public override void FixedAction ()
         {
             Organism.Age++;
-            // Nothing to do here.
-            if(Duration > 0)
-                Duration--;
-            else {
-                UpdateState();
-            }
         }
         #endregion
     }

@@ -23,8 +23,8 @@ namespace Simulation {
             SlidingWindowLength = 500;
 
             // Organisms
-            BirthDuration = 100; // [Number of updates]
-            PreAdultDuration = 0.2f; // [%]
+            BabyDuration = 0.2f; // [%]
+            TeenDuration = 0.2f; // [%]
             OrganismSight = 5f; // [Length]
 
             // Movement settings
