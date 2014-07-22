@@ -5,10 +5,10 @@
 /// </summary>
 
 using UnityEngine;
-using States;
 using Simulation.Handling;
 
-namespace States {
+namespace Organisms.States
+{
     public class Death : State {
         
         public Death (Organism organism, DUpdateState updateState) : base(organism, updateState){

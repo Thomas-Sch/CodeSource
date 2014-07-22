@@ -6,7 +6,7 @@
 
 using UnityEngine;
 
-namespace States {
+namespace Organisms.States {
 
 	/// <summary>
 	/// Represent a state for a state machine based on the state design pattern.
@@ -33,11 +33,8 @@ namespace States {
 		/// <summary>
 		/// Action to do when Unity's FixedUpdate function is triggered.
 		/// </summary>
-		public void FixedUpdate() {
+		public virtual  void FixedUpdate() {
 			FixedAction();
-			if(UpdateState != null) {
-				UpdateState();
-			}
 		}
 
 		/// <summary>

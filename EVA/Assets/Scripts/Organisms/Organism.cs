@@ -10,10 +10,10 @@ using GeneticLibrary;
 using GeneticLibrary.Mutations;
 using GeneticLibrary.Interfaces;
 using Wrappers;
-using States;
 using UnityEngine;
 using Simulation.Handling;
 using Simulation;
+using Organisms.States;
 
 /// <summary>
 /// Provide base support to handle Organisms.
@@ -154,7 +154,7 @@ public abstract class Organism : MonoBehaviour {
 
     protected void BirthToPreAdult() {
         if((float)Age /phenotypeData.LifeDuration > SimHandler.Instance().Parameters.BabyDuration)
-        State = new PreAdult(this, PreAdultToAdult);
+        State = new Teen(this, PreAdultToAdult);
     }
 
     protected void PreAdultToAdult() {

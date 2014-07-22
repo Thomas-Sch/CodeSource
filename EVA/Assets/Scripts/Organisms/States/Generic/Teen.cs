@@ -6,16 +6,16 @@
 
 using UnityEngine;
 
-namespace States {
-	public class PreAdult : State {
+namespace Organisms.States {
+	public class Teen : AutoState {
 		private State inner;
 
-		public PreAdult(Organism organism, DUpdateState updateState) : base(organism, updateState) {
+		public Teen(Organism organism, DUpdateState updateState) : base(organism, updateState) {
 			inner = new Movement(Organism, null);
 		}
 
 		public override string Tag() {
-			return "PreAdult";
+			return "Teen";
 		}
 
 		#region implemented abstract members of State

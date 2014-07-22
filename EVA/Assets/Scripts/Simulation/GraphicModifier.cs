@@ -54,7 +54,7 @@ namespace Simulation {
                         state.renderer.material.color = Color.green;
                         break;
 
-                    case "PreAdult":
+                    case "Teen":
                         state.renderer.material.color = Color.red;
                         break;
 

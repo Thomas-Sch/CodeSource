@@ -8,9 +8,9 @@ using System;
 using Simulation.Handling;
 using UnityEngine;
 
-namespace States
+namespace Organisms.States
 {
-    public class Birth : State
+    public class Birth : AutoState
     {
         public Birth (Organism organism, DUpdateState updateState) : base(organism, updateState){
             Organism.Name = (++Organism.NumberOfOrganisms).ToString();

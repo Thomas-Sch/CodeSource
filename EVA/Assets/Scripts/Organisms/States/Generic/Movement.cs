@@ -8,8 +8,9 @@ using UnityEngine;
 using Tools;
 using Simulation.Handling;
 
-namespace States {
-    public class Movement : State {
+namespace Organisms.States
+{
+    public class Movement : AutoState {
 
         private float strength = 100.0f;
         public GameObject motor;

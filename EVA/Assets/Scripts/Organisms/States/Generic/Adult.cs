@@ -8,8 +8,9 @@ using UnityEngine;
 using Tools;
 using Simulation.Handling;
 
-namespace States {
-    public class Adult : State {
+namespace Organisms.States
+{
+    public class Adult : AutoState {
     private static float OrganismSight = SimHandler.Instance().Parameters.OrganismSight;
         public State inner {get; set;}
 

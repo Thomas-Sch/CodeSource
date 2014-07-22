@@ -9,7 +9,7 @@ using GeneticLibrary.Recombination;
 using GeneticLibrary;
 using Simulation.Handling;
 
-namespace States
+namespace Organisms.States
 {
     public class Reproduction : State
     {
