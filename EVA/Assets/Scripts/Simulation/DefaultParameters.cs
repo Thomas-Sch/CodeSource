@@ -14,9 +14,9 @@ namespace Simulation {
         public DefaultParameters()
         {
             // Simulation
-            InitialPopulation = 10;
-            WorldSize = 10;
-            PopulationLimit = 100;
+            InitialPopulation = 100;
+            WorldSize = 30;
+            PopulationLimit = 150;
 
             // Statistics
             BlockLength = 1000;
