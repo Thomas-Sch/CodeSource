@@ -28,7 +28,7 @@ namespace Simulation.GUI
         private ResizableRectangle controlSize = new ResizableRectangle(0.2, 0.2);
         private Vector2 controlScrollPosition = new Vector2(0, 0);
 
-        private ResizableRectangle statsSize = new ResizableRectangle(0.2, 0.3);
+        private ResizableRectangle statsSize = new ResizableRectangle(0.25, 0.5);
         private Vector2 statsScrollPosition = new Vector2(0, 0);
 
         private ResizableRectangle helpSize = new ResizableRectangle(0.15, 0.075);
@@ -201,8 +201,13 @@ namespace Simulation.GUI
             LabelLabel("Elapsed time", SimHandler.Control().TimeElapsed().ToString());
             LabelLabel("Sim. step", SimHandler.Instance().Step.ToString());
             GUILayout.FlexibleSpace();
-            LabelLabel("Average distance", SimHandler.Statistics().AverageDistanceCumulative().ToString());
-            LabelLabel("Average age", SimHandler.Statistics().AverageAgCumulative().ToString());
+            LabelLabel("Cumulative average distance", SimHandler.Statistics().AverageDistanceCumulative().ToString());
+            LabelLabel("Block average distance", SimHandler.Statistics().AverageDistanceBlock().ToString());
+            LabelLabel("Sliding window average distance", SimHandler.Statistics().AverageDistanceSlidingWindow().ToString());
+            LabelLabel("Cumulative average age", SimHandler.Statistics().AverageAgeCumulative().ToString());
+            LabelLabel("Block average age", SimHandler.Statistics().AverageAgeBlock().ToString());
+            LabelLabel("Sliding window age", SimHandler.Statistics().AverageAgeSlidingWindow().ToString());
+            GUILayout.FlexibleSpace();
             LabelLabel("Number of alive organisms", SimHandler.Statistics().NbOrganismAlive().ToString());
             LabelLabel("Number of dead organisms", SimHandler.Statistics().NbOrganismDead().ToString());
             GUILayout.EndScrollView();
@@ -259,7 +264,9 @@ namespace Simulation.GUI
         private bool InfoPane(string text)
         {
             bool temp = true;
-            GUILayout.BeginArea(new Rect(Screen.width / 2 - infoPaneSize.Width / 2, Screen.height / 2 - infoPaneSize.Height / 2, infoPaneSize.Width, infoPaneSize.Height), "", "box");
+            GUILayout.BeginArea(new Rect(Screen.width / 2 - infoPaneSize.Width / 2, 
+                Screen.height / 2 - infoPaneSize.Height / 2,
+                infoPaneSize.Width, infoPaneSize.Height), "", "box");
             infoPaneScrollPosition = GUILayout.BeginScrollView(infoPaneScrollPosition);
             GUILayout.Label(text);
 

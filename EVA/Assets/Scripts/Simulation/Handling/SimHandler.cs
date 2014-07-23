@@ -64,6 +64,7 @@ namespace Simulation.Handling
 
         void Awake()
         {
+            // The others prefabs are desactivated.
             //A = Resources.Load<GameObject>(Path + "Template A");
             //B = Resources.Load<GameObject>(Path + "Template B");
             //C = Resources.Load<GameObject>(Path + "Template C");
@@ -71,21 +72,6 @@ namespace Simulation.Handling
 
             // This line has to be done in this Unity's method.
             control.Speed = 1.0f;
-
-            if (Terrain == null)
-            {
-                Debug.Log("Terrain is not set !");
-            }
-
-            if (Limits == null)
-            {
-                Debug.Log("Limits are not set !");
-            }
-
-            if (transform == null)
-            {
-                Debug.Log("Transform -> null");
-            }
         }
 
         void FixedUpdate()

@@ -22,11 +22,19 @@ namespace Simulation.Handling
         /// <returns>The distance in meters.</returns>
         float AverageDistanceCumulative();
 
+        float AverageDistanceBlock();
+
+        float AverageDistanceSlidingWindow();
+
         /// <summary>
         /// Returns the average age of all the organisms.
         /// </summary>
         /// <returns>The age.</returns>
-        float AverageAgCumulative();
+        float AverageAgeCumulative();
+
+        float AverageAgeBlock();
+
+        float AverageAgeSlidingWindow();
 
         /// <summary>
         /// Returns the number of alive organisms.

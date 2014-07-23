@@ -40,7 +40,7 @@ namespace Simulation.Handling
                                       AverageDistanceCumulative() + ";" + 
                                       AverageDistanceBlock() + ";" +
                                       AverageDistanceSlidingWindow() + ";" +
-                                      AverageAgCumulative() + ";" + 
+                                      AverageAgeCumulative() + ";" + 
                                       AverageAgeBlock() + ";" +
                                       AverageAgeSlidingWindow() + ";" +
                                       NbOrganismAlive() + ";" +
@@ -109,7 +109,7 @@ namespace Simulation.Handling
             return result;
         }
 
-        public float AverageAgCumulative()
+        public float AverageAgeCumulative()
         {
             float result = 0;
 
