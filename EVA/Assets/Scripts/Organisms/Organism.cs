@@ -77,16 +77,21 @@ public abstract class Organism : MonoBehaviour {
     /// <summary>
     /// Initialisation of an organism.
     /// </summary>
-    private void Initialisation() {
+    protected virtual void Initialisation() {
         // Defining the genotype.
         Genotype = new Genotype(new Extension(new GeneticData()));
-        DeductGenotype(transform, Genotype.Root);
         
         // Adding extra parameters.		
         ExtendGenotype();
-        
-        // First time mutation to add noise and whatever.
-        Genotype.Mutate(PreSpawnMutation());
+
+        // Getting the prefab data into the genotype.
+        DeductGenotype(transform, Genotype.Root);
+
+        if (!haveParents())
+        {
+            // First time mutation to add noise and whatever.
+            Genotype.Mutate(PreSpawnMutation());
+        }
         
         // Applying it to the phenotype.
         ChangePhenotype(Genotype);
@@ -108,7 +113,8 @@ public abstract class Organism : MonoBehaviour {
     /// <summary>
     /// Save the statistics of the organism.
     /// </summary>
-    public void LogSelf() {
+    public virtual void LogSelf()
+    {
         Logger.getInstance().Save(Name + ";" + 
                                   Birth + ";" +
                                   Death + ";" +
@@ -128,6 +134,15 @@ public abstract class Organism : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Does the organism have parents ?
+    /// </summary>
+    /// <returns>Returns true if the organism have parents.</returns>
+    public bool haveParents()
+    {
+        return NameParent1 != null || NameParent2 != null;
+    }
+
     #region Unity
 
     public void Start() {
@@ -136,7 +151,8 @@ public abstract class Organism : MonoBehaviour {
     }
 
     // Fixed Update is called once by physic engine
-    public void FixedUpdate() {
+    public virtual void FixedUpdate()
+    {
         try {
             State.FixedUpdate(); 
         } catch (Exception e) {
@@ -144,7 +160,8 @@ public abstract class Organism : MonoBehaviour {
         }
     }
 
-    public void Update() {
+    public virtual void Update()
+    {
         graphic.Update();
     }
     
@@ -152,17 +169,19 @@ public abstract class Organism : MonoBehaviour {
 
     #region State transition delegates
 
-    protected void BirthToPreAdult() {
+    protected virtual void BirthToPreAdult() {
         if((float)Age /phenotypeData.LifeDuration > SimHandler.Instance().Parameters.BabyDuration)
         State = new Teen(this, PreAdultToAdult);
     }
 
-    protected void PreAdultToAdult() {
+    protected virtual void PreAdultToAdult()
+    {
         if ((float)Age / phenotypeData.LifeDuration > SimHandler.Instance().Parameters.BabyDuration + SimHandler.Instance().Parameters.TeenDuration)
             State = new Adult(this, AdultToDeath);
     }
 
-    protected void AdultToDeath() {
+    protected virtual void AdultToDeath()
+    {
         if(Age > phenotypeData.LifeDuration)
             State = new Death(this, null);
     }
@@ -175,10 +194,14 @@ public abstract class Organism : MonoBehaviour {
     /// </summary>
     /// <param name="t">T. The current transform component examined.</param>
     /// <param name="e">E. The last extension treated (will serve as the parent for this call)</param>
-    private void DeductGenotype(Transform t, Extension e) {
+    protected virtual void DeductGenotype(Transform t, Extension e) {
         e.GeneticData.Set("scale", new WVector3(t.localScale));
-        e.GeneticData.Set("rotation", new WVector3(t.localRotation.eulerAngles));
-        e.GeneticData.Set("position", new WVector3(t.localPosition));
+
+        if (e.Tag != "root")
+        {
+            e.GeneticData.Set("position", new WVector3(t.localPosition));
+            e.GeneticData.Set("rotation", new WVector3(t.localRotation.eulerAngles));
+        }
         
         foreach(Transform child in t) {
             if (!child.CompareTag("Ignore"))
@@ -193,8 +216,8 @@ public abstract class Organism : MonoBehaviour {
     /// <summary>
     /// Applies the genotype to the phenotype.
     /// </summary>
-    /// <param name="g">The green component.</param>
-    public void ChangePhenotype(Genotype g) {
+    /// <param name="g">The genotype.</param>
+    public virtual void ChangePhenotype(Genotype g) {
         ModifyElement(transform, g.Root);
 
         if(phenotypeData == null) {
@@ -211,8 +234,12 @@ public abstract class Organism : MonoBehaviour {
     private void ModifyElement(Transform t, Extension e) {
         if (!t.CompareTag("Ignore"))
         {
-            t.localPosition = ((WVector3)e.GeneticData.Get("position")).Value;
-            t.localRotation = Quaternion.Euler(((WVector3)e.GeneticData.Get("rotation")).Value);
+            // We don't want to store the position of the root.
+            if (e.Tag != "root")
+            {
+                t.localPosition = ((WVector3)e.GeneticData.Get("position")).Value;
+                t.localRotation = Quaternion.Euler(((WVector3)e.GeneticData.Get("rotation")).Value);
+            }
             t.localScale = ((WVector3)e.GeneticData.Get("scale")).Value;
 
             IEnumerator transforms = t.GetEnumerator();
@@ -228,19 +255,14 @@ public abstract class Organism : MonoBehaviour {
     /// <summary>
     /// Adds informations to the genotype.
     /// </summary>
-    protected void ExtendGenotype ()
+    protected virtual void ExtendGenotype ()
     {
         Genotype.Root.Tag = "root";
-
-        // Par défaut.
         Genotype.Root.SetGeneticData("lifeduration", new WFloat(500));
-        Genotype.Root.SetGeneticData("speed", new WFloat(0.2F));
     }
     #endregion
 
-    #region Overriding
     override public string ToString() {
         return GetType() + Name;
     }
-    #endregion
 }

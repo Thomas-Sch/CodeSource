@@ -19,18 +19,18 @@ namespace Simulation {
             PopulationLimit = 100;
 
             // Statistics
-            BlockLength = 500;
-            SlidingWindowLength = 500;
+            BlockLength = 1000;
+            SlidingWindowLength = 1000;
 
             // Organisms
-            BabyDuration = 0.2f; // [%]
+            BabyDuration = 0.05f; // [%]
             TeenDuration = 0.2f; // [%]
             OrganismSight = 5f; // [Length]
 
             // Movement settings
 
             // Reproduction settings
-            NoNewChildDuration = 100; // [Number of updates]
+            NoNewChildDuration = 150; // [Number of updates]
         }
     }
 }

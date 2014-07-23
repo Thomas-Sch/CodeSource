@@ -97,6 +97,17 @@ namespace GeneticLibrary
         }
 
         /// <summary>
+        /// Return a child at the given emplacement.
+        /// It can rise exceptions, no check is done here.
+        /// </summary>
+        /// <param name="number">The index of the child</param>
+        /// <returns>The extension selected</returns>
+        public Extension getChild(int number)
+        {
+            return extensions[number];
+        }
+
+        /// <summary>
         /// Set the parent of the extension.
         /// </summary>
         /// <param name="parent">The parent</param>
@@ -118,11 +129,11 @@ namespace GeneticLibrary
         new public String ToString()
         {
             string result = this.GetType().Name + "(" + Tag + ")" + " " + GeneticData.ToString();
+            result += "{";
             foreach (Extension extension in extensions) {
-                result += "{";
                 result += extension.ToString();
-				result += "}";
             }
+            result += "}";
             return result;
         }
 

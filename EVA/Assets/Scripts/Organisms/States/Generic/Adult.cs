@@ -46,9 +46,11 @@ namespace Organisms.States
                         // Récupération de l'instance de script.s
                         Organism other = collider.gameObject.GetComponent<Organism>();
 
-                        if (other != null
+                        if (other != null && Organism != null
                             && other != Organism 
                             && NoNewChild <= 0 
+                            && other.State != null
+                            && Organism.State != null
                             && other.State.Tag() == Organism.State.Tag())
                         {
                             Adult a = (Adult)Organism.State;

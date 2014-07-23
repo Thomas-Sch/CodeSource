@@ -14,17 +14,35 @@ using GeneticLibrary.Interfaces;
 using Simulation.Handling;
 
 /// <summary>
-/// Behaviour of a type A organism.
+/// Behaviour of a type D organism.
 /// </summary>
 public class D : Organism {
 
 	/// <summary>
-	/// Overriding lifeduration and speed parameters.
+	/// Overriding lifeduration parameters.
 	/// </summary>
-	new protected void ExtendGenotype() {
+	protected override void ExtendGenotype() {
 		base.ExtendGenotype();
-		Genotype.Root.SetGeneticData("lifeduration", new WFloat(700));
+		Genotype.Root.SetGeneticData("lifeduration", new WFloat(1000));
 	}
+
+    protected override void Initialisation()
+    {
+        base.Initialisation();
+
+
+        Extension Arm = Genotype.Root.getChild(0);
+        Arm.Tag = "Arm";
+
+        Extension Motor = Arm.getChild(0);
+        Extension Segments = Arm.getChild(1);
+
+        Motor.Tag = "Motor";
+        Segments.Tag = "Segments";
+
+        Segments.getChild(0).Tag = "First";
+        Segments.getChild(1).Tag = "Second";
+    }
 
 	#region implemented abstract members of Organism
 
@@ -32,7 +50,10 @@ public class D : Organism {
 	{
 		Mutation result = new Mutation();
 		result.AddGeneticModifier(new Blur(Set.ALL, new Set(new [] {"scale"}), 0.2F));
-		result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeduration"}), 100.0F));
+
+        // It won't have much effect since the joints force to be aligned.
+        result.AddGeneticModifier(new Blur(Set.ALL, new Set(new[] { "rotation" }), 10));
+		result.AddGeneticModifier(new SingleBlur(new Set(new [] {"root"}),new Set(new [] {"lifeduration"}), 500));
 		return result;
 	}
 

@@ -33,9 +33,10 @@ namespace Organisms.States
         /// Spawns the children at the given position.
         /// </summary>
         /// <param name="position">Position.</param>
-        private void SpawnChildren(Vector3 position, string nameParent1, string nameParent2) {
-            RecombinationOutput childrenGenotypes = SimpleReco.getInstance().Recombine(Organism.Genotype,Other.Genotype);
+        private void SpawnChildren(string nameParent1, string nameParent2) {
+            RecombinationOutput childrenGenotypes = EVAReco.getInstance().Recombine(Organism.Genotype,Other.Genotype);
             foreach(Genotype childGenotype in childrenGenotypes) {
+                Vector3 position = SimHandler.Instance().GetRandomPosition();
                 GameObject childInstance = SimHandler.PopulationHandler().SpawnWithRandomRotation(Organism.Prefab(), position);
 
                 if (childInstance != null)
@@ -47,7 +48,7 @@ namespace Organisms.States
                     }
                     else
                     {
-                        child.Genotype = childGenotype;
+                        // Modify the default phenotype of the organism.
                         child.ChangePhenotype(childGenotype);
                     }
                     child.transform.position = position;
@@ -63,7 +64,7 @@ namespace Organisms.States
         {
             if (IsMother)
             {
-                SpawnChildren(SimHandler.Instance().GetRandomPosition(), Organism.Name, Other.Name);
+                SpawnChildren(Organism.Name, Other.Name);
             }
 
             Organism.NumberOfReproduction++;
