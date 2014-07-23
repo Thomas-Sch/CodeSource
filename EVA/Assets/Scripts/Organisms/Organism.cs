@@ -201,7 +201,6 @@ public abstract class Organism : MonoBehaviour {
             phenotypeData = new PhenotypeData();
         }
         phenotypeData.LifeDuration = (int)((WFloat)g.Root.GeneticData.Get("lifeduration")).Value;
-        phenotypeData.Speed = ((WFloat)g.Root.GeneticData.Get("speed")).Value;
     }
 
     /// <summary>

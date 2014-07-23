@@ -5,7 +5,5 @@
 /// </summary>
 
 public class PhenotypeData {
-
-	public float Speed {get; set;}
 	public int LifeDuration {get; set;}
 }
