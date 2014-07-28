@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 
 namespace Simulation.Handling
@@ -68,7 +68,7 @@ namespace Simulation.Handling
         public void Stop()
         {
             time.Stop();
-            EditorApplication.isPlaying = false;
+            //EditorApplication.isPlaying = false;
             Application.Quit();
         }
 

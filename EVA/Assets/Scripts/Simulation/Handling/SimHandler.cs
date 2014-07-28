@@ -5,7 +5,6 @@
 /// </summary>
 
 using UnityEngine;
-using UnityEditor;
 using System;
 using Simulation.Handling;
 
