@@ -19,8 +19,8 @@ namespace Simulation {
             PopulationLimit = 150;
 
             // Statistics
-            BlockLength = 1000;
-            SlidingWindowLength = 1000;
+            BlockLength = 5000;
+            SlidingWindowLength = 5000;
 
             // Organisms
             BabyDuration = 0.05f; // [%]

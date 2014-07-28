@@ -84,6 +84,9 @@ namespace Simulation.Handling
                 {
                     statistics.Log();
                 }
+
+                if (Step > 250000)
+                    control.Stop();
             }
         }
 

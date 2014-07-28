@@ -32,7 +32,13 @@ namespace Organisms.States
         public override void FixedAction ()
         {
             motor.rigidbody.AddTorque(-Organism.gameObject.transform.forward * strength * Time.deltaTime, ForceMode.Impulse);
-            Organism.Distance += Vector3.Distance(last, Organism.transform.position);
+            float distance = Vector3.Distance(last, Organism.transform.position);
+
+            // We are not counting the organisms that are flying by beeing ejected by the physic engine.
+            if (distance < 10)
+            {
+                Organism.Distance += distance;
+            }
             last = Organism.transform.position;
         } 
         #endregion
