@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 
 namespace Simulation.Handling
 {
+    /// <summary>
+    /// Subhandler for the statistics.
+    /// </summary>
     class SimulationStatistics : ISimStats
     {
         private static string file = "Statistics.csv";

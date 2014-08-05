@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Simulation
 {
+    /// <summary>
+    /// Paramters of the simulation.
+    /// </summary>
     public class Parameters
     {
         public string OrganismTag = "Organism";

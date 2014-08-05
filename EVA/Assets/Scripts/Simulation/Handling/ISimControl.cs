@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace Simulation.Handling
 {
+    /// <summary>
+    /// Interface for the subhandler which control the simulation.
+    /// </summary>
     public interface ISimControl
     {
         /// <summary>

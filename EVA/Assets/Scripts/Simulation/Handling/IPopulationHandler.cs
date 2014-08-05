@@ -10,9 +10,11 @@ using UnityEngine;
 
 namespace Simulation.Handling
 {
+    /// <summary>
+    /// Interface for the population handler of the simulation.
+    /// </summary>
     public interface IPopulationHandler
     {
-
         /// <summary>
         /// Gets the list of all the organisms in the simulation.
         /// </summary>

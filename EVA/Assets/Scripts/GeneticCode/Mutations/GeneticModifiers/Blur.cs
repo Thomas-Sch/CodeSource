@@ -1,11 +1,21 @@
+/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : June 2014
+/// </summary>
+/// 
 using System;
 using System.Collections.Generic;
 using GeneticLibrary.Collections;
+using GeneticLibrary.Mutations;
 using UnityEngine;
 using Wrappers;
 
-namespace GeneticLibrary.Mutations.GeneticModifiers
+namespace GeneticCode.Mutations.GeneticModifiers
 {
+    /// <summary>
+    /// Mutation which cause to blur values.
+    /// </summary>
     public class Blur : GeneticModifier
     {
         private static System.Random generator;

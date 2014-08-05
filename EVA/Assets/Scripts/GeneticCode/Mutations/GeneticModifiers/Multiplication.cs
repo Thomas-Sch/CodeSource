@@ -1,11 +1,21 @@
+/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : June 2014
+/// </summary>
+/// 
 using System;
 using System.Collections.Generic;
 using GeneticLibrary.Collections;
+using GeneticLibrary.Mutations;
 using UnityEngine;
 using Wrappers;
 
-namespace GeneticLibrary.Mutations.GeneticModifiers
+namespace GeneticCode.Mutations.GeneticModifiers
 {
+    /// <summary>
+    /// Mutation which multiply values.
+    /// </summary>
     class Multiplication : GeneticModifier
     {
         private float value;

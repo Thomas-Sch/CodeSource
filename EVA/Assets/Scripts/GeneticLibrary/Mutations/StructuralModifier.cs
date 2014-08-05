@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// This file is part of the GenotypeLibrary wich aims to
+/// This file is part of the GeneticLibrary wich aims to
 /// represent a genotype and gives the tools to modify it.
 /// 
 /// Author : Thomas Schweizer
@@ -10,6 +10,9 @@ using GeneticLibrary.Collections;
 
 namespace GeneticLibrary.Mutations
 {
+    /// <summary>
+    /// Represent a structural modifier.
+    /// </summary>
     abstract class StructuralModifier : Modifier
     {
         public StructuralModifier(Set extensions) : base(extensions) { }

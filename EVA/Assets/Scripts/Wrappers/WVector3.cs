@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Wrappers
 {
+    /// <summary>
+    /// Wrapper for the Vector3 object.
+    /// </summary>
     class WVector3 : IDeepClonable
     {
 		public Vector3 Value {get; set;}

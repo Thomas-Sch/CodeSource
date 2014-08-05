@@ -10,9 +10,8 @@ using Simulation.Handling;
 
 namespace Simulation.Handling
 {
-
     /// <summary>
-    /// Class d'initialisation pour la simulation.
+    /// Handling class for the simulation.
     /// </summary>
     public class SimHandler : MonoBehaviour, ISimHandler
     {
@@ -55,6 +54,10 @@ namespace Simulation.Handling
             Step = 0;
         }
 
+        /// <summary>
+        /// Update the size of the terrain
+        /// </summary>
+        /// <param name="size">The new size</param>
         public void UpdateTerrain(int size)
         {
             Terrain.transform.localScale = new Vector3(size, 1, size);
@@ -73,6 +76,9 @@ namespace Simulation.Handling
             control.Speed = 1.0f;
         }
 
+        /// <summary>
+        /// Unity's method for updating physics.
+        /// </summary>
         void FixedUpdate()
         {
             if (control.IsRunning())
@@ -100,6 +106,10 @@ namespace Simulation.Handling
             return Instantiate(prefab, position, rotation) as GameObject;
         }
 
+        /// <summary>
+        /// Get an random position on the map.
+        /// </summary>
+        /// <returns>The position</returns>
         public Vector3 GetRandomPosition()
         {
             Vector3 position = new Vector3();

@@ -76,6 +76,9 @@ namespace Simulation.GUI
             help = new Rect(screenMargin, Screen.height - helpSize.Height, helpSize.Width, helpSize.Height);
         }
 
+        /// <summary>
+        /// Update the size of the windows.
+        /// </summary>
         private void UpdateSizes()
         {
             // Update the size of the rectangles.

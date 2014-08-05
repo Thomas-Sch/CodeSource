@@ -22,6 +22,10 @@ namespace Simulation {
         private float initialG;
         private float initialB;
     
+        /// <summary>
+        /// Binds this instance to the organism.
+        /// </summary>
+        /// <param name="model"></param>
         public void Init(Organism model) {
             this.model = model;
 
@@ -36,9 +40,11 @@ namespace Simulation {
                     state = child.gameObject;
                 }
             }
-
         }
 
+        /// <summary>
+        /// Unity's method.
+        /// </summary>
         public void Update() {
             // Gradually shift the root color of the organism to black.
             float percentage = 1.0f - model.Age / (float) model.phenotypeData.LifeDuration;

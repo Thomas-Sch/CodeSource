@@ -1,8 +1,13 @@
+/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : July 2014
+/// </summary>
+
 using System;
 using System.Collections.Generic;
 using GeneticLibrary.Collections;
 using GeneticLibrary.Mutations;
-using GeneticLibrary.Mutations.GeneticModifiers;
 using Tools;
 using Wrappers;
 

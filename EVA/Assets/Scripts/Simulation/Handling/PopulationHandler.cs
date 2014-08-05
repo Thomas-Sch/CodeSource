@@ -12,6 +12,9 @@ using UnityEngine;
 
 namespace Simulation.Handling
 {
+    /// <summary>
+    /// Population subhandler of the simulation
+    /// </summary>
     class PopulationHandler : IPopulationHandler
     {
         private SimHandler handler;
@@ -57,7 +60,11 @@ namespace Simulation.Handling
             return gameObject;
         }
 
-        public bool SpawnChance()
+        /// <summary>
+        /// Calculate the chance of a reproduction.
+        /// </summary>
+        /// <returns>True if the test passes.</returns>
+        private bool SpawnChance()
         {
             float[] a = {50,1}; // Milestone for 100% spawn rate.
             float[] b =  {SimHandler.Instance().Parameters.PopulationLimit, 0.1f}; // Milestone for 0.1 spawn rate.  

@@ -1,5 +1,5 @@
 /// <summary>
-/// This file is part of the GenotypeLibrary wich aims to
+/// This file is part of the GeneticLibrary wich aims to
 /// represent a genotype and gives the tools to modify it.
 /// 
 /// Author : Thomas Schweizer
@@ -11,6 +11,9 @@ using GeneticLibrary.Interfaces;
 
 namespace GeneticLibrary
 {
+    /// <summary>
+    /// Represent the genotype of an element
+    /// </summary>
     public class Genotype
     {
 		private Extension root;

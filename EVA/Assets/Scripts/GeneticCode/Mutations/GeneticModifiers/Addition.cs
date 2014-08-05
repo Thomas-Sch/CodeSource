@@ -1,11 +1,20 @@
+/// <summary>
+/// This file is part of the EVA simulation. 
+/// Author : Thomas Schweizer
+/// Date   : June 2014
+/// </summary>
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using GeneticLibrary.Collections;
 using Wrappers;
+using GeneticLibrary.Mutations;
 
-namespace GeneticLibrary.Mutations.GeneticModifiers
+namespace GeneticCode.Mutations.GeneticModifiers
 {
+    /// <summary>
+    /// Define a mutation which adds value to others.
+    /// </summary>
     class Addition : GeneticModifier
     {
         private float value;

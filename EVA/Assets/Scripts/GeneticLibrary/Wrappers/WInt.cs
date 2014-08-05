@@ -1,5 +1,5 @@
 /// <summary>
-/// This file is part of the GenotypeLibrary wich aims to
+/// This file is part of the GeneticLibrary wich aims to
 /// represent a genotype and gives the tools to modify it.
 /// 
 /// Author : Thomas Schweizer

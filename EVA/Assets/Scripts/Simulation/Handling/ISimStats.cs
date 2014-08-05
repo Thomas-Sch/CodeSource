@@ -9,6 +9,9 @@ using System;
 
 namespace Simulation.Handling
 {
+    /// <summary>
+    /// Interface for the subhandler of the statistics.
+    /// </summary>
     public interface ISimStats
     {
         /// <summary>
@@ -17,23 +20,39 @@ namespace Simulation.Handling
         int interval { get; set; }
 
         /// <summary>
-        /// Returns the average distance traveled by the organisms.
+        /// Returns the cumulative average distance traveled by the organisms.
         /// </summary>
         /// <returns>The distance in meters.</returns>
         float AverageDistanceCumulative();
 
+        /// <summary>
+        /// Returns the average distance by block traveled by the organisms.
+        /// </summary>
+        /// <returns>The distance in meters.</returns>
         float AverageDistanceBlock();
 
+        /// <summary>
+        /// Returns the average distance by sliding window traveled by the organisms.
+        /// </summary>
+        /// <returns>The distance in meters.</returns>
         float AverageDistanceSlidingWindow();
 
         /// <summary>
-        /// Returns the average age of all the organisms.
+        /// Returns the cumulative average age of all the organisms.
         /// </summary>
         /// <returns>The age.</returns>
         float AverageAgeCumulative();
 
+        /// <summary>
+        /// Returns the block average age of all the organisms.
+        /// </summary>
+        /// <returns>The age.</returns>
         float AverageAgeBlock();
 
+        /// <summary>
+        /// Returns the sliding window average age of all the organisms.
+        /// </summary>
+        /// <returns>The age.</returns>
         float AverageAgeSlidingWindow();
 
         /// <summary>

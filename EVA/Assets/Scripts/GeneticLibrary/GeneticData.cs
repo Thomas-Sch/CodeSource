@@ -1,5 +1,5 @@
 /// <summary>
-/// This file is part of the GenotypeLibrary wich aims to
+/// This file is part of the GeneticLibrary wich aims to
 /// represent a genotype and gives the tools to modify it.
 /// 
 /// Author : Thomas Schweizer
@@ -14,6 +14,9 @@ using GeneticLibrary.Mutations;
 
 namespace GeneticLibrary
 {
+    /// <summary>
+    /// Represent the genetic data of a node in the genetic structure of the organism. The genes are handled with a key/value system.
+    /// </summary>
     public class GeneticData : IEnumerable, IDeepClonable
     {
         // Tag of the geneticData.
@@ -28,6 +31,11 @@ namespace GeneticLibrary
             tag = s;
         }
 
+        /// <summary>
+        /// Add or modifiy a gene.
+        /// </summary>
+        /// <param name="element">The name of the gene</param>
+        /// <param name="data">The value of the gene</param>
         public void Set(String element, IDeepClonable data)
         {
             this.data[element] = data;

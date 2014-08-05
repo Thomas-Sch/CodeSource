@@ -7,7 +7,6 @@
 using UnityEngine;
 using GeneticLibrary;
 using GeneticLibrary.Wrappers;
-using GeneticLibrary.Mutations.GeneticModifiers;
 using GeneticLibrary.Mutations;
 using GeneticLibrary.Collections;
 using GeneticLibrary.Interfaces;

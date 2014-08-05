@@ -5,5 +5,8 @@
 /// </summary>
 
 public class PhenotypeData {
+    /// <summary>
+    /// The duration of life of an organism.
+    /// </summary>
 	public int LifeDuration {get; set;}
 }
