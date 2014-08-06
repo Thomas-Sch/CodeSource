@@ -7,11 +7,11 @@
 using UnityEngine;
 using GeneticLibrary;
 using GeneticLibrary.Wrappers;
-using GeneticLibrary.Mutations.GeneticModifiers;
 using GeneticLibrary.Mutations;
 using GeneticLibrary.Collections;
 using GeneticLibrary.Interfaces;
 using Simulation.Handling;
+using GeneticCode.Mutations.GeneticModifiers;
 
 /// <summary>
 /// Behaviour of a type A organism.

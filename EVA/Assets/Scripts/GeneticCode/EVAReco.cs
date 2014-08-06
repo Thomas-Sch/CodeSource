@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using GeneticCode.Mutations.GeneticModifiers;
 using GeneticLibrary.Collections;
 using GeneticLibrary.Mutations;
 using Tools;

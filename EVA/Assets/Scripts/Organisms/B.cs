@@ -11,6 +11,7 @@ using GeneticLibrary.Mutations;
 using GeneticLibrary.Collections;
 using GeneticLibrary.Interfaces;
 using Simulation.Handling;
+using GeneticCode.Mutations.GeneticModifiers;
 
 /// <summary>
 /// Behaviour of a type B organism.
