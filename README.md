@@ -1,7 +1,9 @@
-EVA
-==========
+# Evolution et Vie Artificielles
+This work represent my Bachelor's project on the simulation and observation of a population of virtual organisms.
 
-This repository contains the source code for the EVA project.
+My main contributions are a genetic library, a simulation space (running in Unity) and a report of evolutions.
+
+## Abstract
 
 (english below)
 
